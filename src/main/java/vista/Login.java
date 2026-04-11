@@ -72,11 +72,11 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 180, 216));
         jLabel3.setText("LOGIN");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 180, 216));
         jLabel1.setText("Usuario");
 
@@ -84,7 +84,7 @@ public class Login extends javax.swing.JFrame {
         jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(5, 17, 98), 2, true));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 180, 216));
         jLabel4.setText("Contrasena");
 

@@ -10,6 +10,7 @@ package vista;
  */
 import javax.swing.*;
 import java.awt.*;
+import java.awt.color.ColorSpace;
 import java.awt.event.*;
 import javax.swing.border.EmptyBorder;
 
@@ -33,6 +34,7 @@ public class MainFrame extends JFrame {
         add(crearHeader(),    BorderLayout.NORTH);
         add(crearSidebar(),   BorderLayout.WEST);
         add(crearContenido(), BorderLayout.CENTER);
+        setIconImage(new ImageIcon(getClass().getResource("/img/logopeque.png")).getImage());
     }
 
     private JPanel crearHeader() {
@@ -66,7 +68,7 @@ public class MainFrame extends JFrame {
         // BoxLayout con eje Y → apila los componentes verticalmente (uno encima del otro)
         JPanel sidebar = new JPanel();
         sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
-        sidebar.setBackground(new Color(0x162030));
+        sidebar.setBackground(new Color(0,204,204));
         sidebar.setPreferredSize(new Dimension(200, 0)); // ancho fijo de 200px
 
         // ── Botones de navegación ─────────────────────────────────────────
@@ -96,9 +98,9 @@ public class MainFrame extends JFrame {
         ImageIcon icono = new ImageIcon(imgURL);
         
         btn.setIcon(new ImageIcon(icono.getImage()));
-        btn.setFont(new Font("Poppins", Font.PLAIN, 14));
-        btn.setForeground(new Color(0xCCCCCC));
-        btn.setBackground(new Color(0x162030));
+        btn.setFont(new Font("Poppins", Font.BOLD, 14));
+        btn.setForeground(Color.WHITE);
+        btn.setBackground(new Color(0,204,204));
         btn.setFocusPainted(false);
         btn.setBorderPainted(false);
         btn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -109,11 +111,10 @@ public class MainFrame extends JFrame {
         btn.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 btn.setBackground(new Color(0x243447));
-                btn.setForeground(Color.red);
             }
             public void mouseExited(MouseEvent e) {
-                btn.setBackground(new Color(0x162030));
-                btn.setForeground(new Color(0xCCCCCC));
+                btn.setBackground(new Color(0,204,204));
+                btn.setForeground(Color.WHITE);
 
             }
         });
