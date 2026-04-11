@@ -96,7 +96,6 @@ public class MainFrame extends JFrame {
         ImageIcon icono = new ImageIcon(imgURL);
         
         btn.setIcon(new ImageIcon(icono.getImage()));
-//        btn.setIconTextGap(10);
         btn.setFont(new Font("Poppins", Font.PLAIN, 14));
         btn.setForeground(new Color(0xCCCCCC));
         btn.setBackground(new Color(0x162030));
@@ -107,7 +106,6 @@ public class MainFrame extends JFrame {
         btn.setPreferredSize(new Dimension(0, 50));
         btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        // ── Hover: cambia color al pasar el mouse ─────────────────────────
         btn.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 btn.setBackground(new Color(0x243447));
@@ -120,7 +118,6 @@ public class MainFrame extends JFrame {
             }
         });
 
-        // ── Clic: le dice al CardLayout que muestre el panel indicado ─────
         btn.addActionListener(e -> {
             cardLayout.show(contenedor, nombrePanel);
         });
@@ -128,19 +125,11 @@ public class MainFrame extends JFrame {
         return btn;
     }
 
-
-    // =========================================================================
-    //  ÁREA DE CONTENIDO (donde cambian los paneles)
-    // =========================================================================
     private JPanel crearContenido() {
         cardLayout = new CardLayout();
         contenedor = new JPanel(cardLayout);
-        // ── REGISTRAR PANELES ─────────────────────────────────────────────
-        // Sintaxis: contenedor.add(elPanel, "nombreClave")
-        // El "nombreClave" es el identificador que usarás para mostrar ese panel.
-        // Puede ser cualquier String, solo debe ser único y consistente.
 
-        contenedor.add(new PanelInicio(),   "inicio");   // panel por defecto
+        contenedor.add(new PanelInicio(),   "inicio");
         contenedor.add(new PanelHabitaciones(),  "habitaciones");
         contenedor.add(new PanelReservas(),  "reservas");
         contenedor.add(new PanelCheckInOut(),   "check");
@@ -149,21 +138,11 @@ public class MainFrame extends JFrame {
         contenedor.add(new PanelReportes(),   "reportes");
         contenedor.add(new PanelGestionUsuarios(),   "usuarios");
 
-        // Mostrar el panel inicial al arrancar
         cardLayout.show(contenedor, "inicio");
 
         return contenedor;
     }
 
-
-    // =========================================================================
-    //  MAIN — Punto de entrada
-    // =========================================================================
-    // =========================================================================
-    //  PANELES DE EJEMPLO (normalmente estarían en archivos .java separados)
-    // =========================================================================
-
-    /** Panel de inicio */
     static class PanelInicio extends JPanel {
         public PanelInicio() {
             setBackground(new Color(0x0F1923));
