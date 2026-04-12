@@ -9,7 +9,8 @@ db.url =jdbc:mysql://localhost:3306/hotel
 
 db.usuario=root
 
-db.contra=cesar02
+db.contra=tucontrasena
+
 
 
 
