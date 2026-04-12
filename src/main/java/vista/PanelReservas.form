@@ -47,7 +47,7 @@
                   <Component id="panelNumeroReservas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnAgregarReserva1" pref="325" max="32767" attributes="0"/>
+                      <Component id="btnRegistrarHuesped" pref="409" max="32767" attributes="0"/>
                       <Component id="btnAgregarReserva" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -63,7 +63,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnAgregarReserva" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnAgregarReserva1" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="btnRegistrarHuesped" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -169,17 +169,17 @@
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnAgregarReserva.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnAgregarReserva.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnAgregarReserva.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnAgregarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/aggReserva.png&quot;))); // NOI18N&#xa;&#xa;btnAgregarReserva.setToolTipText(&quot;&quot;);&#xa;&#xa;btnAgregarReserva.setBorder(null);&#xa;&#xa;btnAgregarReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnAgregarReserva.setFocusable(false);&#xa;&#xa;btnAgregarReserva.setIconTextGap(10);&#xa;&#xa;btnAgregarReserva.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnAgregarReserva.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnAgregarReserva.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="btnAgregarReserva1">
+        <Component class="javax.swing.JButton" name="btnRegistrarHuesped">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="&quot;Registrar huesped&quot;" type="code"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarReserva1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarHuespedActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnAgregarReserva1.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnAgregarReserva1.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnAgregarReserva1.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnAgregarReserva1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/nuevoUsuario.png&quot;))); // NOI18N&#xa;&#xa;btnAgregarReserva1.setToolTipText(&quot;&quot;);&#xa;&#xa;btnAgregarReserva1.setBorder(null);&#xa;&#xa;btnAgregarReserva1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnAgregarReserva1.setFocusable(false);&#xa;&#xa;btnAgregarReserva1.setIconTextGap(10);&#xa;&#xa;btnAgregarReserva1.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnAgregarReserva1.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnAgregarReserva1.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnRegistrarHuesped.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnRegistrarHuesped.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnRegistrarHuesped.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnRegistrarHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/nuevoUsuario.png&quot;))); // NOI18N&#xa;&#xa;btnRegistrarHuesped.setToolTipText(&quot;&quot;);&#xa;&#xa;btnRegistrarHuesped.setBorder(null);&#xa;&#xa;btnRegistrarHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnRegistrarHuesped.setFocusable(false);&#xa;&#xa;btnRegistrarHuesped.setIconTextGap(10);&#xa;&#xa;btnRegistrarHuesped.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnRegistrarHuesped.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnRegistrarHuesped.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -256,7 +256,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="10">
+                  <Table columnCount="9" rowCount="10">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
                     <Column editable="false" title="Huesped" type="java.lang.Object"/>
                     <Column editable="false" title="Total personas" type="java.lang.Object"/>
@@ -265,11 +265,17 @@
                     <Column editable="false" title="Fecha salida" type="java.lang.Object"/>
                     <Column editable="false" title="Fecha reserva" type="java.lang.Object"/>
                     <Column editable="true" title="Estado" type="java.lang.Object"/>
+                    <Column editable="true" title="Dinero abonado" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="40" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>

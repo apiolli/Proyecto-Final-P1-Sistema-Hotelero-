@@ -40,7 +40,7 @@ public class PanelReservas extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnAgregarReserva = new javax.swing.JButton();
-        btnAgregarReserva1 = new javax.swing.JButton();
+        btnRegistrarHuesped = new javax.swing.JButton();
         panelMedio = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReservas = new javax.swing.JTable();
@@ -97,8 +97,8 @@ public class PanelReservas extends javax.swing.JPanel {
         btnAgregarReserva.setText("Crear reserva");
         btnAgregarReserva.addActionListener(this::btnAgregarReservaActionPerformed);
 
-        btnAgregarReserva1.setText("Registrar huesped");
-        btnAgregarReserva1.addActionListener(this::btnAgregarReserva1ActionPerformed);
+        btnRegistrarHuesped.setText("Registrar huesped");
+        btnRegistrarHuesped.addActionListener(this::btnRegistrarHuespedActionPerformed);
 
         javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
         panelTitulo.setLayout(panelTituloLayout);
@@ -109,7 +109,7 @@ public class PanelReservas extends javax.swing.JPanel {
                 .addComponent(panelNumeroReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregarReserva1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                    .addComponent(btnRegistrarHuesped, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
                     .addComponent(btnAgregarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37))
         );
@@ -122,7 +122,7 @@ public class PanelReservas extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTituloLayout.createSequentialGroup()
                         .addComponent(btnAgregarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAgregarReserva1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnRegistrarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, 0))
         );
 
@@ -155,31 +155,31 @@ public class PanelReservas extends javax.swing.JPanel {
         });
 
         // Code adding the component to the parent container - not shown here
-        btnAgregarReserva1.setBackground(new java.awt.Color(0, 204, 204));
+        btnRegistrarHuesped.setBackground(new java.awt.Color(0, 204, 204));
 
-        btnAgregarReserva1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnRegistrarHuesped.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
 
-        btnAgregarReserva1.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarHuesped.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnAgregarReserva1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevoUsuario.png"))); // NOI18N
+        btnRegistrarHuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevoUsuario.png"))); // NOI18N
 
-        btnAgregarReserva1.setToolTipText("");
+        btnRegistrarHuesped.setToolTipText("");
 
-        btnAgregarReserva1.setBorder(null);
+        btnRegistrarHuesped.setBorder(null);
 
-        btnAgregarReserva1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistrarHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnAgregarReserva1.setFocusable(false);
+        btnRegistrarHuesped.setFocusable(false);
 
-        btnAgregarReserva1.setIconTextGap(10);
+        btnRegistrarHuesped.setIconTextGap(10);
 
-        btnAgregarReserva1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRegistrarHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAgregarReserva1.setBackground(new Color(20, 30, 40));
+                btnRegistrarHuesped.setBackground(new Color(20, 30, 40));
 
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAgregarReserva1.setBackground(new Color(0, 204, 204));
+                btnRegistrarHuesped.setBackground(new Color(0, 204, 204));
             }
         });
 
@@ -192,23 +192,23 @@ public class PanelReservas extends javax.swing.JPanel {
         tablaReservas.setForeground(new java.awt.Color(255, 255, 255));
         tablaReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Huesped", "Total personas", "Habitacion", "Fecha entrada", "Fecha salida", "Fecha reserva", "Estado"
+                "ID", "Huesped", "Total personas", "Habitacion", "Fecha entrada", "Fecha salida", "Fecha reserva", "Estado", "Dinero abonado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -409,7 +409,7 @@ public class PanelReservas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarReserva1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarReserva1ActionPerformed
+    private void btnRegistrarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarHuespedActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -419,7 +419,7 @@ public class PanelReservas extends javax.swing.JPanel {
                 dialog.setVisible(true);
             }
         });
-    }//GEN-LAST:event_btnAgregarReserva1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarHuespedActionPerformed
 
     private void btnAgregarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarReservaActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -488,11 +488,11 @@ public class PanelReservas extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarReserva;
-    private javax.swing.JButton btnAgregarReserva1;
     private javax.swing.JButton btnMostrarActivas;
     private javax.swing.JButton btnMostrarCompletadas;
     private javax.swing.JButton btnMostrarConfirmadas;
     private javax.swing.JButton btnMostrarTodo;
+    private javax.swing.JButton btnRegistrarHuesped;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

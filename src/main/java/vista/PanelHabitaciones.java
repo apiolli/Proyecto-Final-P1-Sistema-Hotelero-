@@ -4,41 +4,31 @@
  */
 package vista;
 
+import app.ContextoAplicacion;
+import controlador.ControladorHabitacion;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.List;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
+import modelo.Habitacion;
+import modelo.Mensajes;
 
-/**
- *
- * @author DELL
- */
-public class PanelHabitaciones extends javax.swing.JPanel {
+public class PanelHabitaciones extends javax.swing.JPanel implements Mensajes {
     
-    public PanelHabitaciones() {
+    private ContextoAplicacion contexto;
+    private ControladorHabitacion controlador;
+    public PanelHabitaciones(ContextoAplicacion contexto) {
+        this.contexto = contexto;
         initComponents();
         setLayout(new BorderLayout(0, 12));
         setBorder(new EmptyBorder(16, 16, 16, 16));
@@ -347,6 +337,8 @@ public class PanelHabitaciones extends javax.swing.JPanel {
             @Override
             public void run() {
                 DiagAggHabitacion dialog = new DiagAggHabitacion(new javax.swing.JFrame(), true);
+                controlador.setDialogo(dialog);
+                dialog.setControlador(controlador);
                 dialog.setVisible(true);
             }
         });
@@ -456,7 +448,7 @@ public class PanelHabitaciones extends javax.swing.JPanel {
     
     private void cambiarEstado(JPanel habitacion, JPanel panelEstado, JLabel lbEstado, JLabel icono, String status) {
         switch (status) {
-            case "Libre":
+            case "Disponible":
                 habitacion.setBackground(new Color(87, 171, 87));
                 panelEstado.setBackground(new Color(234, 243, 222));
                 lbEstado.setForeground(new Color(59, 109, 17));
@@ -484,21 +476,26 @@ public class PanelHabitaciones extends javax.swing.JPanel {
     }
     
     private JScrollPane panelGestion() {
-        panelHab.setLayout(new WrapLayout(FlowLayout.LEFT, 12, 12));
-
-        agregarHabitacion("101", "Individual", "Libre");
-        agregarHabitacion("102", "Doble",      "Ocupada");
-        agregarHabitacion("103", "Suite",      "Sucia");
-        agregarHabitacion("103", "Suite",      "Sucia");
-        agregarHabitacion("104", "Familiar",   "Mantenimiento");
-        agregarHabitacion("105", "Doble",      "Ocupada");
-        agregarHabitacion("106", "Deluxe",     "Libre");
+        panelHab.setLayout(new WrapLayout(FlowLayout.LEFT, 12, 12));        
 
         JScrollPane scroll = new JScrollPane(panelHab);
         scroll.setBorder(BorderFactory.createEmptyBorder());
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         return scroll;
+    }
+    
+    public void cargarHabitaciones(ArrayList<Habitacion> lista) {
+        panelHab.removeAll();
+        for (Habitacion habitacion : lista) {
+            agregarHabitacion(String.valueOf(habitacion.getNumHabitacion()), habitacion.getTipo(), habitacion.getEstado());
+        }
+        panelHab.revalidate();
+        panelHab.repaint();
+    }
+    
+    public void setControlador(ControladorHabitacion controlador) {
+        this.controlador = controlador;
     }
     
     
@@ -521,4 +518,14 @@ public class PanelHabitaciones extends javax.swing.JPanel {
     private javax.swing.JPanel panelInfo;
     private javax.swing.JPanel panelTitular;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mostrarExito(String mensaje) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mostrarError(String mensaje) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

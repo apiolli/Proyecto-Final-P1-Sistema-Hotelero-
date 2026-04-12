@@ -1,6 +1,7 @@
 package vista;
 
 import app.ContextoAplicacion;
+import controlador.ControladorHabitacion;
 import controlador.ControladorHuesped;
 import javax.swing.*;
 import java.awt.*;
@@ -112,9 +113,14 @@ public class MainFrame extends JFrame {
     private JPanel crearContenido() {
         cardLayout = new CardLayout();
         contenedor = new JPanel(cardLayout);
-
+        
+        PanelHabitaciones panelHabs = new PanelHabitaciones(contexto);
+        ControladorHabitacion controlador = new ControladorHabitacion(panelHabs, contexto.getHabitacionDAO());
+        panelHabs.setControlador(controlador);
+        controlador.cargarHabitaciones();
+        
         contenedor.add(new PanelInicio(),   "inicio");
-        contenedor.add(new PanelHabitaciones(),  "habitaciones");
+        contenedor.add(panelHabs,  "habitaciones");
         contenedor.add(new PanelReservas(contexto),  "reservas");
         contenedor.add(new PanelCheckInOut(),   "check");
         contenedor.add(new PanelConsumo(),   "consumo");
