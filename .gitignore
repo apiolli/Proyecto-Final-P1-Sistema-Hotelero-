@@ -1,0 +1,32 @@
+# ==========================================
+# 1. Archivos compilados de Java (No se suben, se generan)
+# ==========================================
+*.class
+*.jar
+*.war
+
+# ==========================================
+# 2. Carpetas de compilación de NetBeans
+# ==========================================
+/build/
+/dist/
+/nbbuild/
+
+# ==========================================
+# 3. Configuraciones PRIVADAS de NetBeans
+# ==========================================
+/nbproject/private/
+/nbproject/project.properties
+/nbproject/build-impl.xml
+
+# ==========================================
+# 4. Seguridad y Credenciales (¡Crucial!)
+# ==========================================
+.env
+config.properties
+
+# ==========================================
+# 5. Archivos del Sistema Operativo (Basura visual)
+# ==========================================
+.DS_Store
+Thumbs.db
