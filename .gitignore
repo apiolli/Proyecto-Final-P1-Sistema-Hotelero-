@@ -30,3 +30,4 @@ config.properties
 # ==========================================
 .DS_Store
 Thumbs.db
+/target/
