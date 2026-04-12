@@ -23,8 +23,24 @@ public class EmpleadoDAO implements Gestionable<Empleado> {
     }
     
     @Override
-    public int guardar(Empleado clase) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int guardar(Empleado empleado) throws SQLException {
+        PreparedStatement ps = con.prepareStatement("INSERT INTO Empleado"
+        + "(nombre,apellido,nacionalidad,documento_identidad,fecha_nacimiento,telefono,"
+        + "cargo,sueldo,usuario,contrasena,fecha_ingreso) "
+        + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+        ps.setString(1, empleado.getNombre());
+        ps.setString(2, empleado.getApellido());
+        ps.setString(3, empleado.getNacionalidad());
+        ps.setString(4, empleado.getDocumentoIdentidad());
+        ps.setLong(5, empleado.getFechaDeNacimiento());
+        ps.setString(6, empleado.getTelefono());
+        ps.setString(7, empleado.getCargo());
+        ps.setDouble(8, empleado.getSueldo());
+        ps.setString(9, empleado.getUsuario());
+        ps.setString(10, empleado.getContrasena());
+        ps.setLong(11, empleado.getFechaIngreso());
+        return ps.executeUpdate();
+        
     }
     
 }
