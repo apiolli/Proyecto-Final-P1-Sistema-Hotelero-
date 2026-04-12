@@ -19,8 +19,7 @@ public abstract class Persona {
     private long fechaDeNacimiento;
     private String telefono;
 
-    public Persona(String nombre, String apellido, String nacionalidad, 
-        String documentoIdentidad, long fechaDeNacimiento, String telefono) {
+    public Persona(String nombre, String apellido, String nacionalidad, String documentoIdentidad, long fechaDeNacimiento, String telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nacionalidad = nacionalidad;
@@ -32,38 +31,26 @@ public abstract class Persona {
     public String getNombre() {
         return nombre;
     }
+
     public String getApellido() {
         return apellido;
     }
+
     public String getNacionalidad() {
         return nacionalidad;
     }
+
     public String getDocumentoIdentidad() {
         return documentoIdentidad;
     }
+
     public long getFechaDeNacimiento() {
         return fechaDeNacimiento;
     }
+
     public String getTelefono() {
         return telefono;
     }
-    public void setNombre(String nombre){
-        this.nombre=nombre;
-    }
-    public void setApellido(String apellido){
-        this.apellido=apellido;
-    }
-    public void setNacionalidad(String nacionalidad){
-        this.nacionalidad=nacionalidad;
-    }
-    public void setDocumentoIdentidad(String documentoIdentidad){
-        this.documentoIdentidad=documentoIdentidad;
-    }
-    public void setFechaNacimiento(long fechaNacimiento){
-        this.fechaDeNacimiento=fechaNacimiento;
-    }
-    public void setTelefono(String telefono){
-        this.telefono=telefono;
-    }
-      
+    
+    
 }
