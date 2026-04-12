@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package vista;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 
-/**
- *
- * @author DELL
- */
 public class DiagCrearReserva extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DiagCrearReserva.class.getName());
@@ -328,11 +320,6 @@ public class DiagCrearReserva extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnDIagActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarDoc;
     private javax.swing.JButton btnBuscarHab;

@@ -334,18 +334,15 @@ public class PanelHabitaciones extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarHabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarHabMouseEntered
-
         btnAgregarHab.setBackground(new Color(0x1C2B3A));
     }//GEN-LAST:event_btnAgregarHabMouseEntered
 
     private void btnAgregarHabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarHabMouseExited
-
         btnAgregarHab.setBackground(new Color(0, 204, 204));
 
     }//GEN-LAST:event_btnAgregarHabMouseExited
 
     private void btnAgregarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHabActionPerformed
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -504,46 +501,6 @@ public class PanelHabitaciones extends javax.swing.JPanel {
         return scroll;
     }
     
-//    private JPopupMenu menuFlotante() {
-//        JPopupMenu menu = new JPopupMenu();
-//
-//        JMenuItem pDisponible = new JMenuItem("Disponible");
-//        JMenuItem pOcupada = new JMenuItem("Ocupada");
-//        JMenuItem pMantenimiento = new JMenuItem("Mantenimiento");
-//        JMenuItem pSucia = new JMenuItem("Sucia");
-//        
-//        pDisponible.setFont(new Font("Poppins", Font.PLAIN, 14));
-//        pOcupada.setFont(new Font("Poppins", Font.PLAIN, 14));
-//        pMantenimiento.setFont(new Font("Poppins", Font.PLAIN, 14));
-//        pSucia.setFont(new Font("Poppins", Font.PLAIN, 14));
-//        
-//        menu.setBorder(null);
-//
-//        // Darles funcionalidad (ActionListeners)
-////        itemLimpiar.addActionListener(e -> );
-//        
-////        itemSaludar.addActionListener(e -> areaTexto.append("\n¡Hola! Seguimos programando."));
-//        
-////        itemSalir.addActionListener(e -> System.exit(0));
-//
-////            deleteBtn.addActionListener(e -> {
-//    //            Container parent = card.getParent();
-//    //            if (parent != null) {
-//    //                parent.remove(card);
-//    //                parent.revalidate();  // recalcula el WrapLayout
-//    //                parent.repaint();
-//    //            }
-//    //        });
-//
-//        
-//        menu.add(pDisponible);
-//        menu.add(pOcupada);
-//        menu.add(pMantenimiento);
-//        menu.add(pSucia);
-//        
-//        return menu;
-//    }
-   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarHab;

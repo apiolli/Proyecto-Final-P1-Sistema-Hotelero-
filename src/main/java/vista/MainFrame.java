@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package vista;
 
-/**
- *
- * @author DELL
- */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.color.ColorSpace;
@@ -15,12 +7,6 @@ import java.awt.event.*;
 import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
-
-    // ─────────────────────────────────────────────────────────────────────────
-    // CardLayout: el "gestor" que permite cambiar paneles en el área central.
-    // Piénsalo como una baraja de cartas — solo ves una carta a la vez,
-    // pero todas están apiladas. CardLayout te deja elegir cuál mostrar.
-    // ─────────────────────────────────────────────────────────────────────────
     private CardLayout cardLayout;
     private JPanel contenedor;
 
@@ -65,16 +51,10 @@ public class MainFrame extends JFrame {
     }
 
     private JPanel crearSidebar() {
-        // BoxLayout con eje Y → apila los componentes verticalmente (uno encima del otro)
         JPanel sidebar = new JPanel();
         sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
         sidebar.setBackground(new Color(0,204,204));
-        sidebar.setPreferredSize(new Dimension(200, 0)); // ancho fijo de 200px
-
-        // ── Botones de navegación ─────────────────────────────────────────
-        // Cada botón lleva el nombre de la "carta" (panel) que debe mostrar.
-        // Ese nombre debe coincidir EXACTAMENTE con el que usaste en:
-        //   contenedor.add(panel, "NOMBRE")
+        sidebar.setPreferredSize(new Dimension(200, 0));
 
         sidebar.add(crearBotonNav("Habitaciones",   "habitaciones", "/img/habitaciones.png"));
         sidebar.add(crearBotonNav("Reservas",       "reservas",     "/img/reservas.png"));
@@ -85,7 +65,6 @@ public class MainFrame extends JFrame {
         sidebar.add(crearBotonNav("Gestionar Usuarios",       "usuarios",   "/img/usuarios.png"));
         sidebar.add(crearBotonNav("Cerrar Sesion",  "sesion",       "/img/sesion.png"));
 
-        // Empuja todo hacia arriba, dejando espacio vacío abajo
         sidebar.add(Box.createVerticalGlue());
 
         return sidebar;

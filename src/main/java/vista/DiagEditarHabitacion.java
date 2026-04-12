@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package vista;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 
-/**
- *
- * @author DELL
- */
 public class DiagEditarHabitacion extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DiagEditarHabitacion.class.getName());
@@ -260,21 +252,14 @@ public class DiagEditarHabitacion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDIag1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDIag1ActionPerformed
-        // TODO add your handling code here:
         this.dispose();
 
     }//GEN-LAST:event_btnDIag1ActionPerformed
 
     private void btnDIagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDIagActionPerformed
-        // TODO add your handling code here:
         this.dispose();
 
     }//GEN-LAST:event_btnDIagActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDIag;
     private javax.swing.JButton btnDIag1;
