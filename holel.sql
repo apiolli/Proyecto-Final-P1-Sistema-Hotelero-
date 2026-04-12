@@ -1,30 +1,18 @@
 CREATE DATABASE hotel;
+-- drop database hotel;-- 
 USE hotel;
 
-CREATE TABLE Persona (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
+CREATE TABLE Huesped (
+    id INT auto_increment PRIMARY KEY ,
+	nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     nacionalidad VARCHAR(100),
-    correoElectronico VARCHAR(150),
-    telefono VARCHAR(20),
-    rol VARCHAR(50)
+    documentoIdentidad VARCHAR(100) NOT NULL,
+    fechaDeNacimiento DATE NOT NULL,
+    telefono VARCHAR(20)
 );
 
-CREATE TABLE Cliente (
-    id INT PRIMARY KEY,
-    FOREIGN KEY (id) REFERENCES Persona(id) ON DELETE CASCADE
-);
-
-CREATE TABLE Empleado (
-    id INT PRIMARY KEY,
-    cargo VARCHAR(100),
-    sueldo DECIMAL(10,2),
-    usuario VARCHAR(50),
-    contrasena VARCHAR(100),
-    fechaIngreso DATE,
-    FOREIGN KEY (id) REFERENCES Persona(id) ON DELETE CASCADE
-);
+select * from huesped;
 
 CREATE TABLE Administrador (
     id INT PRIMARY KEY,
@@ -60,18 +48,17 @@ CREATE TABLE Suite (
     FOREIGN KEY (id) REFERENCES Habitacion(id) ON DELETE CASCADE
 );
 
-CREATE TABLE Reserva (
-    idReserva INT AUTO_INCREMENT PRIMARY KEY,
-    fechaReserva DATE,
-    fechaInicio DATE,
-    fechaFin DATE,
-    cliente_id INT,
-    habitacion_id INT,
-    dineroAbonado DECIMAL(10,2) DEFAULT 0,
-    costoTotal DECIMAL(10,2),
-
-    FOREIGN KEY (cliente_id) REFERENCES Cliente(id),
-    FOREIGN KEY (habitacion_id) REFERENCES Habitacion(id)
+CREATE TABLE reservas (
+    id              INT PRIMARY KEY AUTO_INCREMENT,
+    id_cliente      INT NOT NULL,
+    id_habitacion   INT NOT NULL,
+    fecha_entrada   DATE NOT NULL,
+    fecha_salida    DATE NOT NULL,
+    num_personas    INT  NOT NULL,
+    estado          VARCHAR(20) DEFAULT 'Pendiente',
+    fecha_reserva   DATETIME DEFAULT NOW(),
+    FOREIGN KEY (id_cliente)    REFERENCES clientes(id),
+    FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id)
 );
 
 INSERT INTO Persona (
