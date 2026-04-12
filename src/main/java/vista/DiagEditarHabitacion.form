@@ -9,7 +9,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="title" type="java.lang.String" value="Agregar Habitacion"/>
+    <Property name="title" type="java.lang.String" value="Editar Habitacion"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="33" green="33" red="0" type="rgb"/>
     </Property>
@@ -324,6 +324,9 @@
           <Border info="null"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDIagActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnDIag.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnDIag.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnDIag.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnDIag.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/editar.png&quot;))); // NOI18N&#xa;&#xa;btnDIag.setToolTipText(&quot;&quot;);&#xa;&#xa;btnDIag.setBorder(null);&#xa;&#xa;btnDIag.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnDIag.setFocusable(false);&#xa;&#xa;btnDIag.setIconTextGap(10);&#xa;&#xa;btnDIag.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnDIag.setBackground(new Color(81, 109, 110));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnDIag.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
       </AuxValues>
@@ -334,6 +337,9 @@
           <Connection code="&quot;Eliminar Habitacion&quot;" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDIag1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnDIag1.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnDIag1.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnDIag1.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnDIag1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/eliminarHab.png&quot;))); // NOI18N&#xa;&#xa;btnDIag1.setToolTipText(&quot;&quot;);&#xa;&#xa;btnDIag1.setBorder(null);&#xa;&#xa;btnDIag1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnDIag1.setFocusable(false);&#xa;&#xa;btnDIag.setIconTextGap(10);&#xa;&#xa;btnDIag1.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnDIag1.setBackground(new Color(81, 109, 110));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnDIag1.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
       </AuxValues>

@@ -75,11 +75,11 @@ public class PanelHabitaciones extends javax.swing.JPanel {
 
         panelInfo.setBackground(new java.awt.Color(242, 242, 242));
 
-        pDispo.setBackground(new Color(0x1C2B3A));
+        pDispo.setBackground(new java.awt.Color(0, 204, 204));
         pDispo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 4, 0, 0, new java.awt.Color(0, 204, 0)));
         pDispo.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Disponibles");
@@ -94,13 +94,13 @@ public class PanelHabitaciones extends javax.swing.JPanel {
         pDispoLayout.setHorizontalGroup(
             pDispoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pDispoLayout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pDispoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pDispoLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(77, 77, 77))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pDispoLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47))))
         );
         pDispoLayout.setVerticalGroup(
@@ -113,10 +113,10 @@ public class PanelHabitaciones extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new Color(0x1C2B3A));
+        jPanel3.setBackground(new java.awt.Color(0, 204, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 4, 0, 0, new java.awt.Color(204, 0, 0)));
 
-        jLabel3.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ocupadas");
@@ -138,7 +138,7 @@ public class PanelHabitaciones extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,10 +150,10 @@ public class PanelHabitaciones extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new Color(0x1C2B3A));
+        jPanel4.setBackground(new java.awt.Color(0, 204, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 4, 0, 0, new java.awt.Color(255, 255, 0)));
 
-        jLabel5.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("En mantenimiento");
@@ -174,8 +174,8 @@ public class PanelHabitaciones extends javax.swing.JPanel {
                         .addComponent(jLabel6))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(jLabel5)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,10 +187,10 @@ public class PanelHabitaciones extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new Color(0x1C2B3A));
+        jPanel5.setBackground(new java.awt.Color(0, 204, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 4, 0, 0, new java.awt.Color(0, 0, 0)));
 
-        jLabel7.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Sucias");
@@ -210,7 +210,7 @@ public class PanelHabitaciones extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,11 +229,11 @@ public class PanelHabitaciones extends javax.swing.JPanel {
             .addGroup(panelInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pDispo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(28, 28, 28)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(30, 30, 30)
+                .addGap(34, 34, 34)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -276,7 +276,7 @@ public class PanelHabitaciones extends javax.swing.JPanel {
         panelBotonesLayout.setHorizontalGroup(
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(775, Short.MAX_VALUE)
                 .addComponent(btnAgregarHab, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -449,7 +449,8 @@ public class PanelHabitaciones extends javax.swing.JPanel {
             }
             
         });
-       
+        
+//        habitacion.setPreferredSize(new Dimension(205, 150));
         cambiarEstado(habitacion, panEstado, estadoHab, iconoEstado, estado);
         panelHab.add(habitacion);
         return habitacion;
@@ -503,45 +504,45 @@ public class PanelHabitaciones extends javax.swing.JPanel {
         return scroll;
     }
     
-    private JPopupMenu menuFlotante() {
-        JPopupMenu menu = new JPopupMenu();
-
-        JMenuItem pDisponible = new JMenuItem("Disponible");
-        JMenuItem pOcupada = new JMenuItem("Ocupada");
-        JMenuItem pMantenimiento = new JMenuItem("Mantenimiento");
-        JMenuItem pSucia = new JMenuItem("Sucia");
-        
-        pDisponible.setFont(new Font("Poppins", Font.PLAIN, 14));
-        pOcupada.setFont(new Font("Poppins", Font.PLAIN, 14));
-        pMantenimiento.setFont(new Font("Poppins", Font.PLAIN, 14));
-        pSucia.setFont(new Font("Poppins", Font.PLAIN, 14));
-        
-        menu.setBorder(null);
-
-        // Darles funcionalidad (ActionListeners)
-//        itemLimpiar.addActionListener(e -> );
-        
-//        itemSaludar.addActionListener(e -> areaTexto.append("\n¡Hola! Seguimos programando."));
-        
-//        itemSalir.addActionListener(e -> System.exit(0));
-
-//            deleteBtn.addActionListener(e -> {
-    //            Container parent = card.getParent();
-    //            if (parent != null) {
-    //                parent.remove(card);
-    //                parent.revalidate();  // recalcula el WrapLayout
-    //                parent.repaint();
-    //            }
-    //        });
-
-        
-        menu.add(pDisponible);
-        menu.add(pOcupada);
-        menu.add(pMantenimiento);
-        menu.add(pSucia);
-        
-        return menu;
-    }
+//    private JPopupMenu menuFlotante() {
+//        JPopupMenu menu = new JPopupMenu();
+//
+//        JMenuItem pDisponible = new JMenuItem("Disponible");
+//        JMenuItem pOcupada = new JMenuItem("Ocupada");
+//        JMenuItem pMantenimiento = new JMenuItem("Mantenimiento");
+//        JMenuItem pSucia = new JMenuItem("Sucia");
+//        
+//        pDisponible.setFont(new Font("Poppins", Font.PLAIN, 14));
+//        pOcupada.setFont(new Font("Poppins", Font.PLAIN, 14));
+//        pMantenimiento.setFont(new Font("Poppins", Font.PLAIN, 14));
+//        pSucia.setFont(new Font("Poppins", Font.PLAIN, 14));
+//        
+//        menu.setBorder(null);
+//
+//        // Darles funcionalidad (ActionListeners)
+////        itemLimpiar.addActionListener(e -> );
+//        
+////        itemSaludar.addActionListener(e -> areaTexto.append("\n¡Hola! Seguimos programando."));
+//        
+////        itemSalir.addActionListener(e -> System.exit(0));
+//
+////            deleteBtn.addActionListener(e -> {
+//    //            Container parent = card.getParent();
+//    //            if (parent != null) {
+//    //                parent.remove(card);
+//    //                parent.revalidate();  // recalcula el WrapLayout
+//    //                parent.repaint();
+//    //            }
+//    //        });
+//
+//        
+//        menu.add(pDisponible);
+//        menu.add(pOcupada);
+//        menu.add(pMantenimiento);
+//        menu.add(pSucia);
+//        
+//        return menu;
+//    }
    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

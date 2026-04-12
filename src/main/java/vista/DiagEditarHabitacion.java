@@ -49,7 +49,7 @@ public class DiagEditarHabitacion extends javax.swing.JDialog {
 
         jLabel6.setText("jLabel6");
 
-        setTitle("Agregar Habitacion");
+        setTitle("Editar Habitacion");
         setBackground(new java.awt.Color(0, 51, 51));
         setFocusable(false);
 
@@ -109,8 +109,10 @@ public class DiagEditarHabitacion extends javax.swing.JDialog {
 
         btnDIag.setText("Editar Habitacion");
         btnDIag.setBorder(null);
+        btnDIag.addActionListener(this::btnDIagActionPerformed);
 
         btnDIag1.setText("Eliminar Habitacion");
+        btnDIag1.addActionListener(this::btnDIag1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,6 +258,18 @@ public class DiagEditarHabitacion extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDIag1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDIag1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+
+    }//GEN-LAST:event_btnDIag1ActionPerformed
+
+    private void btnDIagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDIagActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+
+    }//GEN-LAST:event_btnDIagActionPerformed
 
     /**
      * @param args the command line arguments
