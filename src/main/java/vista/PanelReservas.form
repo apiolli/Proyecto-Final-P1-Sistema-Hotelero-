@@ -26,7 +26,6 @@
               <Component id="panelTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="panelMedio" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,23 +46,26 @@
                   <Component id="panelNumeroReservas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnAgregarReserva1" pref="325" max="32767" attributes="0"/>
-                      <Component id="btnAgregarReserva" max="32767" attributes="0"/>
+                      <Component id="btnAgregarReserva" pref="197" max="32767" attributes="0"/>
+                      <Component id="btnAgregarReserva1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="23" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panelNumeroReservas" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="panelNumeroReservas" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="btnAgregarReserva" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnAgregarReserva1" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="btnAgregarReserva1" pref="50" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -194,44 +196,19 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="btnMostrarConfirmadas" max="32767" attributes="0"/>
-                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnMostrarActivas" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="btnMostrarCompletadas" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
-                  <Component id="btnMostrarTodo" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="297" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnMostrarConfirmadas" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="btnMostrarActivas" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="btnMostrarCompletadas" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnMostrarTodo" min="-2" pref="50" max="-2" attributes="0"/>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace pref="54" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -256,25 +233,19 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="10">
+                  <Table columnCount="7" rowCount="10">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
-                    <Column editable="false" title="Huesped" type="java.lang.Object"/>
+                    <Column editable="false" title="Nombre cliente" type="java.lang.Object"/>
                     <Column editable="false" title="Total personas" type="java.lang.Object"/>
                     <Column editable="false" title="Habitacion" type="java.lang.Object"/>
                     <Column editable="false" title="Fecha entrada" type="java.lang.Object"/>
                     <Column editable="false" title="Fecha salida" type="java.lang.Object"/>
                     <Column editable="false" title="Dinero abonado" type="java.lang.Object"/>
-                    <Column editable="true" title="Estado" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="40" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -321,61 +292,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnMostrarConfirmadas">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Poppins" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Reservas confirmadas&quot;" type="code"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="// Code adding the component to the parent container - not shown here&#xa;btnMostrarConfirmadas.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnMostrarConfirmadas.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnMostrarConfirmadas.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnMostrarConfirmadas.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/nuevoUsuario.png&quot;))); // NOI18N&#xa;&#xa;btnMostrarConfirmadas.setToolTipText(&quot;&quot;);&#xa;&#xa;btnMostrarConfirmadas.setBorder(null);&#xa;&#xa;btnMostrarConfirmadas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnMostrarConfirmadas.setFocusable(false);&#xa;&#xa;btnMostrarConfirmadas.setIconTextGap(10);&#xa;&#xa;btnMostrarConfirmadas.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnMostrarConfirmadas.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnMostrarConfirmadas.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnMostrarActivas">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Poppins" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Reservas activas&quot;" type="code"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarActivasActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="// Code adding the component to the parent container - not shown here&#xa;btnMostrarActivas.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnMostrarActivas.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnMostrarActivas.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnMostrarActivas.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/nuevoUsuario.png&quot;))); // NOI18N&#xa;&#xa;btnMostrarActivas.setToolTipText(&quot;&quot;);&#xa;&#xa;btnMostrarActivas.setBorder(null);&#xa;&#xa;btnMostrarActivas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnMostrarActivas.setFocusable(false);&#xa;&#xa;btnMostrarActivas.setIconTextGap(10);&#xa;&#xa;btnMostrarActivas.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnMostrarActivas.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnMostrarActivas.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnMostrarCompletadas">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Poppins" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Reservas completadas&quot;" type="code"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="// Code adding the component to the parent container - not shown here&#xa;btnMostrarCompletadas.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnMostrarCompletadas.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnMostrarCompletadas.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnMostrarCompletadas.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/nuevoUsuario.png&quot;))); // NOI18N&#xa;&#xa;btnMostrarCompletadas.setToolTipText(&quot;&quot;);&#xa;&#xa;btnMostrarCompletadas.setBorder(null);&#xa;&#xa;btnMostrarCompletadas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnMostrarCompletadas.setFocusable(false);&#xa;&#xa;btnMostrarCompletadas.setIconTextGap(10);&#xa;&#xa;btnMostrarCompletadas.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnMostrarCompletadas.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnMostrarCompletadas.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnMostrarTodo">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Poppins" size="12" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Mostrar todas las reservas&quot;" type="code"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="// Code adding the component to the parent container - not shown here&#xa;btnMostrarTodo.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnMostrarTodo.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnMostrarTodo.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnMostrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/nuevoUsuario.png&quot;))); // NOI18N&#xa;&#xa;btnMostrarTodo.setToolTipText(&quot;&quot;);&#xa;&#xa;btnMostrarTodo.setBorder(null);&#xa;&#xa;btnMostrarTodo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnMostrarTodo.setFocusable(false);&#xa;&#xa;btnMostrarTodo.setIconTextGap(10);&#xa;&#xa;btnMostrarTodo.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnMostrarTodo.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnMostrarTodo.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
-          </AuxValues>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
