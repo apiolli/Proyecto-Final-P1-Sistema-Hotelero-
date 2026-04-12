@@ -1,5 +1,7 @@
 package vista;
 
+import app.ContextoAplicacion;
+import controlador.ControladorHuesped;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -16,8 +18,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 public class PanelReservas extends javax.swing.JPanel {
-
-    public PanelReservas() {
+    
+    private ContextoAplicacion contexto;
+    
+    public PanelReservas(ContextoAplicacion contexto) {
+        this.contexto = contexto;
         initComponents();
         setLayout(new BorderLayout());
         disenoTabla();
@@ -199,7 +204,7 @@ public class PanelReservas extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Huesped", "Total personas", "Habitacion", "Fecha entrada", "Fecha salida", "Dinero abonado", "Estado"
+                "ID", "Huesped", "Total personas", "Habitacion", "Fecha entrada", "Fecha salida", "Fecha reserva", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -409,6 +414,8 @@ public class PanelReservas extends javax.swing.JPanel {
             @Override
             public void run() {
                 DiagRegistrarHuesped dialog = new DiagRegistrarHuesped(new javax.swing.JFrame(), true);
+                ControladorHuesped control = new ControladorHuesped(dialog, contexto.getHuespedDAO());
+                dialog.setControlador(control);
                 dialog.setVisible(true);
             }
         });

@@ -4,15 +4,10 @@
  */
 package modelo;
 
-import conexion.Conexion;
-import java.time.LocalDate;
-
 /**
  *
  * @author DELL
  */
-public class Habitacion {
-    private void pepa() {
-        
-    }
+public class Reserva {
+    
 }

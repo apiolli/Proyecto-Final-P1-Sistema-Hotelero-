@@ -1,3 +1,5 @@
+package app;
+
 
 import java.sql.Connection;
 import javax.swing.SwingUtilities;
@@ -13,11 +15,9 @@ public class Main {
                 
                 // MainFrame
             SwingUtilities.invokeLater(() -> {
-                new MainFrame().setVisible(true);
+                new MainFrame(new ContextoAplicacion()).setVisible(true);
         });
             
-        ConexionSQL con = new ConexionSQL();
-        con.getConexion();
                 
 
 

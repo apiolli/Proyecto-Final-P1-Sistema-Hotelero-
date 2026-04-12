@@ -1,16 +1,20 @@
 package vista;
 
+import app.ContextoAplicacion;
+import controlador.ControladorHuesped;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.color.ColorSpace;
 import java.awt.event.*;
 import javax.swing.border.EmptyBorder;
+import vista.DiagRegistrarHuesped;
 
 public class MainFrame extends JFrame {
     private CardLayout cardLayout;
     private JPanel contenedor;
-
-    public MainFrame() {
+    private ContextoAplicacion contexto;
+    
+    public MainFrame(ContextoAplicacion contexto) {
+        this.contexto = contexto;
         setTitle("Hotelink");
         setMinimumSize(new Dimension(1300, 800));
 
@@ -111,7 +115,7 @@ public class MainFrame extends JFrame {
 
         contenedor.add(new PanelInicio(),   "inicio");
         contenedor.add(new PanelHabitaciones(),  "habitaciones");
-        contenedor.add(new PanelReservas(),  "reservas");
+        contenedor.add(new PanelReservas(contexto),  "reservas");
         contenedor.add(new PanelCheckInOut(),   "check");
         contenedor.add(new PanelConsumo(),   "consumo");
         contenedor.add(new PanelFacturacion(),   "facturacion");
@@ -133,5 +137,6 @@ public class MainFrame extends JFrame {
             add(lbl, BorderLayout.CENTER);
         }
     }
+    
 
 }
