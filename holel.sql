@@ -1,5 +1,5 @@
 CREATE DATABASE hotel;
--- drop database hotel;-- 
+drop database hotel;-- 
 USE hotel;
 
 CREATE TABLE Huesped (
@@ -7,7 +7,7 @@ CREATE TABLE Huesped (
 	nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     nacionalidad VARCHAR(100),
-    documentoIdentidad VARCHAR(100) NOT NULL,
+    documentoIdentidad VARCHAR(100) NOT NULL UNIQUE,
     fechaDeNacimiento DATE NOT NULL,
     telefono VARCHAR(20)
 );
@@ -23,13 +23,18 @@ CREATE TABLE Administrador (
 
 CREATE TABLE Habitacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nivel VARCHAR(50),
     noHabitacion INT UNIQUE,
     tipo VARCHAR(50),
-    estado ENUM('Disponible','Ocupada','Mantenimiento') DEFAULT 'Disponible',
-    costoBase DECIMAL(10,2),
-    capacidad INT
+    estado ENUM('Disponible','Ocupada','Mantenimiento', 'Sucia') DEFAULT 'Disponible',
+    precioNoche DECIMAL(10,2),
+	nivel VARCHAR(50),
+    capacidad INT(3),
+    telefono varchar(50)    
 );
+
+
+select * from habitacion;
+select noHabitacion, tipo, estado from habitacion;
 
 CREATE TABLE HabitacionSimple (
     id INT PRIMARY KEY,
