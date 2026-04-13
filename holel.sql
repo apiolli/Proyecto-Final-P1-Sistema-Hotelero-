@@ -60,6 +60,15 @@ CREATE TABLE Usuarios (
 drop table usuarios;
 select * from usuarios;
 
+CREATE TABLE consumos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_reserva INT NOT NULL,
+    descripcion VARCHAR(100) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    fecha DATETIME DEFAULT NOW(),
+    FOREIGN KEY (id_reserva) REFERENCES reservas(id)
+);
+
 INSERT INTO Persona (
     nombre,
     apellido,
