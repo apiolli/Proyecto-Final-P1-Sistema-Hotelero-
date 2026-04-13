@@ -52,7 +52,7 @@ public class ReservaDAO implements Gestionable<Reserva> {
         PreparedStatement ps = con.prepareStatement("SELECT r.id, CONCAT(h.nombre, ' ', h.apellido) AS huesped,"
                 + " r.num_personas AS total_personas, hab.noHabitacion AS habitacion, r.fecha_entrada, r.fecha_salida, "
                 + "r.fecha_reserva, r.estado, r.dineroAbonado FROM reservas r INNER JOIN Huesped h ON r.id_huesped = "
-                + "h.id INNER JOIN Habitacion hab ON r.id_habitacion = hab.id;");            
+                + "h.id INNER JOIN Habitacion hab ON r.id_habitacion = hab.id ORDER BY r.fecha_entrada;");            
         ResultSet rs = ps.executeQuery();
             
         while (rs.next()) {

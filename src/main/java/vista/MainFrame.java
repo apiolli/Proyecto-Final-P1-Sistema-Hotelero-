@@ -153,8 +153,7 @@ public class MainFrame extends JFrame {
         PanelReservas panelRes = new PanelReservas(contexto);
         ControladorReserva controlador = new ControladorReserva(panelRes, contexto.getReservaDAO());
         panelRes.setControlador(controlador);
-        controlador.cargarReservas(panelRes.getTablaReservas());
-        
+        controlador.iniciar(panelRes.getTablaReservas());        
         return panelRes;
     }
     

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import modelo.Huesped;
 import vista.DiagCrearReserva;
@@ -21,6 +22,7 @@ public class ControladorReserva {
     private ReservaDAO dao;
     private HuespedDAO huespedDAO;
     private HabitacionDAO habitacionDAO;
+    private Timer timer;
 
     public ControladorReserva(PanelReservas vista, ReservaDAO dao) {
         this.vista = vista;
@@ -123,6 +125,14 @@ public class ControladorReserva {
         }
 
     }
+    
+    public void iniciar(JTable tabla) {
+        cargarReservas(tabla);
+        
+        timer = new Timer(5000, e -> cargarReservas(tabla));
+        timer.start();
+    }
+    
 
     public void setDiagCrear(DiagCrearReserva diagCrear) {
         this.diagCrear = diagCrear;
