@@ -1,6 +1,7 @@
 package vista;
 
 import app.ContextoAplicacion;
+import controlador.ControladorEmpleadoAdmin;
 import controlador.ControladorHabitacion;
 import controlador.ControladorReserva;
 import javax.swing.*;
@@ -121,7 +122,7 @@ public class MainFrame extends JFrame {
         contenedor.add(new PanelConsumo(),   "consumo");
         contenedor.add(new PanelFacturacion(),   "facturacion");
         contenedor.add(new PanelReportes(),   "reportes");
-        contenedor.add(new PanelGestionUsuarios(),   "usuarios");
+        contenedor.add(panelUsuarios(),   "usuarios");
 
         cardLayout.show(contenedor, "inicio");
 
@@ -155,6 +156,14 @@ public class MainFrame extends JFrame {
         controlador.cargarReservas(panelRes.getTablaReservas());
         
         return panelRes;
+    }
+    
+    private JPanel panelUsuarios() {
+        PanelGestionUsuarios panelUs = new PanelGestionUsuarios(contexto);
+        ControladorEmpleadoAdmin controlador = new ControladorEmpleadoAdmin(panelUs, contexto.getAdminDAO());
+        panelUs.setControlador(controlador);
+        
+        return panelUs;
     }
     
 
