@@ -1,10 +1,12 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Gestionable;
 import modelo.Habitacion;
 import modelo.HabitacionDeluxe;
@@ -76,4 +78,75 @@ public class HabitacionDAO implements Gestionable<Habitacion> {
         }
         return disponibles;
     }
+    
+    public Habitacion buscarHabitacion(int noHabitacion) throws SQLException {
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM habitacion WHERE noHabitacion = ?");
+        ps.setInt(1, noHabitacion);
+        ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()) {
+            int id = rs.getInt("id");
+            int num = rs.getInt("noHabitacion");
+            String tipo = rs.getString("tipo");
+            String estado = rs.getString("estado");
+            double precio = rs.getDouble("precioNoche");
+            String nivel = rs.getString("nivel");
+            int capacidad = rs.getInt("capacidad");
+            String telefono = rs.getString("telefono");
+            
+            
+            if ("Individual".equalsIgnoreCase(tipo)) {
+                    return new HabitacionIndividual(id, nivel, num, tipo, estado, precio, capacidad, telefono);
+                } 
+
+                if ("Doble".equalsIgnoreCase(tipo)) {
+                    return new HabitacionDoble(id, nivel, num, tipo, estado, precio, capacidad, telefono);
+                } 
+
+                if ("Suite".equalsIgnoreCase(tipo)) {
+                    return new HabitacionSuite(id, nivel, num, tipo, estado, precio, capacidad, telefono);
+                } 
+
+                if ("Deluxe".equalsIgnoreCase(tipo)) {
+                    return new HabitacionDeluxe(id, nivel, num, tipo, estado, precio, capacidad, telefono);
+                }
+        }
+        return null;
+        
+    }
+    
+    public int eliminar(int num) throws SQLException {
+            PreparedStatement ps = con.prepareStatement("DELETE FROM habitacion WHERE noHabitacion=?");
+            ps.setInt(1, num);
+            
+            int respuesta = ps.executeUpdate();
+            
+            if (respuesta > 0) {
+                return respuesta;
+            }
+            
+            return -1;
+    }
+    
+    public int editar(Habitacion hab) throws SQLException {
+            PreparedStatement ps = con.prepareStatement("UPDATE habitacion SET noHabitacion=?, tipo=?, estado=?, precioNoche=?, nivel=?, capacidad=?, telefono=? WHERE id=?");
+            ps.setInt(1, hab.getNumHabitacion());
+            ps.setString(2, hab.getTipo());
+            ps.setString(3, hab.getEstado());
+            ps.setDouble(4, hab.getPrecioNoche());
+            ps.setString(5, hab.getNivel());
+            ps.setInt(6, hab.getCapacidad());
+            ps.setString(7, hab.getTelefonoHabitacion());
+            ps.setInt(8, hab.getId());
+            
+            int respuesta = ps.executeUpdate();
+            
+            if (respuesta > 0) {
+                return respuesta;
+            }
+            
+            return -1;
+    }
+    
+    
 }

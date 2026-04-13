@@ -5,7 +5,9 @@ import dao.HuespedDAO;
 import dao.ReservaDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import modelo.Huesped;
 import vista.DiagCrearReserva;
 import vista.DiagEditarHabitacion;
@@ -102,6 +104,24 @@ public class ControladorReserva {
             System.err.println(e.getMessage());
             vista.mostrarError("Error al buscar habitaciones disponibles");
         }
+    }
+
+    public void cargarReservas(JTable tabla) {   
+        DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();
+        modeloTabla.setRowCount(0);
+
+        try {
+            
+            ArrayList<Object[]> lista = dao.cargarReservas();
+            for (Object[] reserva : lista) {
+                modeloTabla.addRow(reserva);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+            vista.mostrarError("Error al cargar los datos");
+        }
+
     }
 
     public void setDiagCrear(DiagCrearReserva diagCrear) {

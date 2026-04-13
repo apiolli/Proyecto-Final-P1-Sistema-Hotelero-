@@ -13,4 +13,10 @@ public class HabitacionDeluxe extends Habitacion {
     public HabitacionDeluxe(int id, int numHabitacion) {
         super(id, numHabitacion);
     }
+
+    public HabitacionDeluxe(int id, String nivel, int numHabitacion, String tipo, String estado, double precioNoche, int capacidad, String telefonoHabitacion) {
+        super(id, nivel, numHabitacion, tipo, estado, precioNoche, capacidad, telefonoHabitacion);
+    }
+    
+    
 }
