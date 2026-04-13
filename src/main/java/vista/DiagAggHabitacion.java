@@ -3,11 +3,8 @@ package vista;
 import controlador.ControladorHabitacion;
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import modelo.Mensajes;
 
 public class DiagAggHabitacion extends javax.swing.JDialog implements Mensajes{

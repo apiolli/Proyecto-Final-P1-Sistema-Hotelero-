@@ -2,12 +2,11 @@ package vista;
 
 import app.ContextoAplicacion;
 import controlador.ControladorHabitacion;
-import controlador.ControladorHuesped;
+import controlador.ControladorReserva;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.EmptyBorder;
-import vista.DiagRegistrarHuesped;
 
 public class MainFrame extends JFrame {
     private CardLayout cardLayout;
@@ -114,14 +113,10 @@ public class MainFrame extends JFrame {
         cardLayout = new CardLayout();
         contenedor = new JPanel(cardLayout);
         
-        PanelHabitaciones panelHabs = new PanelHabitaciones(contexto);
-        ControladorHabitacion controlador = new ControladorHabitacion(panelHabs, contexto.getHabitacionDAO());
-        panelHabs.setControlador(controlador);
-        controlador.cargarHabitaciones();
         
         contenedor.add(new PanelInicio(),   "inicio");
-        contenedor.add(panelHabs,  "habitaciones");
-        contenedor.add(new PanelReservas(contexto),  "reservas");
+        contenedor.add(panelHabitaciones(),  "habitaciones");
+        contenedor.add(panelReservas(),  "reservas");
         contenedor.add(new PanelCheckInOut(),   "check");
         contenedor.add(new PanelConsumo(),   "consumo");
         contenedor.add(new PanelFacturacion(),   "facturacion");
@@ -142,6 +137,23 @@ public class MainFrame extends JFrame {
             lbl.setFont(new Font("SansSerif", Font.BOLD, 22));
             add(lbl, BorderLayout.CENTER);
         }
+    }
+    
+    private JPanel panelHabitaciones() {
+        PanelHabitaciones panelHabs = new PanelHabitaciones(contexto);
+        ControladorHabitacion controlador = new ControladorHabitacion(panelHabs, contexto.getHabitacionDAO());
+        panelHabs.setControlador(controlador);
+        controlador.cargarHabitaciones();
+        
+        return panelHabs;
+    }
+    
+    private JPanel panelReservas() {
+        PanelReservas panelRes = new PanelReservas(contexto);
+        ControladorReserva controlador = new ControladorReserva(panelRes, contexto.getReservaDAO());
+        panelRes.setControlador(controlador);
+        
+        return panelRes;
     }
     
 

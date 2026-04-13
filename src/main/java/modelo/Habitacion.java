@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 public abstract class Habitacion {
+    private int id;
     private String nivel;
     private int numHabitacion;
     private String tipo;
@@ -28,7 +25,11 @@ public abstract class Habitacion {
         this.tipo = tipo;
         this.estado = estado;
     }
-    
+
+    public Habitacion(int id, int numHabitacion) {
+        this.id = id;
+        this.numHabitacion = numHabitacion;
+    }
 
     public String getNivel() {
         return nivel;
@@ -85,6 +86,8 @@ public abstract class Habitacion {
     public void setTelefonoHabitacion(String telefonoHabitacion) {
         this.telefonoHabitacion = telefonoHabitacion;
     }
-    
-    
+
+    public int getId() {
+        return id;
+    }
 }

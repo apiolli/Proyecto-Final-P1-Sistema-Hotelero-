@@ -1,11 +1,7 @@
 package controlador;
 
 import dao.HabitacionDAO;
-import java.sql.Connection;
 import java.sql.SQLException;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import modelo.Habitacion;
 import modelo.HabitacionDeluxe;
 import modelo.HabitacionDoble;
 import modelo.HabitacionIndividual;
@@ -22,16 +18,16 @@ public class ControladorHabitacion {
         this.vista = vista;
         this.dao = dao;
     }
-    
+
     public void agregarHabitacion() {
         int noHabitacion = dialogo.getNumeroHab();
         String tipo = dialogo.getTipo();
         String estado = dialogo.getEstado();
         double precioNoche = dialogo.getPrecio();
         String nivel = dialogo.getNivel();
-        int capacidad  = dialogo.getCapacidad();
+        int capacidad = dialogo.getCapacidad();
         String telefono = dialogo.getTelefono();
-        
+
         try {
             int respuesta = 0;
             switch (tipo) {
@@ -40,29 +36,25 @@ public class ControladorHabitacion {
                 case "Suite" -> respuesta = dao.guardar(new HabitacionSuite(noHabitacion, tipo, estado, precioNoche, nivel, capacidad, telefono));
                 case "Deluxe" -> respuesta = dao.guardar(new HabitacionDeluxe(noHabitacion, tipo, estado, precioNoche, nivel, capacidad, telefono));
             }
-            
+
             if (respuesta > 0) {
-                dialogo.mostrarExito("La habitacion ha sigo agregada con exito!");
+                dialogo.mostrarExito("La habitacion ha sido agregada con exito!");
                 cargarHabitaciones();
-            }
-            else {
+            } else {
                 dialogo.mostrarError("Error al agregar la habitacion, ingrese nuevamente los datos");
             }
-            
+
         } catch (SQLException e) {
             dialogo.mostrarError("Ha ocurrido un error al registrar la habitacion.");
             System.out.println(e.getMessage());
         }
-        
     }
-    
+
     public void cargarHabitaciones() {
         try {
-            var lista =  dao.cargarHabitaciones();
+            var lista = dao.cargarHabitaciones();
             vista.cargarHabitaciones(lista);
-
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             vista.mostrarError("Error al cargar las habitaciones");
         }
@@ -71,8 +63,4 @@ public class ControladorHabitacion {
     public void setDialogo(DiagAggHabitacion dialogo) {
         this.dialogo = dialogo;
     }
-    
-    
-    
-    
 }

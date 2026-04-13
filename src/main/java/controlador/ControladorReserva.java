@@ -1,13 +1,122 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
-/**
- *
- * @author DELL
- */
+import dao.HabitacionDAO;
+import dao.HuespedDAO;
+import dao.ReservaDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JTextField;
+import modelo.Huesped;
+import vista.DiagCrearReserva;
+import vista.DiagEditarHabitacion;
+import vista.PanelReservas;
+
 public class ControladorReserva {
-    
+
+    private DiagCrearReserva diagCrear;
+    private DiagEditarHabitacion diagEditar;
+    private PanelReservas vista;
+    private ReservaDAO dao;
+    private HuespedDAO huespedDAO;
+    private HabitacionDAO habitacionDAO;
+
+    public ControladorReserva(PanelReservas vista, ReservaDAO dao) {
+        this.vista = vista;
+        this.dao = dao;
+    }
+
+    public void crearReserva() {
+        try {
+            int idHuesped = diagCrear.getTxtID();
+            String numHabSeleccionada = diagCrear.getHabDisponibles();
+            int noHabitacion = Integer.parseInt(numHabSeleccionada);
+
+            int idHabitacion = habitacionDAO.buscarIdPorNumero(noHabitacion);
+            if (idHabitacion == -1) {
+                vista.mostrarError("No se encontró la habitación seleccionada");
+                return;
+            }
+
+            long fechaEntrada = diagCrear.getFechaEntrada();
+            long fechaSalida = diagCrear.getFechaSalida();
+            int numPersonas = diagCrear.getSpNoPersonas();
+            double dineroAbonado = diagCrear.getDineroAbonado();
+
+            int respuesta = dao.guardarConIds(idHuesped, idHabitacion,
+                    fechaEntrada, fechaSalida, numPersonas, dineroAbonado);
+
+            if (respuesta > 0) {
+                vista.mostrarExito("Reserva creada correctamente");
+            } else {
+                vista.mostrarError("No se pudo crear la reserva");
+            }
+
+        } catch (NumberFormatException e) {
+            System.err.println(e.getMessage());
+            vista.mostrarError("Datos numéricos inválidos");
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            vista.mostrarError("Error al crear la reserva");
+        }
+    }
+
+    public void buscarHuesped(JTextField nombre, JTextField apellido,
+                              JTextField documento, JTextField id) {
+        try {
+            int idHuesped = huespedDAO.buscarIdPorDocumento(documento.getText());
+            if (idHuesped == -1) {
+                vista.mostrarError("No existe un huésped con ese documento");
+                return;
+            }
+            documento.setEditable(false);
+
+            Huesped hues = huespedDAO.buscarNombreApellido(idHuesped);
+            if (hues == null) {
+                vista.mostrarError("Error al obtener datos del huésped");
+                return;
+            }
+
+            nombre.setText(hues.getNombre());
+            apellido.setText(hues.getApellido());
+            id.setText(String.valueOf(idHuesped));
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            vista.mostrarError("Error al buscar huésped");
+        }
+    }
+
+    public void buscarHabitacionesDisponibles() {
+        try {
+            String tipo = diagCrear.getTipoHab();
+            ArrayList<Integer> disponibles = habitacionDAO.buscarDisponiblesPorTipo(tipo);
+
+            if (disponibles.isEmpty()) {
+                vista.mostrarError("No hay habitaciones disponibles de tipo: " + tipo);
+                return;
+            }
+
+            diagCrear.cargarHabitacionesDisponibles(disponibles);
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            vista.mostrarError("Error al buscar habitaciones disponibles");
+        }
+    }
+
+    public void setDiagCrear(DiagCrearReserva diagCrear) {
+        this.diagCrear = diagCrear;
+    }
+
+    public void setDiagEditar(DiagEditarHabitacion diagEditar) {
+        this.diagEditar = diagEditar;
+    }
+
+    public void setHuespedDAO(HuespedDAO huespedDAO) {
+        this.huespedDAO = huespedDAO;
+    }
+
+    public void setHabitacionDAO(HabitacionDAO habitacionDAO) {
+        this.habitacionDAO = habitacionDAO;
+    }
 }

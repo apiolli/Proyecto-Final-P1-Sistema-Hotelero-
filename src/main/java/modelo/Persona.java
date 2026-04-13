@@ -1,17 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
-/**
- *
- * @author DELL
- */
 public abstract class Persona {
+    private int id;
     private String nombre;
     private String apellido;
     private String nacionalidad;
@@ -26,6 +16,12 @@ public abstract class Persona {
         this.documentoIdentidad = documentoIdentidad;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.telefono = telefono;
+    }
+
+    public Persona(String nombre, String apellido, int id) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -51,6 +47,8 @@ public abstract class Persona {
     public String getTelefono() {
         return telefono;
     }
-    
-    
+
+    public int getId() {
+        return id;
+    }
 }

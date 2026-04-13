@@ -1,25 +1,27 @@
 package vista;
-
+ 
 import app.ContextoAplicacion;
 import controlador.ControladorHuesped;
+import controlador.ControladorReserva;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import modelo.Mensajes;
 
-public class PanelReservas extends javax.swing.JPanel {
+public class PanelReservas extends javax.swing.JPanel implements Mensajes{
     
     private ContextoAplicacion contexto;
+    private ControladorReserva controlador;
     
     public PanelReservas(ContextoAplicacion contexto) {
         this.contexto = contexto;
@@ -410,24 +412,22 @@ public class PanelReservas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarHuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarHuespedActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                DiagRegistrarHuesped dialog = new DiagRegistrarHuesped(new javax.swing.JFrame(), true);
-                ControladorHuesped control = new ControladorHuesped(dialog, contexto.getHuespedDAO());
-                dialog.setControlador(control);
-                dialog.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            DiagRegistrarHuesped dialog = new DiagRegistrarHuesped(new javax.swing.JFrame(), true);
+            ControladorHuesped control = new ControladorHuesped(dialog, contexto.getHuespedDAO());
+            dialog.setControlador(control);
+            dialog.setVisible(true);
         });
     }//GEN-LAST:event_btnRegistrarHuespedActionPerformed
 
     private void btnAgregarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarReservaActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                DiagCrearReserva dialog = new DiagCrearReserva(new javax.swing.JFrame(), true);
-                dialog.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            DiagCrearReserva dialog = new DiagCrearReserva(new javax.swing.JFrame(), true);
+            controlador.setDiagCrear(dialog);
+            controlador.setHuespedDAO(contexto.getHuespedDAO());
+            controlador.setHabitacionDAO(contexto.getHabitacionDAO());
+            dialog.setControlador(controlador);
+            dialog.setVisible(true);
         });
     }//GEN-LAST:event_btnAgregarReservaActionPerformed
 
@@ -436,7 +436,6 @@ public class PanelReservas extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMostrarActivasActionPerformed
     
     private JScrollPane panelMedio() {
-//        panelMedio.setLayout(new WrapLayout(FlowLayout.LEFT, 12, 12));
         
         JScrollPane scrollPane = new JScrollPane(panelMedio);
 
@@ -502,4 +501,18 @@ public class PanelReservas extends javax.swing.JPanel {
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JTable tablaReservas;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mostrarExito(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }
+ 
+    @Override
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void setControlador(ControladorReserva controlador) {
+        this.controlador = controlador;
+    }
 }
