@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -44,22 +45,22 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         return ps.executeUpdate();      
     }
     
-    public Empleado buscarEmpleadoAdminPorCorreo(String correo) throws SQLException{
-        String sql= "SELECT id, nombre, usuario, contrasena FROM Usuarios where correo=?";
+    public ArrayList<Object[]> buscarEmpeladoAdmin() throws SQLException{
+        ArrayList<Object[]> lista = new ArrayList<>();
+        String sql= "SELECT id, nombre, usuario, contrasena FROM Usuarios";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
         
-        try(PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setString(1, correo);
-            
-            try(ResultSet rs= ps.executeQuery()){
-                if(rs.next()){
-                    rs.getInt("id");
-                    rs.getString("nombre");
-                    rs.getString("usuario");
-                    rs.getString("contrasena");
-                    
-                }
-            }
+        while(rs.next()){
+            lista.add(new Object[]{
+              rs.getString("id"),
+              rs.getString("nombre"),
+              rs.getString("usuario"),
+              rs.getString("contrasena")
+            });
+            return lista;
         }
+       
         return null;
     }
     

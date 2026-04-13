@@ -6,6 +6,7 @@ package controlador;
 
 import dao.EmpleadoAdminDAO;
 import java.sql.SQLException;
+import javax.swing.JTextField;
 import modelo.Empleado;
 import vista.DiagAggUsuarioAdmin;
 import vista.PanelGestionUsuarios;
@@ -17,6 +18,7 @@ public class ControladorEmpleadoAdmin {
     private PanelGestionUsuarios vista;
     private DiagAggUsuarioAdmin diagAgg;
     private EmpleadoAdminDAO dao;
+    EmpleadoAdminDAO empleadoAdmin;
     
     public ControladorEmpleadoAdmin(PanelGestionUsuarios vista, EmpleadoAdminDAO dao){
       this.vista=vista;
@@ -52,16 +54,14 @@ public class ControladorEmpleadoAdmin {
         
     }
     
-    public void cargarEmpleadoAdmin(String correo){
-        
-        try{
-            var lista = dao.buscarEmpleadoAdminPorCorreo(correo);
-           
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-            vista.mostrarError("Error al cargar los usuarios");
-        }
-    }
+//    public void buscarEmpleadoAdmin(JTextField nombre, JTextField usuario){
+//        try{
+//        String nombreEmpleado = empleadoAdmin.buscarEmpeladoAdmin(usuario.getText());
+//        }catch(SQLException e){
+//            System.out.println(e.getMessage());
+//            vista.mostrarError("Error al cargar los usuarios");
+//        }
+//    }
 
     public EmpleadoAdminDAO getDao() {
         return dao;
