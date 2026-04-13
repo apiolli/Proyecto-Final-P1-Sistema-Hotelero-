@@ -352,7 +352,7 @@ public class DiagAggUsuarioAdmin extends javax.swing.JDialog implements Mensajes
     public String getTelefono(){
         return txtTelefono.getText();
     }
-    public String getUsuario(){
+    public String getCorreo(){
         return txtUsuario.getText();
     }
     public String getContrasena(){

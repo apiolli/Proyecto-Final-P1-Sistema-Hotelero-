@@ -34,13 +34,13 @@ public class ControladorEmpleadoAdmin {
         String cargo = diagAgg.getCargo();
         double sueldo = Double.parseDouble(diagAgg.getSueldo());
         String telefono = diagAgg.getTelefono();
-        String usuario = diagAgg.getUsuario();
+        String correo = diagAgg.getCorreo();
         String contrasena = diagAgg.getContrasena();
         long fechaIngreso = diagAgg.getFechaIngreso();
         
         try{
          int respuesta = dao.guardar(new Empleado(nombre,apellido,nacionalidad,documento,
-         fechaNacimiento,telefono,cargo,sueldo,usuario,contrasena,fechaIngreso));
+         fechaNacimiento,telefono,cargo,sueldo,correo,contrasena,fechaIngreso));
             if(respuesta > 0){
             diagAgg.mostrarExito("El usuario se ha agregado con exito");
         }
