@@ -70,7 +70,7 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Usuario", "Contrasena", "Nivel Acceso"
+                "ID", "Correo", "Contrasena", "Nivel Acceso"
             }
         ));
         tabla.setRowHeight(25);
