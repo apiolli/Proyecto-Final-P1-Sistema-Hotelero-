@@ -1,5 +1,8 @@
 package vista;
 
+import app.ContextoAplicacion;
+import controlador.ControladorChecks;
+import controlador.ControladorFacturacion;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -7,14 +10,20 @@ import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import modelo.Mensajes;
 
-public class PanelCheckInOut extends javax.swing.JPanel {
+public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
 
-    public PanelCheckInOut() {
+    private ContextoAplicacion contexto;
+    private ControladorChecks controlador;
+    
+    public PanelCheckInOut(ContextoAplicacion contexto) {
+        this.contexto = contexto;
         initComponents();
         setLayout(new BorderLayout());
         disenoTabla(tablaCheckin);
@@ -123,7 +132,20 @@ public class PanelCheckInOut extends javax.swing.JPanel {
             new String [] {
                 "ID", "Huesped", "Fecha entrada", "Fecha salida", "Consumos", "Dinero abonado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaCheckout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaCheckoutMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tablaCheckout);
         if (tablaCheckout.getColumnModel().getColumnCount() > 0) {
             tablaCheckout.getColumnModel().getColumn(0).setMaxWidth(40);
@@ -164,7 +186,20 @@ public class PanelCheckInOut extends javax.swing.JPanel {
             new String [] {
                 "ID", "Huesped", "Habitacion", "Fecha entrada", "Fecha salida", "Total personas", "Dinero abonado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaCheckin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaCheckinMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaCheckin);
         if (tablaCheckin.getColumnModel().getColumnCount() > 0) {
             tablaCheckin.getColumnModel().getColumn(0).setMaxWidth(40);
@@ -237,6 +272,43 @@ public class PanelCheckInOut extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tablaCheckinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCheckinMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) { // ← doble click
+            int fila = tablaCheckin.getSelectedRow();
+            int id = (int) tablaCheckin.getValueAt(fila, 0);
+            System.out.println("ID seleccionado: " + id);
+            
+//            String[] opciones = {"Hacer Checkin", "Gestionar Reserva"};
+//
+//            int respuesta = JOptionPane.showOptionDialog(
+//                null,                          // padre
+//                "¿Qué deseas hacer?",          // mensaje
+//                "Opciones de Reserva",         // título
+//                JOptionPane.DEFAULT_OPTION,    // tipo
+//                JOptionPane.QUESTION_MESSAGE,  // icono
+//                null,                          // icono personalizado
+//                opciones,                      // botones
+//                opciones[0]                    // botón por defecto
+//            );
+//
+//            if (respuesta == 0) {
+//                // Hacer Checkin
+//            } else if (respuesta == 1) {
+//                // Gestionar Reserva
+//            }
+        }        
+    }//GEN-LAST:event_tablaCheckinMouseClicked
+
+    private void tablaCheckoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCheckoutMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) { // ← doble click
+            int fila = tablaCheckin.getSelectedRow();
+            int id = (int) tablaCheckin.getValueAt(fila, 0);
+            System.out.println("ID seleccionado: " + id);
+        } 
+    }//GEN-LAST:event_tablaCheckoutMouseClicked
     
         private void disenoTabla(JTable tabla) {
         JTableHeader header = tabla.getTableHeader();
@@ -294,4 +366,30 @@ public class PanelCheckInOut extends javax.swing.JPanel {
     private javax.swing.JTable tablaCheckin;
     private javax.swing.JTable tablaCheckout;
     // End of variables declaration//GEN-END:variables
+
+    public void setControlador(ControladorChecks contro) {
+        this.controlador = contro;
+    }
+    
+    @Override
+    public void mostrarExito(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }
+ 
+    @Override
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public JTable getTablaCheckin() {
+        return tablaCheckin;
+    }
+
+    public JTable getTablaCheckout() {
+        return tablaCheckout;
+    }
+    
+    
+    
+
 }

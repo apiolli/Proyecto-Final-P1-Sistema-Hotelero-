@@ -146,12 +146,12 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="4">
-                    <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Huesped" type="java.lang.Object"/>
-                    <Column editable="true" title="Fecha entrada" type="java.lang.Object"/>
-                    <Column editable="true" title="Fecha salida" type="java.lang.Object"/>
-                    <Column editable="true" title="Consumos" type="java.lang.Object"/>
-                    <Column editable="true" title="Dinero abonado" type="java.lang.Object"/>
+                    <Column editable="false" title="ID" type="java.lang.Object"/>
+                    <Column editable="false" title="Huesped" type="java.lang.Object"/>
+                    <Column editable="false" title="Fecha entrada" type="java.lang.Object"/>
+                    <Column editable="false" title="Fecha salida" type="java.lang.Object"/>
+                    <Column editable="false" title="Consumos" type="java.lang.Object"/>
+                    <Column editable="false" title="Dinero abonado" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -192,6 +192,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaCheckoutMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -251,13 +254,13 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="7" rowCount="4">
-                    <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Huesped" type="java.lang.Object"/>
-                    <Column editable="true" title="Habitacion" type="java.lang.Object"/>
-                    <Column editable="true" title="Fecha entrada" type="java.lang.Object"/>
-                    <Column editable="true" title="Fecha salida" type="java.lang.Object"/>
-                    <Column editable="true" title="Total personas" type="java.lang.Object"/>
-                    <Column editable="true" title="Dinero abonado" type="java.lang.Object"/>
+                    <Column editable="false" title="ID" type="java.lang.Object"/>
+                    <Column editable="false" title="Huesped" type="java.lang.Object"/>
+                    <Column editable="false" title="Habitacion" type="java.lang.Object"/>
+                    <Column editable="false" title="Fecha entrada" type="java.lang.Object"/>
+                    <Column editable="false" title="Fecha salida" type="java.lang.Object"/>
+                    <Column editable="false" title="Total personas" type="java.lang.Object"/>
+                    <Column editable="false" title="Dinero abonado" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -303,6 +306,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaCheckinMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
