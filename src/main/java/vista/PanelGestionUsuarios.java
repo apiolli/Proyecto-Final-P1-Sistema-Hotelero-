@@ -26,6 +26,7 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
      */
     private ControladorEmpleadoAdmin controlador;
     private ContextoAplicacion contexto;
+    
     public PanelGestionUsuarios(ContextoAplicacion contexto) {
         this.contexto = contexto;
         initComponents();

@@ -1,6 +1,7 @@
 package vista;
 
 import app.ContextoAplicacion;
+import controlador.ControladorChecks;
 import controlador.ControladorEmpleadoAdmin;
 import controlador.ControladorHabitacion;
 import controlador.ControladorReserva;
@@ -118,7 +119,7 @@ public class MainFrame extends JFrame {
         contenedor.add(new PanelInicio(),   "inicio");
         contenedor.add(panelHabitaciones(),  "habitaciones");
         contenedor.add(panelReservas(),  "reservas");
-        contenedor.add(new PanelCheckInOut(),   "check");
+        contenedor.add(panelCheckinOut(),   "check");
         contenedor.add(new PanelConsumo(),   "consumo");
         contenedor.add(new PanelFacturacion(),   "facturacion");
         contenedor.add(new PanelReportes(),   "reportes");
@@ -163,6 +164,15 @@ public class MainFrame extends JFrame {
         panelUs.setControlador(controlador);
         
         return panelUs;
+    }
+    
+    private JPanel panelCheckinOut() {
+        PanelCheckInOut panelCheks = new PanelCheckInOut(contexto);
+        ControladorChecks controlador = new ControladorChecks(panelCheks, contexto.getCheckDAO());
+        panelCheks.setControlador(controlador);
+        controlador.iniciar(panelCheks.getTablaCheckin());
+        
+        return panelCheks;
     }
     
 
