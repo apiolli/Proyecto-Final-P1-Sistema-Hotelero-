@@ -88,6 +88,7 @@ public class PanelGestionUsuarios extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jButton1.setText("Agregar Usuario");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton4.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jButton4.setText("Agregar Admin");
@@ -183,6 +184,22 @@ public class PanelGestionUsuarios extends javax.swing.JPanel {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                DiagAggUsuarioAdmin dialog = new DiagAggUsuarioAdmin(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void labelArriba() {
         titulo.setBorder(BorderFactory.createEmptyBorder(15,0, 0,0));

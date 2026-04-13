@@ -8,27 +8,25 @@ package modelo;
  *
  * @author Star_
  */
-public class Administrador extends Persona{
-    private String usuario;
-    private String contrasena;
+public class Administrador extends Empleado{
+        private int nivelAdmin;
+        
+        public Administrador(String nombre, String apellido, String nacionalidad, 
+        String documentoIdentidad, long fechaDeNacimiento, String telefono,String cargo,
+        double sueldo,String usuario, String contrasena, long fechaIngreso, int nivelAdmin) {
+        
+        super(nombre, apellido, nacionalidad, documentoIdentidad, fechaDeNacimiento, 
+        telefono,cargo,sueldo,usuario,contrasena,fechaIngreso);
+        
+        this.nivelAdmin=nivelAdmin;
+    }
+        public int getNivelAdmin(){
+            return nivelAdmin;
+        }
+        public void setNivelAdmin(int nivelAdmin){
+            this.nivelAdmin=nivelAdmin;
+        }
     
-    public Administrador(String nombre, String apellido, String nacionalidad, 
-        String documentoIdentidad, long fechaDeNacimiento, String telefono,
-        String usuario, String contrasena) {
-        super(nombre, apellido, nacionalidad, documentoIdentidad, fechaDeNacimiento, telefono);
-        this.usuario=usuario;
-        this.contrasena=contrasena;
-    }
-    
-    public String getUsuario(){
-        return usuario;
-    }
-    public String getContrasena(){
-        return contrasena;
-    }
-    
-    public void setUsuario(String usuario){
-        this.usuario=usuario;
-    }
+
     
 }

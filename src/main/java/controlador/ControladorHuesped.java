@@ -25,7 +25,7 @@ public class ControladorHuesped {
         try {
             int respuesta = dao.guardar(new Huesped(nombre, apellido, nacionalidad, documentoIdentidad, fecha, telefono));
             if (respuesta > 0) {
-                vista.mostrarExito("El cliente se ha agregado con exito");
+                vista.mostrarExito("El cliente se ha agregado con exito!");
             }
             else {
                 vista.mostrarError("No se ha podido registrar el cliente");
@@ -33,7 +33,7 @@ public class ControladorHuesped {
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            vista.mostrarError("Ha ocurrido un error al agregar el cliente, intente de nuevo.");
+            vista.mostrarError("Ha ocurrido un error al agregar el cliente, intente nuevamente");
 
         }
     }

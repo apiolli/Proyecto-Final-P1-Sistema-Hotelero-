@@ -10,21 +10,23 @@ import modelo.Gestionable;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
  * @author Star_
  */
-public class EmpleadoDAO implements Gestionable<Empleado> {
+public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     
     private Connection con;
-    public EmpleadoDAO(Connection con){
+    public EmpleadoAdminDAO(Connection con){
         this.con=con;
     }
     
     @Override
     public int guardar(Empleado empleado) throws SQLException {
-        PreparedStatement ps = con.prepareStatement("INSERT INTO Empleado"
+        PreparedStatement ps = con.prepareStatement("INSERT INTO Usuarios"
         + "(nombre,apellido,nacionalidad,documento_identidad,fecha_nacimiento,telefono,"
         + "cargo,sueldo,usuario,contrasena,fecha_ingreso) "
         + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
@@ -39,8 +41,7 @@ public class EmpleadoDAO implements Gestionable<Empleado> {
         ps.setString(9, empleado.getUsuario());
         ps.setString(10, empleado.getContrasena());
         ps.setLong(11, empleado.getFechaIngreso());
-        return ps.executeUpdate();
-        
+        return ps.executeUpdate();      
     }
     
 }
