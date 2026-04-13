@@ -52,11 +52,16 @@ public class ControladorEmpleadoAdmin {
         
     }
     
-//    public void cargarUsuario(){
-//        try{
-//            var lista = dao.buscarUsuarioPorCorreo("");
-//        }
-//    }
+    public void cargarEmpleadoAdmin(String correo){
+        
+        try{
+            var lista = dao.buscarEmpleadoAdminPorCorreo(correo);
+           
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            vista.mostrarError("Error al cargar los usuarios");
+        }
+    }
 
     public EmpleadoAdminDAO getDao() {
         return dao;

@@ -44,33 +44,41 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         return ps.executeUpdate();      
     }
     
-    public int buscarUsuarioPorCorreo(String correo) throws SQLException{
-        PreparedStatement ps = con.prepareStatement("SELECT id,nombre,usuario,contrasena FROM Usuarios WHERE usuario=?");
-        ps.setString(1, correo);
-        ResultSet rs = ps.executeQuery();
+    public Empleado buscarEmpleadoAdminPorCorreo(String correo) throws SQLException{
+        String sql= "SELECT id, nombre, usuario, contrasena FROM Usuarios where correo=?";
         
-        if(rs.next()){
-         int id = rs.getInt("id");
-         String nombreUsuario = rs.getString("nombre");
-         String usuario = rs.getString("usuario");
-         String contrasena = rs.getString("contrasena");
+        try(PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1, correo);
+            
+            try(ResultSet rs= ps.executeQuery()){
+                if(rs.next()){
+                    rs.getInt("id");
+                    rs.getString("nombre");
+                    rs.getString("usuario");
+                    rs.getString("contrasena");
+                    
+                }
+            }
         }
-        return -1;
+        return null;
     }
     
-    public int eliminarUsuario(Empleado empleado) throws SQLException{
-        PreparedStatement ps = con.prepareStatement("DELETE FROM Usuarios WHERE usuario=?");
-        ps.setString(1, empleado.getUsuario());
-        
+    public Empleado eliminarEmpleadoAdmin(Empleado empleado) throws SQLException{
+        String sql = "DELETE FROM Usuarios WHERE usuario=?";
+        try(PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1, empleado.getUsuario());
+ 
         int respuesta = ps.executeUpdate();
         
-        if(respuesta> 0){
-            return respuesta;
+        if(respuesta > 0){
+            return empleado;
+        } else{
+         return null;   
         }
-        return -1;
+      }
     } 
     
-    public int editarUsuario(Empleado empleado) throws SQLException{
+    public int editarEmpleadoAdmin(Empleado empleado) throws SQLException{
         PreparedStatement ps = con.prepareStatement("UPDATE Usuario SET nombre=? ,apellido=?,nacionalidad=?,"
         + "documento_identidad=?,fecha_nacimiento=?,telefono=?,cargo=?,sueldo=?,usuario=?,contrasena=?,fecha_ingreso=?");
         ps.setString(1, empleado.getNombre());
