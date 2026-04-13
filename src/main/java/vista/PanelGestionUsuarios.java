@@ -231,6 +231,8 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 
+    
+    // Pepa
     @Override
     public void mostrarExito(String mensaje) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
