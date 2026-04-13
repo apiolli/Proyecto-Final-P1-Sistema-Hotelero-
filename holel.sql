@@ -12,14 +12,7 @@ CREATE TABLE Huesped (
     telefono VARCHAR(20)
 );
 
-select * from huesped;
 
-CREATE TABLE Administrador (
-    id INT PRIMARY KEY,
-    usuario VARCHAR(50),
-    contrasena VARCHAR(100),
-    FOREIGN KEY (id) REFERENCES Persona(id) ON DELETE CASCADE
-);
 
 CREATE TABLE Habitacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -32,39 +25,40 @@ CREATE TABLE Habitacion (
     telefono varchar(50)    
 );
 
-
-select * from habitacion;
-select noHabitacion, tipo, estado from habitacion;
-
-CREATE TABLE HabitacionSimple (
-    id INT PRIMARY KEY,
-    FOREIGN KEY (id) REFERENCES Habitacion(id) ON DELETE CASCADE
-);
-
-CREATE TABLE HabitacionDoble (
-    id INT PRIMARY KEY,
-    tipoCama VARCHAR(50),
-    FOREIGN KEY (id) REFERENCES Habitacion(id) ON DELETE CASCADE
-);
-
-CREATE TABLE Suite (
-    id INT PRIMARY KEY,
-    equipoExtra VARCHAR(255),
-    FOREIGN KEY (id) REFERENCES Habitacion(id) ON DELETE CASCADE
-);
-
 CREATE TABLE reservas (
     id              INT PRIMARY KEY AUTO_INCREMENT,
-    id_cliente      INT NOT NULL,
+    id_huesped      INT NOT NULL,
     id_habitacion   INT NOT NULL,
     fecha_entrada   DATE NOT NULL,
     fecha_salida    DATE NOT NULL,
     num_personas    INT  NOT NULL,
-    estado          VARCHAR(20) DEFAULT 'Pendiente',
+    estado ENUM('Pendiente','Activa','Completada') DEFAULT 'Pendiente',
     fecha_reserva   DATETIME DEFAULT NOW(),
-    FOREIGN KEY (id_cliente)    REFERENCES clientes(id),
-    FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id)
+    dineroAbonado decimal(10, 2) NULL,
+    FOREIGN KEY (id_huesped)    REFERENCES Huesped(id),
+    FOREIGN KEY (id_habitacion) REFERENCES habitacion(id)
 );
+
+select * from reservas;
+select * from huesped;
+
+CREATE TABLE Usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    nacionalidad VARCHAR(50),
+    documento_identidad VARCHAR(20) UNIQUE NOT NULL,
+    fecha_nacimiento DATE not null, 
+    telefono VARCHAR(20),
+    cargo VARCHAR(50),
+    sueldo DECIMAL(10, 2),
+    usuario VARCHAR(50) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL, 
+    fecha_ingreso DATE not null
+);
+
+drop table usuarios;
+select * from usuarios;
 
 INSERT INTO Persona (
     nombre,
