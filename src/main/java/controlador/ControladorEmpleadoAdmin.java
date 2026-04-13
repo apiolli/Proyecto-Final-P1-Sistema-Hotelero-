@@ -51,6 +51,12 @@ public class ControladorEmpleadoAdmin {
         }
         
     }
+    
+//    public void cargarUsuario(){
+//        try{
+//            var lista = dao.buscarUsuarioPorCorreo("");
+//        }
+//    }
 
     public EmpleadoAdminDAO getDao() {
         return dao;

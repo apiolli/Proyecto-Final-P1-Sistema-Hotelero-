@@ -10,6 +10,7 @@ import modelo.Gestionable;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -43,4 +44,52 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         return ps.executeUpdate();      
     }
     
+    public int buscarUsuarioPorCorreo(String correo) throws SQLException{
+        PreparedStatement ps = con.prepareStatement("SELECT id,nombre,usuario,contrasena FROM Usuarios WHERE usuario=?");
+        ps.setString(1, correo);
+        ResultSet rs = ps.executeQuery();
+        
+        if(rs.next()){
+         int id = rs.getInt("id");
+         String nombreUsuario = rs.getString("nombre");
+         String usuario = rs.getString("usuario");
+         String contrasena = rs.getString("contrasena");
+        }
+        return -1;
+    }
+    
+    public int eliminarUsuario(Empleado empleado) throws SQLException{
+        PreparedStatement ps = con.prepareStatement("DELETE FROM Usuarios WHERE usuario=?");
+        ps.setString(1, empleado.getUsuario());
+        
+        int respuesta = ps.executeUpdate();
+        
+        if(respuesta> 0){
+            return respuesta;
+        }
+        return -1;
+    } 
+    
+    public int editarUsuario(Empleado empleado) throws SQLException{
+        PreparedStatement ps = con.prepareStatement("UPDATE Usuario SET nombre=? ,apellido=?,nacionalidad=?,"
+        + "documento_identidad=?,fecha_nacimiento=?,telefono=?,cargo=?,sueldo=?,usuario=?,contrasena=?,fecha_ingreso=?");
+        ps.setString(1, empleado.getNombre());
+        ps.setString(2, empleado.getApellido());
+        ps.setString(3, empleado.getNacionalidad());
+        ps.setString(4, empleado.getDocumentoIdentidad());
+        ps.setDate(5, new Date(empleado.getFechaDeNacimiento()));
+        ps.setString(6, empleado.getTelefono());
+        ps.setString(7, empleado.getCargo());
+        ps.setDouble(8, empleado.getSueldo());
+        ps.setString(9, empleado.getUsuario());
+        ps.setString(10, empleado.getContrasena());
+        ps.setDate(11, new Date(empleado.getFechaIngreso()));
+        
+        int respuesta = ps.executeUpdate();
+        
+        if(respuesta>0){
+            return respuesta;
+        }
+        return -1;
+    }
 }
