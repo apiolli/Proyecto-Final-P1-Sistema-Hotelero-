@@ -1,7 +1,5 @@
 package vista;
 
-import java.awt.Cursor;
-import javax.swing.JOptionPane;
 
 public class PanelConsumo extends javax.swing.JPanel {
 

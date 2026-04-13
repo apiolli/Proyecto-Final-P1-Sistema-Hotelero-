@@ -1,14 +1,11 @@
 package vista;
 
-import com.toedter.calendar.JDateChooser;
 import controlador.ControladorHuesped;
-import dao.HuespedDAO;
 import java.awt.Color;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import modelo.Mensajes;
 
 public class DiagRegistrarHuesped extends javax.swing.JDialog implements Mensajes{

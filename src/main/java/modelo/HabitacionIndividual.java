@@ -10,7 +10,7 @@ public class HabitacionIndividual extends Habitacion {
         super(numHabitacion, tipo, estado);
     }
 
-    
-    
-    
+    public HabitacionIndividual(int id, int numHabitacion) {
+        super(id, numHabitacion);
+    }
 }
