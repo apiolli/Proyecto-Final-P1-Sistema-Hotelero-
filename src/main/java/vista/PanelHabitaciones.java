@@ -429,6 +429,9 @@ public class PanelHabitaciones extends javax.swing.JPanel implements Mensajes {
                     @Override
                     public void run() {
                         DiagEditarHabitacion dialog = new DiagEditarHabitacion(new javax.swing.JFrame(), true);
+                        dialog.setControlador(controlador);
+                        controlador.setDiagEditar(dialog);
+                        controlador.llenarDatos(Integer.valueOf(numero));
                         dialog.setVisible(true);
                     }
                 });

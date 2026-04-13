@@ -28,7 +28,7 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     public int guardar(Empleado empleado) throws SQLException {
         PreparedStatement ps = con.prepareStatement("INSERT INTO Usuarios"
         + "(nombre,apellido,nacionalidad,documento_identidad,fecha_nacimiento,telefono,"
-        + "cargo,sueldo,usuario,contrasena,fecha_ingreso)"
+        + "cargo,sueldo,usuario,contrasena,fecha_ingreso) "
         + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, empleado.getNombre());
         ps.setString(2, empleado.getApellido());

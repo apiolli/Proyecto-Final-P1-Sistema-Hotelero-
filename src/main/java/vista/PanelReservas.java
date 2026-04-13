@@ -515,4 +515,10 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
     public void setControlador(ControladorReserva controlador) {
         this.controlador = controlador;
     }
+
+    public JTable getTablaReservas() {
+        return tablaReservas;
+    }
+    
+    
 }

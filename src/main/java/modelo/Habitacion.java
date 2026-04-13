@@ -20,6 +20,18 @@ public abstract class Habitacion {
         this.telefonoHabitacion = telefonoHabitacion;
     }
 
+    public Habitacion(int id, String nivel, int numHabitacion, String tipo, String estado, double precioNoche, int capacidad, String telefonoHabitacion) {
+        this.id = id;
+        this.nivel = nivel;
+        this.numHabitacion = numHabitacion;
+        this.tipo = tipo;
+        this.estado = estado;
+        this.precioNoche = precioNoche;
+        this.capacidad = capacidad;
+        this.telefonoHabitacion = telefonoHabitacion;
+    }
+    
+
     public Habitacion(int numHabitacion, String tipo, String estado) {
         this.numHabitacion = numHabitacion;
         this.tipo = tipo;
