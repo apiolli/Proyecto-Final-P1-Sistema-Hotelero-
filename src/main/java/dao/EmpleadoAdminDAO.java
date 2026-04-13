@@ -8,10 +8,7 @@ import java.sql.SQLException;
 import modelo.Empleado;
 import modelo.Gestionable;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  *
@@ -30,6 +27,7 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         + "(nombre,apellido,nacionalidad,documento_identidad,fecha_nacimiento,telefono,"
         + "cargo,sueldo,usuario,contrasena,fecha_ingreso) "
         + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+        
         ps.setString(1, empleado.getNombre());
         ps.setString(2, empleado.getApellido());
         ps.setString(3, empleado.getNacionalidad());

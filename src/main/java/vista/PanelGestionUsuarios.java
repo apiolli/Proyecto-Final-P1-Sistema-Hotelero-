@@ -4,6 +4,8 @@
  */
 package vista;
 
+import app.ContextoAplicacion;
+import controlador.ControladorEmpleadoAdmin;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,17 +13,21 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import modelo.Mensajes;
 
 /**
  *
  * @author DELL
  */
-public class PanelGestionUsuarios extends javax.swing.JPanel {
+public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes{
 
     /**
      * Creates new form PanelGestionUsuarios
      */
-    public PanelGestionUsuarios() {
+    private ControladorEmpleadoAdmin controlador;
+    private ContextoAplicacion contexto;
+    public PanelGestionUsuarios(ContextoAplicacion contexto) {
+        this.contexto = contexto;
         initComponents();
         setLayout(new BorderLayout());
         add(titulo, BorderLayout.NORTH);
@@ -190,12 +196,8 @@ public class PanelGestionUsuarios extends javax.swing.JPanel {
             @Override
             public void run() {
                 DiagAggUsuarioAdmin dialog = new DiagAggUsuarioAdmin(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
+                controlador.setDiagAgg(dialog);
+                dialog.setControlador(controlador);
                 dialog.setVisible(true);
             }
         });
@@ -208,6 +210,10 @@ public class PanelGestionUsuarios extends javax.swing.JPanel {
     private void panelAbajo() {
         panelAbajo.setLayout(new BorderLayout());
         panelAbajo.add(panelBotones, BorderLayout.CENTER);
+    }
+    
+    public void setControlador(ControladorEmpleadoAdmin controla) {
+        this.controlador = controla;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -224,4 +230,14 @@ public class PanelGestionUsuarios extends javax.swing.JPanel {
     private javax.swing.JTable tabla;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mostrarExito(String mensaje) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mostrarError(String mensaje) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
