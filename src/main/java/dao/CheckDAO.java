@@ -52,7 +52,10 @@ public class CheckDAO {
     
     public int ejecutarCheckin(int idReserva) throws SQLException {
         PreparedStatement ps = con.prepareStatement(
-            "UPDATE reservas SET estado = 'Activa' WHERE id = ?"
+            "UPDATE reservas r " +
+            "JOIN habitacion h ON h.id = r.id_habitacion " +
+            "SET r.estado = 'Activa', h.estado = 'Ocupada' " +
+            "WHERE r.id = ?"
         );
         ps.setInt(1, idReserva);
         return ps.executeUpdate();
@@ -132,6 +135,39 @@ public class CheckDAO {
          
         return lista;
     
+    }
+    
+    public Object[] buscarReserva(int noHabitacion) throws SQLException { 
+        PreparedStatement ps = con.prepareStatement("SELECT r.id, CONCAT(h.nombre,' ',h.apellido) AS huesped " +
+                "FROM reservas r " +
+                "INNER JOIN Huesped h ON r.id_huesped = h.id " +
+                "INNER JOIN Habitacion hab ON r.id_habitacion = hab.id " +
+                "WHERE hab.noHabitacion = ? " +
+                "AND r.estado = 'Activa'");
+        
+        ps.setInt(1, noHabitacion);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return new Object[] {rs.getInt("id"),
+                        rs.getString("huesped")
+                    };
+                    
+        }
+        
+        return null;
+    
+    }
+    
+    public ArrayList<Integer> cargarHabitacionesOcupadas() throws SQLException {
+        ArrayList<Integer> ocupadas = new ArrayList<>();
+        PreparedStatement ps = con.prepareStatement(
+            "SELECT noHabitacion FROM habitacion WHERE estado = 'Ocupada'"
+        );
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            ocupadas.add(rs.getInt("noHabitacion"));
+        }
+        return ocupadas;
     }
     
 }

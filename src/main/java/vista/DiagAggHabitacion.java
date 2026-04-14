@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.ControladorConsumo;
 import controlador.ControladorHabitacion;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -11,6 +12,7 @@ public class DiagAggHabitacion extends javax.swing.JDialog implements Mensajes{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DiagAggHabitacion.class.getName());
     private ControladorHabitacion controlador;
+
     
     public DiagAggHabitacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -240,7 +242,12 @@ public class DiagAggHabitacion extends javax.swing.JDialog implements Mensajes{
 
     }//GEN-LAST:event_btnDIagActionPerformed
 
-    public String getEstado() {
+
+    public void setControlador(ControladorHabitacion controlador) {
+        this.controlador = controlador;
+    }
+    
+        public String getEstado() {
         return cmbEstado.getSelectedItem().toString();
     }
 
@@ -266,10 +273,6 @@ public class DiagAggHabitacion extends javax.swing.JDialog implements Mensajes{
 
     public String getTelefono() {
         return txtTelefono.getText();
-    }
-
-    public void setControlador(ControladorHabitacion controlador) {
-        this.controlador = controlador;
     }
     
 

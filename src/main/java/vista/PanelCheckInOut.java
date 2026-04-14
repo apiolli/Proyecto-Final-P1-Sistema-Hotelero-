@@ -3,6 +3,7 @@ package vista;
 import app.ContextoAplicacion;
 import controlador.ControladorChecks;
 import controlador.ControladorFacturacion;
+import controlador.ControladorHabitacion;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -40,7 +41,6 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
         panHead = new javax.swing.JPanel();
         panelBotones = new javax.swing.JPanel();
         btnCrearCheckin = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         panHab = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaCheckout = new javax.swing.JTable();
@@ -53,8 +53,6 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
 
         btnCrearCheckin.setText("Registrar Check In");
 
-        jButton2.setText("jButton2");
-
         javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
         panelBotones.setLayout(panelBotonesLayout);
         panelBotonesLayout.setHorizontalGroup(
@@ -62,17 +60,13 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
             .addGroup(panelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnCrearCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(518, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelBotonesLayout.setVerticalGroup(
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(btnCrearCheckin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCrearCheckin, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -222,7 +216,7 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(360, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,22 +270,22 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
 
     private void tablaCheckinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCheckinMouseClicked
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2) { // ← doble click
+        if (evt.getClickCount() == 2) { 
             int fila = tablaCheckin.getSelectedRow();
             int id = (int) tablaCheckin.getValueAt(fila, 0);
             setIdTabla(id);
             
-            String[] opciones = {"Hacer Checkin", "Gestionar Reserva"};
+            String[] opciones = {"Hacer Checkin", "Gestionar CheckIn"};
 
             int respuesta = JOptionPane.showOptionDialog(
-                null,                          // padre
-                "¿Qué deseas hacer?",          // mensaje
-                "Opciones de Reserva",         // título
-                JOptionPane.DEFAULT_OPTION,    // tipo
-                JOptionPane.QUESTION_MESSAGE,  // icono
-                null,                          // icono personalizado
-                opciones,                      // botones
-                opciones[0]                    // botón por defecto
+                null,                          
+                "¿Qué deseas hacer?",          
+                "Opciones de CheckIn",         
+                JOptionPane.DEFAULT_OPTION,    
+                JOptionPane.QUESTION_MESSAGE,  
+                null,                          
+                opciones,                      
+                opciones[0]                    
             );
 
             if (respuesta == 0) {
@@ -304,10 +298,29 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
 
     private void tablaCheckoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCheckoutMouseClicked
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2) { // ← doble click
+        if (evt.getClickCount() == 2) {
             int fila = tablaCheckin.getSelectedRow();
             int id = (int) tablaCheckin.getValueAt(fila, 0);
             System.out.println("ID seleccionado: " + id);
+            
+            String[] opciones = {"Hacer CheckOut", "Gestionar CheckOut"};
+
+            int respuesta = JOptionPane.showOptionDialog(
+                null,                          // padre
+                "¿Qué deseas hacer?",          // mensaje
+                "Opciones de CheckOut",         // título
+                JOptionPane.DEFAULT_OPTION,    // tipo
+                JOptionPane.QUESTION_MESSAGE,  // icono
+                null,                          // icono personalizado
+                opciones,                      // botones
+                opciones[0]                    // botón por defecto
+            );
+
+            if (respuesta == 0) {
+                controlador.hacerCheckIn(id);
+            } else if (respuesta == 1) {
+                // Gestionar Reserva
+            }
         } 
     }//GEN-LAST:event_tablaCheckoutMouseClicked
     
@@ -354,7 +367,6 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearCheckin;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -397,6 +409,8 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
     public void setIdTabla(int idTabla) {
         this.idTabla = idTabla;
     }
+
+    
     
     
     

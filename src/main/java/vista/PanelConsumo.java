@@ -1,9 +1,17 @@
 package vista;
 
+import app.ContextoAplicacion;
+import controlador.ControladorConsumo;
+import controlador.ControladorHabitacion;
+
 
 public class PanelConsumo extends javax.swing.JPanel {
-
-    public PanelConsumo() {
+    
+    private ContextoAplicacion contexto;
+    private ControladorConsumo controlador;
+    
+    public PanelConsumo(ContextoAplicacion contexto) {
+        this.contexto = contexto;
         initComponents();
     }
     
@@ -17,6 +25,11 @@ public class PanelConsumo extends javax.swing.JPanel {
         iconoEstado = new javax.swing.JLabel();
         panEstado = new javax.swing.JPanel();
         estadoHab = new javax.swing.JLabel();
+        btnAggConsumo = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnEliminarTodos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         habitacion.setBackground(new java.awt.Color(204, 255, 255));
         habitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -85,29 +98,93 @@ public class PanelConsumo extends javax.swing.JPanel {
                 .addComponent(panEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        btnAggConsumo.setText("jButton1");
+        btnAggConsumo.addActionListener(this::btnAggConsumoActionPerformed);
+
+        btnEliminar.setText("jButton2");
+
+        btnEliminarTodos.setText("jButton3");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Descripcion", "Cantidad", "Precio"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(habitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(habitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAggConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(btnEliminarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(habitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAggConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAggConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAggConsumoActionPerformed
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                DiagAggConsumo dialog = new DiagAggConsumo(new javax.swing.JFrame(), true);
+                controlador.setDiagAggConsumo(dialog);
+                controlador.setCheckDAO(contexto.getCheckDAO());
+                dialog.setControlador(controlador);
+                controlador.iniciar();
+                dialog.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_btnAggConsumoActionPerformed
+
+    public void setControlador(ControladorConsumo controlador) {
+        this.controlador = controlador;
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAggConsumo;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnEliminarTodos;
     private javax.swing.JLabel estadoHab;
     private javax.swing.JPanel habitacion;
     private javax.swing.JLabel iconoEstado;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel noHab;
     private javax.swing.JPanel panEstado;
     private javax.swing.JLabel tipoHab;

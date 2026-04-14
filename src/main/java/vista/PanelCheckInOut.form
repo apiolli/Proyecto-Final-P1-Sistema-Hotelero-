@@ -60,12 +60,10 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCrearCheckin" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="186" max="-2" attributes="0"/>
-                      <EmptySpace pref="518" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -73,11 +71,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jButton2" pref="45" max="32767" attributes="0"/>
-                          <Component id="btnCrearCheckin" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnCrearCheckin" pref="45" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -92,11 +87,6 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnCrearCheckin.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnCrearCheckin.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnCrearCheckin.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnCrearCheckin.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/registrarCheckin.png&quot;))); // NOI18N&#xa;&#xa;btnCrearCheckin.setToolTipText(&quot;&quot;);&#xa;&#xa;btnCrearCheckin.setBorder(null);&#xa;&#xa;btnCrearCheckin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnCrearCheckin.setFocusable(false);&#xa;&#xa;btnCrearCheckin.setIconTextGap(10);&#xa;&#xa;btnCrearCheckin.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnCrearCheckin.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnCrearCheckin.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
               </AuxValues>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jButton2"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -325,7 +315,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="521" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="360" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

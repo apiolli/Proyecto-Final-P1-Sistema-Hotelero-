@@ -5,17 +5,12 @@
 package controlador;
 
 import dao.CheckDAO;
-import dao.HabitacionDAO;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import vista.DiagAggHabitacion;
-import vista.DiagEditarHabitacion;
 import vista.PanelCheckInOut;
-import vista.PanelHabitaciones;
 
 /**
  *

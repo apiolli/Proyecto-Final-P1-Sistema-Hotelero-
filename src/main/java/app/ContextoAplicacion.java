@@ -2,6 +2,7 @@ package app;
 
 import conexion.Conexion;
 import dao.CheckDAO;
+import dao.ConsumosDAO;
 import dao.EmpleadoAdminDAO;
 import dao.HabitacionDAO;
 import dao.HuespedDAO;
@@ -14,6 +15,7 @@ public class ContextoAplicacion {
     private static ReservaDAO reservaDAO;
     private static EmpleadoAdminDAO adminDAO;
     private static CheckDAO checkDAO;
+    private static ConsumosDAO consumosDAO;
 
     public ContextoAplicacion() {
         Connection con = Conexion.getConexion();
@@ -22,6 +24,7 @@ public class ContextoAplicacion {
         reservaDAO = new ReservaDAO(con);
         adminDAO = new EmpleadoAdminDAO(con);
         checkDAO = new CheckDAO(con);
+        consumosDAO = new ConsumosDAO(con);
     }
 
     public HuespedDAO getHuespedDAO() {
@@ -43,6 +46,12 @@ public class ContextoAplicacion {
     public CheckDAO getCheckDAO() {
         return checkDAO;
     }
+
+    public ConsumosDAO getConsumosDAO() {
+        return consumosDAO;
+    }
+    
+    
     
     
     

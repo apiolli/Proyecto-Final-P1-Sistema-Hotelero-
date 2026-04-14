@@ -2,6 +2,7 @@ package vista;
 
 import app.ContextoAplicacion;
 import controlador.ControladorChecks;
+import controlador.ControladorConsumo;
 import controlador.ControladorEmpleadoAdmin;
 import controlador.ControladorHabitacion;
 import controlador.ControladorReserva;
@@ -120,7 +121,7 @@ public class MainFrame extends JFrame {
         contenedor.add(panelHabitaciones(),  "habitaciones");
         contenedor.add(panelReservas(),  "reservas");
         contenedor.add(panelCheckinOut(),   "check");
-        contenedor.add(new PanelConsumo(),   "consumo");
+        contenedor.add(panelConsumos(),   "consumo");
         contenedor.add(new PanelFacturacion(),   "facturacion");
         contenedor.add(new PanelReportes(),   "reportes");
         contenedor.add(panelUsuarios(),   "usuarios");
@@ -145,7 +146,13 @@ public class MainFrame extends JFrame {
         PanelHabitaciones panelHabs = new PanelHabitaciones(contexto);
         ControladorHabitacion controlador = new ControladorHabitacion(panelHabs, contexto.getHabitacionDAO());
         panelHabs.setControlador(controlador);
-        controlador.cargarHabitaciones();
+        
+        panelHabs.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                controlador.cargarHabitaciones();
+            }
+        });
         
         return panelHabs;
     }
@@ -175,6 +182,14 @@ public class MainFrame extends JFrame {
         controlador.iniciarCheckouts(panelCheks.getTablaCheckout());
         
         return panelCheks;
+    }
+    
+    private JPanel panelConsumos() {
+        PanelConsumo panelCon = new PanelConsumo(contexto);
+        ControladorConsumo controlador = new ControladorConsumo(panelCon, contexto.getConsumosDAO());
+        panelCon.setControlador(controlador);
+        
+        return panelCon;
     }
     
 
