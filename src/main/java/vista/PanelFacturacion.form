@@ -48,6 +48,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="panelMedio">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="panelMedio.setBackground(new Color(0x243447));"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -138,6 +141,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="PanelArriba">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new Color(0x243447)&#xd;&#xa;" type="code"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -567,6 +575,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="tituloFact">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tituloFact.setBackground(new Color(0x243447));"/>
+          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -594,6 +605,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Poppins" size="36" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Facturacion"/>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
@@ -604,6 +618,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="panelSur">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="panelSur.setBackground(new Color(0x243447));"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

@@ -9,6 +9,7 @@ import app.ContextoAplicacion;
 import controlador.ControladorChecks;
 import controlador.ControladorConsumo;
 import controlador.ControladorEmpleadoAdmin;
+import controlador.ControladorFacturacion;
 import controlador.ControladorHabitacion;
 import controlador.ControladorReserva;
 import javax.swing.*;
@@ -127,7 +128,7 @@ public class MainFrame extends JFrame {
         contenedor.add(panelReservas(),  "reservas");
         contenedor.add(panelCheckinOut(),   "check");
         contenedor.add(panelConsumos(),   "consumo");
-        contenedor.add(new PanelFacturacion(),   "facturacion");
+        contenedor.add(panelFacturacion(),   "facturacion");
         contenedor.add(new PanelReportes(),   "reportes");
         contenedor.add(panelUsuarios(),   "usuarios");
 
@@ -195,6 +196,14 @@ public class MainFrame extends JFrame {
         panelCon.setControlador(controlador);
         
         return panelCon;
+    }
+    
+    private JPanel panelFacturacion() {
+        PanelFacturacion panelFacturacion = new PanelFacturacion(contexto);
+        ControladorFacturacion controlador = new ControladorFacturacion(panelFacturacion, contexto.getFacturacionDAO(), contexto.getCheckDAO(), contexto.getConsumosDAO());
+        panelFacturacion.setControlador(controlador);
+        
+        return panelFacturacion;
     }
     
 

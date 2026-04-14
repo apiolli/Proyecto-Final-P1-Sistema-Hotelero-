@@ -1,5 +1,7 @@
 package vista;
 
+import app.ContextoAplicacion;
+import controlador.ControladorFacturacion;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -17,7 +19,10 @@ import javax.swing.table.JTableHeader;
 
 public class PanelFacturacion extends javax.swing.JPanel {
 
-    public PanelFacturacion() {
+    private ContextoAplicacion contexto;
+    private ControladorFacturacion controlador;
+    public PanelFacturacion(ContextoAplicacion contexto) {
+        this.contexto = contexto;
         initComponents();
         setLayout(new BorderLayout());
         add(panelDeArriba(), BorderLayout.NORTH);
@@ -108,6 +113,9 @@ public class PanelFacturacion extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        PanelArriba.setBackground(new Color(0x243447)
         );
 
         panelBuscar.setBackground(new java.awt.Color(0, 204, 204));
@@ -326,6 +334,7 @@ public class PanelFacturacion extends javax.swing.JPanel {
         );
 
         as.setFont(new java.awt.Font("Poppins", 1, 36)); // NOI18N
+        as.setForeground(new java.awt.Color(255, 255, 255));
         as.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         as.setText("Facturacion");
         as.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -369,6 +378,8 @@ public class PanelFacturacion extends javax.swing.JPanel {
                     .addComponent(panelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
+
+        tituloFact.setBackground(new Color(0x243447));
 
         panelAbajo.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -549,6 +560,9 @@ public class PanelFacturacion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelSur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        panelMedio.setBackground(new Color(0x243447));
+        panelSur.setBackground(new Color(0x243447));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCambioActionPerformed
@@ -583,6 +597,8 @@ public class PanelFacturacion extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCalcularCambioMouseExited
 
     private JPanel panelDeArriba() {
+        int padding = 20;
+        PanelArriba.setBorder(new EmptyBorder(0, padding, 0, padding));
         PanelArriba.setLayout(new BorderLayout(10, 10));
         PanelArriba.add(tituloFact, BorderLayout.NORTH);
         PanelArriba.add(panelBuscar, BorderLayout.CENTER);
@@ -692,6 +708,11 @@ public class PanelFacturacion extends javax.swing.JPanel {
         return txtTotal;
     }
 
+    public void setControlador(ControladorFacturacion controlador) {
+        this.controlador = controlador;
+    }
+    
+    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
