@@ -1,4 +1,4 @@
-package modelo;
+package modelo.personas;
 
 public abstract class Persona {
     private int id;

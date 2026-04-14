@@ -1,4 +1,4 @@
-package vista;
+package vista.habitaciones;
 
 import controlador.ControladorConsumo;
 import controlador.ControladorHabitacion;
@@ -6,7 +6,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import modelo.Mensajes;
+import modelo.interfaces.Mensajes;
 
 public class DiagAggHabitacion extends javax.swing.JDialog implements Mensajes{
     

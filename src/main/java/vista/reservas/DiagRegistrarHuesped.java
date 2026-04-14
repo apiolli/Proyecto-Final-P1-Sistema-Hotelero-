@@ -1,4 +1,4 @@
-package vista;
+package vista.reservas;
 
 import controlador.ControladorHuesped;
 import java.awt.Color;
@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import modelo.Mensajes;
+import modelo.interfaces.Mensajes;
 
 public class DiagRegistrarHuesped extends javax.swing.JDialog implements Mensajes{
     

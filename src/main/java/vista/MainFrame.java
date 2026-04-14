@@ -1,5 +1,10 @@
 package vista;
 
+import vista.gestionUsuarios.PanelGestionUsuarios;
+import vista.checkInOut.PanelCheckInOut;
+import vista.consumo.PanelConsumo;
+import vista.reservas.PanelReservas;
+import vista.habitaciones.PanelHabitaciones;
 import app.ContextoAplicacion;
 import controlador.ControladorChecks;
 import controlador.ControladorConsumo;

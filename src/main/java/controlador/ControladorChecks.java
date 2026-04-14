@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import vista.PanelCheckInOut;
+import vista.checkInOut.PanelCheckInOut;
 
 /**
  *

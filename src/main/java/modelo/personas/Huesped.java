@@ -1,4 +1,6 @@
-package modelo;
+package modelo.personas;
+
+import modelo.personas.Persona;
 
 public class Huesped extends Persona {
 

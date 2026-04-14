@@ -11,9 +11,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import modelo.Empleado;
-import vista.DiagAggUsuarioAdmin;
-import vista.PanelGestionUsuarios;
+import modelo.personas.Empleado;
+import vista.gestionUsuarios.DiagAggUsuarioAdmin;
+import vista.gestionUsuarios.PanelGestionUsuarios;
 /**
  *
  * @author Star_

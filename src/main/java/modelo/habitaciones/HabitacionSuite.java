@@ -1,4 +1,6 @@
-package modelo;
+package modelo.habitaciones;
+
+import modelo.habitaciones.Habitacion;
 
 public class HabitacionSuite extends Habitacion {
 

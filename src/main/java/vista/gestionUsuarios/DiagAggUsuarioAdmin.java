@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package vista;
+package vista.gestionUsuarios;
 
 import controlador.ControladorEmpleadoAdmin;
 import java.awt.Color;
@@ -10,7 +10,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import modelo.Mensajes;
+import modelo.interfaces.Mensajes;
 import com.toedter.calendar.JDateChooser;
 
 /**

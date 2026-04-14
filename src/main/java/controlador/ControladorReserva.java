@@ -9,10 +9,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import modelo.Huesped;
-import vista.DiagCrearReserva;
-import vista.DiagEditarHabitacion;
-import vista.PanelReservas;
+import modelo.personas.Huesped;
+import vista.reservas.DiagCrearReserva;
+import vista.habitaciones.DiagEditarHabitacion;
+import vista.reservas.PanelReservas;
 
 public class ControladorReserva {
 

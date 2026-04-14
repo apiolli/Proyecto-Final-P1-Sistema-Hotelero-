@@ -5,8 +5,8 @@
 package dao;
 
 import java.sql.SQLException;
-import modelo.Empleado;
-import modelo.Gestionable;
+import modelo.personas.Empleado;
+import modelo.interfaces.Gestionable;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

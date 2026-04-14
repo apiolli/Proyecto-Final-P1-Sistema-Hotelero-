@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.Gestionable;
-import modelo.Reserva;
+import modelo.interfaces.Gestionable;
+import modelo.reservas.Reserva;
 
 public class ReservaDAO implements Gestionable<Reserva> {
 

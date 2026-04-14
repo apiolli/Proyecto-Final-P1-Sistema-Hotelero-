@@ -1,5 +1,6 @@
-package vista;
+package vista.reservas;
  
+import vista.reservas.DiagCrearReserva;
 import app.ContextoAplicacion;
 import controlador.ControladorHuesped;
 import controlador.ControladorReserva;
@@ -16,7 +17,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
-import modelo.Mensajes;
+import modelo.interfaces.Mensajes;
 
 public class PanelReservas extends javax.swing.JPanel implements Mensajes{
     

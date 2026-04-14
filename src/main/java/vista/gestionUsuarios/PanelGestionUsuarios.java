@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package vista;
+package vista.gestionUsuarios;
 
+import vista.gestionUsuarios.DiagAggUsuarioAdmin;
 import app.ContextoAplicacion;
 import controlador.ControladorEmpleadoAdmin;
 import controlador.ControladorReserva;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import modelo.Mensajes;
+import modelo.interfaces.Mensajes;
 
 /**
  *

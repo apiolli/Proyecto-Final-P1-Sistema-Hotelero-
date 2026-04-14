@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Consumo;
-import modelo.Gestionable;
+import modelo.interfaces.Gestionable;
 
 public class ConsumosDAO implements Gestionable<Consumo>{
     private Connection con;

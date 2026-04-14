@@ -7,12 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import modelo.Gestionable;
-import modelo.Habitacion;
-import modelo.HabitacionDeluxe;
-import modelo.HabitacionDoble;
-import modelo.HabitacionIndividual;
-import modelo.HabitacionSuite;
+import modelo.interfaces.Gestionable;
+import modelo.habitaciones.Habitacion;
+import modelo.habitaciones.HabitacionDeluxe;
+import modelo.habitaciones.HabitacionDoble;
+import modelo.habitaciones.HabitacionIndividual;
+import modelo.habitaciones.HabitacionSuite;
 
 public class HabitacionDAO implements Gestionable<Habitacion> {
 

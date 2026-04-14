@@ -1,4 +1,4 @@
-package vista;
+package vista.consumo;
 
 import controlador.ControladorConsumo;
 import controlador.ControladorHabitacion;
@@ -9,7 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import modelo.Mensajes;
+import modelo.interfaces.Mensajes;
 
 public class DiagAggConsumo extends javax.swing.JDialog implements Mensajes{
     

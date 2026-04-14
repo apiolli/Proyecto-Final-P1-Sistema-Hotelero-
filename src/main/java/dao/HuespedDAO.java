@@ -5,8 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import modelo.Gestionable;
-import modelo.Huesped;
+import modelo.interfaces.Gestionable;
+import modelo.personas.Huesped;
 
 public class HuespedDAO implements Gestionable<Huesped> {
 

@@ -1,5 +1,7 @@
-package vista;
+package vista.habitaciones;
 
+import vista.habitaciones.DiagEditarHabitacion;
+import vista.habitaciones.DiagAggHabitacion;
 import app.ContextoAplicacion;
 import controlador.ControladorHabitacion;
 import java.awt.BorderLayout;
@@ -17,8 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import modelo.Habitacion;
-import modelo.Mensajes;
+import modelo.habitaciones.Habitacion;
+import modelo.interfaces.Mensajes;
+import vista.WrapLayout;
 
 public class PanelHabitaciones extends javax.swing.JPanel implements Mensajes {
     

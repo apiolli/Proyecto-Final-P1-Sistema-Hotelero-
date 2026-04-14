@@ -1,4 +1,4 @@
-package vista;
+package vista.checkInOut;
 
 import app.ContextoAplicacion;
 import controlador.ControladorChecks;
@@ -16,7 +16,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
-import modelo.Mensajes;
+import modelo.interfaces.Mensajes;
 
 public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
 

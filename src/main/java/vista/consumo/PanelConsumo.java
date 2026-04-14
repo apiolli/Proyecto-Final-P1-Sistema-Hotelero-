@@ -1,4 +1,4 @@
-package vista;
+package vista.consumo;
 
 import app.ContextoAplicacion;
 import controlador.ControladorConsumo;

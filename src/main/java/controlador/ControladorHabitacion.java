@@ -2,15 +2,15 @@ package controlador;
 
 import dao.HabitacionDAO;
 import java.sql.SQLException;
-import modelo.Habitacion;
-import modelo.HabitacionDeluxe;
-import modelo.HabitacionDoble;
-import modelo.HabitacionIndividual;
-import modelo.HabitacionSuite;
-import vista.DiagAggConsumo;
-import vista.DiagAggHabitacion;
-import vista.DiagEditarHabitacion;
-import vista.PanelHabitaciones;
+import modelo.habitaciones.Habitacion;
+import modelo.habitaciones.HabitacionDeluxe;
+import modelo.habitaciones.HabitacionDoble;
+import modelo.habitaciones.HabitacionIndividual;
+import modelo.habitaciones.HabitacionSuite;
+import vista.consumo.DiagAggConsumo;
+import vista.habitaciones.DiagAggHabitacion;
+import vista.habitaciones.DiagEditarHabitacion;
+import vista.habitaciones.PanelHabitaciones;
 
 public class ControladorHabitacion {
     private DiagAggHabitacion dialogo;

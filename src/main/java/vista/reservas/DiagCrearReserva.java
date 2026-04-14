@@ -1,4 +1,4 @@
-package vista;
+package vista.reservas;
 
 import controlador.ControladorReserva;
 import java.awt.Color;

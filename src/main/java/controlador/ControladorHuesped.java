@@ -2,8 +2,8 @@ package controlador;
 
 import dao.HuespedDAO;
 import java.sql.SQLException;
-import modelo.Huesped;
-import vista.DiagRegistrarHuesped;
+import modelo.personas.Huesped;
+import vista.reservas.DiagRegistrarHuesped;
 
 public class ControladorHuesped {
     private DiagRegistrarHuesped vista;

@@ -1,4 +1,7 @@
-package modelo;
+package modelo.reservas;
+
+import modelo.personas.Huesped;
+import modelo.habitaciones.Habitacion;
 
 public class Reserva {
     private Huesped huesped;

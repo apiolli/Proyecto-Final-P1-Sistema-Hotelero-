@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.Timer;
 import modelo.Consumo;
-import vista.DiagAggConsumo;
-import vista.PanelConsumo;
+import vista.consumo.DiagAggConsumo;
+import vista.consumo.PanelConsumo;
 
 public class ControladorConsumo {
     private ConsumosDAO dao;
