@@ -21,6 +21,7 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
 
     private ContextoAplicacion contexto;
     private ControladorChecks controlador;
+    private int idTabla;
     
     public PanelCheckInOut(ContextoAplicacion contexto) {
         this.contexto = contexto;
@@ -278,26 +279,26 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
         if (evt.getClickCount() == 2) { // ← doble click
             int fila = tablaCheckin.getSelectedRow();
             int id = (int) tablaCheckin.getValueAt(fila, 0);
-            System.out.println("ID seleccionado: " + id);
+            setIdTabla(id);
             
-//            String[] opciones = {"Hacer Checkin", "Gestionar Reserva"};
-//
-//            int respuesta = JOptionPane.showOptionDialog(
-//                null,                          // padre
-//                "¿Qué deseas hacer?",          // mensaje
-//                "Opciones de Reserva",         // título
-//                JOptionPane.DEFAULT_OPTION,    // tipo
-//                JOptionPane.QUESTION_MESSAGE,  // icono
-//                null,                          // icono personalizado
-//                opciones,                      // botones
-//                opciones[0]                    // botón por defecto
-//            );
-//
-//            if (respuesta == 0) {
-//                // Hacer Checkin
-//            } else if (respuesta == 1) {
-//                // Gestionar Reserva
-//            }
+            String[] opciones = {"Hacer Checkin", "Gestionar Reserva"};
+
+            int respuesta = JOptionPane.showOptionDialog(
+                null,                          // padre
+                "¿Qué deseas hacer?",          // mensaje
+                "Opciones de Reserva",         // título
+                JOptionPane.DEFAULT_OPTION,    // tipo
+                JOptionPane.QUESTION_MESSAGE,  // icono
+                null,                          // icono personalizado
+                opciones,                      // botones
+                opciones[0]                    // botón por defecto
+            );
+
+            if (respuesta == 0) {
+                controlador.hacerCheckIn(id);
+            } else if (respuesta == 1) {
+                // Gestionar Reserva
+            }
         }        
     }//GEN-LAST:event_tablaCheckinMouseClicked
 
@@ -388,6 +389,16 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
     public JTable getTablaCheckout() {
         return tablaCheckout;
     }
+
+    public int getIdTabla() {
+        return idTabla;
+    }
+
+    public void setIdTabla(int idTabla) {
+        this.idTabla = idTabla;
+    }
+    
+    
     
     
     

@@ -6,6 +6,7 @@ package controlador;
 
 import dao.CheckDAO;
 import dao.HabitacionDAO;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -38,7 +39,7 @@ public class ControladorChecks {
 
         try {
             
-            ArrayList<Object[]> lista = dao.cargarCheckin(0);
+            ArrayList<Object[]> lista = dao.cargarCheckin(vista.getIdTabla());
             for (Object[] reserva : lista) {
                 modeloTabla.addRow(reserva);
             }
@@ -50,11 +51,54 @@ public class ControladorChecks {
 
     }
     
-    public void iniciar(JTable tabla) {
+    public void iniciarCheckin(JTable tabla) {
         cargarCheckIns(tabla);
         
         timer = new Timer(5000, e -> cargarCheckIns(tabla));
         timer.start();
+    }
+    
+    public void cargarCheckouts(JTable tabla) {
+        DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();
+        modeloTabla.setRowCount(0);
+
+        try {
+            
+            ArrayList<Object[]> lista = dao.hacerCheckout(vista.getIdTabla());
+            for (Object[] reserva : lista) {
+                modeloTabla.addRow(reserva);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+            vista.mostrarError("Error al cargar los datos");
+        }
+    }
+    
+    public void iniciarCheckouts(JTable tabla) {
+        cargarCheckouts(tabla);
+        
+        timer = new Timer(5000, e -> cargarCheckouts(tabla));
+        timer.start();
+    }
+    
+    public void hacerCheckIn(int id) {
+        
+        try {
+            int respuesta = dao.ejecutarCheckin(id);
+            
+            if (respuesta > 0) {
+                vista.mostrarExito("Check In Realizado! \n Habitacion marcada como ocupada.");
+            }
+            else {
+                vista.mostrarError("No se ha podido realizar el checkin.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            vista.mostrarError("Error critico del sistema");
+        }
+        
     }
     
     

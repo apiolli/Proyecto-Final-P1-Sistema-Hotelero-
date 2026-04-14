@@ -365,6 +365,11 @@ public class DiagAggUsuarioAdmin extends javax.swing.JDialog implements Mensajes
     public void setControlador(ControladorEmpleadoAdmin controlador){
         this.controlador=controlador;
     }
+    
+    public String getUsuario() {
+        return txtUsuario.getText();
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDIag;

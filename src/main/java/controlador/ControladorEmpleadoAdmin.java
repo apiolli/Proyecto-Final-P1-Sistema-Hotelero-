@@ -6,7 +6,11 @@ package controlador;
 
 import dao.EmpleadoAdminDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 import modelo.Empleado;
 import vista.DiagAggUsuarioAdmin;
 import vista.PanelGestionUsuarios;
@@ -18,7 +22,7 @@ public class ControladorEmpleadoAdmin {
     private PanelGestionUsuarios vista;
     private DiagAggUsuarioAdmin diagAgg;
     private EmpleadoAdminDAO dao;
-    EmpleadoAdminDAO empleadoAdmin;
+    private Timer timer;
     
     public ControladorEmpleadoAdmin(PanelGestionUsuarios vista, EmpleadoAdminDAO dao){
       this.vista=vista;
@@ -34,13 +38,13 @@ public class ControladorEmpleadoAdmin {
         String cargo = diagAgg.getCargo();
         double sueldo = Double.parseDouble(diagAgg.getSueldo());
         String telefono = diagAgg.getTelefono();
-        String correo = diagAgg.getCorreo();
+        String usuario = diagAgg.getUsuario();
         String contrasena = diagAgg.getContrasena();
         long fechaIngreso = diagAgg.getFechaIngreso();
         
         try{
          int respuesta = dao.guardar(new Empleado(nombre,apellido,nacionalidad,documento,
-         fechaNacimiento,telefono,cargo,sueldo,correo,contrasena,fechaIngreso));
+         fechaNacimiento,telefono,cargo,sueldo,usuario,contrasena,fechaIngreso));
             if(respuesta > 0){
             diagAgg.mostrarExito("El usuario se ha agregado con exito");
         }
@@ -54,22 +58,59 @@ public class ControladorEmpleadoAdmin {
         
     }
     
-//    public void buscarEmpleadoAdmin(JTextField nombre, JTextField usuario){
-//        try{
-//        String nombreEmpleado = empleadoAdmin.buscarEmpeladoAdmin(usuario.getText());
-//        }catch(SQLException e){
-//            System.out.println(e.getMessage());
-//            vista.mostrarError("Error al cargar los usuarios");
-//        }
-//    }
+    public void buscarEmpleadoAdmin(JTextField usuario, JTable tabla){
+        try{
+            
+            ArrayList<Object[]> nombreEmpleado = dao.buscarEmpleadoAdmin(usuario.getText());
+            DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();
+            modeloTabla.setRowCount(0);
+            
+            for (Object[] nombre : nombreEmpleado) {
+                modeloTabla.addRow(nombre);
+            }
+            
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            vista.mostrarError("Error al cargar los usuarios");
+        }
+    }
 
-    public EmpleadoAdminDAO getDao() {
-        return dao;
+    
+    public void cargarTabla(JTable tabla) {
+        try{
+            ArrayList<Object[]> usuarios = dao.cargarReservas();
+            DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();
+            modeloTabla.setRowCount(0);
+            
+            for (Object[] user : usuarios) {
+                modeloTabla.addRow(user);
+            }
+            
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            vista.mostrarError("Error al cargar los usuarios");
+        }
+    }
+    
+    public void iniciar(JTable tabla) {
+        cargarTabla(tabla);
+        
+        timer = new Timer(5000, e -> cargarTabla(tabla));
+        timer.start();
     }
 
     public void setDiagAgg(DiagAggUsuarioAdmin diagAgg) {
         this.diagAgg = diagAgg;
     }
+    
+    
+    public EmpleadoAdminDAO getDao() {
+        return dao;
+    }
+    
+    
     
     
     

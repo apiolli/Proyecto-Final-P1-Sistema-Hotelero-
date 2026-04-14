@@ -162,6 +162,7 @@ public class MainFrame extends JFrame {
         PanelGestionUsuarios panelUs = new PanelGestionUsuarios(contexto);
         ControladorEmpleadoAdmin controlador = new ControladorEmpleadoAdmin(panelUs, contexto.getAdminDAO());
         panelUs.setControlador(controlador);
+        controlador.cargarTabla(panelUs.getTabla());
         
         return panelUs;
     }
@@ -170,7 +171,8 @@ public class MainFrame extends JFrame {
         PanelCheckInOut panelCheks = new PanelCheckInOut(contexto);
         ControladorChecks controlador = new ControladorChecks(panelCheks, contexto.getCheckDAO());
         panelCheks.setControlador(controlador);
-        controlador.iniciar(panelCheks.getTablaCheckin());
+        controlador.iniciarCheckin(panelCheks.getTablaCheckin());
+        controlador.iniciarCheckouts(panelCheks.getTablaCheckout());
         
         return panelCheks;
     }

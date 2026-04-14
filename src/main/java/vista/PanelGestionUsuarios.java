@@ -6,13 +6,16 @@ package vista;
 
 import app.ContextoAplicacion;
 import controlador.ControladorEmpleadoAdmin;
+import controlador.ControladorReserva;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import modelo.Mensajes;
 
 /**
@@ -216,7 +219,7 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-   
+        controlador.buscarEmpleadoAdmin(txtUsuario, tabla);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void labelArriba() {
@@ -253,11 +256,16 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
     // Pepa
     @Override
     public void mostrarExito(String mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JOptionPane.showMessageDialog(this, mensaje, "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }
-
+ 
     @Override
     public void mostrarError(String mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
+    
+    public JTable getTabla() {
+        return tabla;
+}
+    
 }

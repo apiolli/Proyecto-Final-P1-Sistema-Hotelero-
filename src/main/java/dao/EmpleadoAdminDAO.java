@@ -28,7 +28,7 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     public int guardar(Empleado empleado) throws SQLException {
         PreparedStatement ps = con.prepareStatement("INSERT INTO Usuarios"
         + "(nombre,apellido,nacionalidad,documento_identidad,fecha_nacimiento,telefono,"
-        + "cargo,sueldo,correo,contrasena,fecha_ingreso) "
+        + "cargo,sueldo,usuario,contrasena,fecha_ingreso) "
         + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         
         ps.setString(1, empleado.getNombre());
@@ -39,23 +39,24 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         ps.setString(6, empleado.getTelefono());
         ps.setString(7, empleado.getCargo());
         ps.setDouble(8, empleado.getSueldo());
-        ps.setString(9, empleado.getCorreo());
+        ps.setString(9, empleado.getUsuario());
         ps.setString(10, empleado.getContrasena());
         ps.setDate(11, new Date(empleado.getFechaIngreso()));
         return ps.executeUpdate();      
     }
     
-    public ArrayList<Object[]> buscarEmpeladoAdmin() throws SQLException{
+    public ArrayList<Object[]> buscarEmpleadoAdmin(String usuario) throws SQLException{
         ArrayList<Object[]> lista = new ArrayList<>();
-        String sql= "SELECT id, nombre, correo, contrasena FROM Usuarios";
+        String sql= "SELECT id_usuario, nombre, usuario, contrasena FROM Usuarios where usuario=?";
         PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, usuario);
         ResultSet rs = ps.executeQuery();
         
         while(rs.next()){
             lista.add(new Object[]{
-              rs.getString("id"),
+              rs.getInt("id_usuario"),
               rs.getString("nombre"),
-              rs.getString("correo"),
+              rs.getString("usuario"),
               rs.getString("contrasena")
             });
             return lista;
@@ -65,9 +66,9 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     }
     
     public Empleado eliminarEmpleadoAdmin(Empleado empleado) throws SQLException{
-        String sql = "DELETE FROM Usuarios WHERE correo=?";
+        String sql = "DELETE FROM Usuarios WHERE usuario=?";
         try(PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setString(1, empleado.getCorreo());
+            ps.setString(1, empleado.getUsuario());
  
         int respuesta = ps.executeUpdate();
         
@@ -81,7 +82,7 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     
     public int editarEmpleadoAdmin(Empleado empleado) throws SQLException{
         PreparedStatement ps = con.prepareStatement("UPDATE Usuario SET nombre=? ,apellido=?,nacionalidad=?,"
-        + "documento_identidad=?,fecha_nacimiento=?,telefono=?,cargo=?,sueldo=?,correo=?,contrasena=?,fecha_ingreso=?");
+        + "documento_identidad=?,fecha_nacimiento=?,telefono=?,cargo=?,sueldo=?,usuario=?,contrasena=?,fecha_ingreso=?");
         ps.setString(1, empleado.getNombre());
         ps.setString(2, empleado.getApellido());
         ps.setString(3, empleado.getNacionalidad());
@@ -90,7 +91,7 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         ps.setString(6, empleado.getTelefono());
         ps.setString(7, empleado.getCargo());
         ps.setDouble(8, empleado.getSueldo());
-        ps.setString(9, empleado.getCorreo());
+        ps.setString(9, empleado.getUsuario());
         ps.setString(10, empleado.getContrasena());
         ps.setDate(11, new Date(empleado.getFechaIngreso()));
         
@@ -100,5 +101,23 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
             return respuesta;
         }
         return -1;
+    }
+    
+    public ArrayList<Object[]> cargarReservas() throws SQLException {  
+        ArrayList<Object[]> lista = new ArrayList<>();
+        PreparedStatement ps = con.prepareStatement("select id_usuario, usuario, contrasena, cargo from Usuarios");            
+        ResultSet rs = ps.executeQuery();
+            
+        while (rs.next()) {
+            lista.add(new Object[]{
+                rs.getInt("id_usuario"),
+                rs.getString("usuario"),
+                rs.getString("contrasena"),
+                rs.getString("cargo"),
+            });
+        }
+         
+        return lista;
+        
     }
 }
