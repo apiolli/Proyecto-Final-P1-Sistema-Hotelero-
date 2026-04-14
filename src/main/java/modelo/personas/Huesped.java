@@ -15,4 +15,10 @@ public class Huesped extends Persona {
     public Huesped(String nombre, String apellido) {
         super(nombre, apellido, 0);
     }
+
+    public Huesped(String nombre, String apellido, String documentoIdentidad, String telefono) {
+        super(nombre, apellido, documentoIdentidad, telefono);
+    }
+    
+    
 }

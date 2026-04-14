@@ -67,4 +67,6 @@ public class Reserva {
     public void setDineroAbonado(double dineroAbonado) {
         this.dineroAbonado = dineroAbonado;
     }
+    
+    
 }

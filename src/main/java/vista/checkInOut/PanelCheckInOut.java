@@ -271,60 +271,18 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
     private void tablaCheckinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCheckinMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) { 
-            int fila = tablaCheckin.getSelectedRow();
-            int id = (int) tablaCheckin.getValueAt(fila, 0);
-            setIdTabla(id);
-            
-            String[] opciones = {"Hacer Checkin", "Gestionar CheckIn"};
-
-            int respuesta = JOptionPane.showOptionDialog(
-                null,                          
-                "¿Qué deseas hacer?",          
-                "Opciones de CheckIn",         
-                JOptionPane.DEFAULT_OPTION,    
-                JOptionPane.QUESTION_MESSAGE,  
-                null,                          
-                opciones,                      
-                opciones[0]                    
-            );
-
-            if (respuesta == 0) {
-                controlador.hacerCheckIn(id);
-            } else if (respuesta == 1) {
-                // Gestionar Reserva
-            }
+            controlador.seleccionarCheckIn();
         }        
     }//GEN-LAST:event_tablaCheckinMouseClicked
 
     private void tablaCheckoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCheckoutMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
-            int fila = tablaCheckin.getSelectedRow();
-            int id = (int) tablaCheckin.getValueAt(fila, 0);
-            System.out.println("ID seleccionado: " + id);
-            
-            String[] opciones = {"Hacer CheckOut", "Gestionar CheckOut"};
-
-            int respuesta = JOptionPane.showOptionDialog(
-                null,                          // padre
-                "¿Qué deseas hacer?",          // mensaje
-                "Opciones de CheckOut",         // título
-                JOptionPane.DEFAULT_OPTION,    // tipo
-                JOptionPane.QUESTION_MESSAGE,  // icono
-                null,                          // icono personalizado
-                opciones,                      // botones
-                opciones[0]                    // botón por defecto
-            );
-
-            if (respuesta == 0) {
-                controlador.hacerCheckIn(id);
-            } else if (respuesta == 1) {
-                // Gestionar Reserva
-            }
+            controlador.seleccionarCheckOut();
         } 
     }//GEN-LAST:event_tablaCheckoutMouseClicked
     
-        private void disenoTabla(JTable tabla) {
+    private void disenoTabla(JTable tabla) {
         JTableHeader header = tabla.getTableHeader();
 
         header.setBackground(new Color(20, 30, 40));

@@ -7,17 +7,20 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import modelo.interfaces.Mensajes;
 
-public class PanelFacturacion extends javax.swing.JPanel {
+public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
 
     private ContextoAplicacion contexto;
     private ControladorFacturacion controlador;
@@ -129,6 +132,7 @@ public class PanelFacturacion extends javax.swing.JPanel {
 
         btnBuscar.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         javax.swing.GroupLayout panelBuscarLayout = new javax.swing.GroupLayout(panelBuscar);
         panelBuscar.setLayout(panelBuscarLayout);
@@ -596,6 +600,11 @@ public class PanelFacturacion extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnCalcularCambioMouseExited
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        controlador.cargarFactura();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     private JPanel panelDeArriba() {
         int padding = 20;
         PanelArriba.setBorder(new EmptyBorder(0, padding, 0, padding));
@@ -712,6 +721,16 @@ public class PanelFacturacion extends javax.swing.JPanel {
         this.controlador = controlador;
     }
     
+    @Override
+    public void mostrarExito(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }
+ 
+    @Override
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
     
     
     
@@ -759,4 +778,5 @@ public class PanelFacturacion extends javax.swing.JPanel {
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
+
 }

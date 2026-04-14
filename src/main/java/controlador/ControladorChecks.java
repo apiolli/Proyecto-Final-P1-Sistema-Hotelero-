@@ -7,6 +7,7 @@ package controlador;
 import dao.CheckDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -94,6 +95,77 @@ public class ControladorChecks {
             vista.mostrarError("Error critico del sistema");
         }
         
+    }
+    
+    public void hacerCheckOut(int id) {
+        
+        try {
+            int respuesta = dao.ejecutarCheckOut(id);
+            
+            if (respuesta > 0) {
+                vista.mostrarExito("Check Out Realizado! \nHabitacion marcada como Disponible\nFacturacion pendiente.");
+            }
+            else {
+                vista.mostrarError("No se ha podido realizar el checkin.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            vista.mostrarError("Error critico del sistema");
+        }
+        
+    }
+    
+    public void seleccionarCheckOut() {
+        int fila = vista.getTablaCheckout().getSelectedRow();
+        int id = (int) vista.getTablaCheckout().getValueAt(fila, 0);
+        vista.setIdTabla(id);
+
+
+        String[] opciones = {"Hacer CheckOut", "Gestionar CheckOut"};
+
+        int respuesta = JOptionPane.showOptionDialog(
+            null,                          // padre
+            "¿Qué deseas hacer?",          // mensaje
+            "Opciones de CheckOut",         // título
+            JOptionPane.DEFAULT_OPTION,    // tipo
+            JOptionPane.QUESTION_MESSAGE,  // icono
+            null,                          // icono personalizado
+            opciones,                      // botones
+            opciones[0]                    // botón por defecto
+        );
+
+        if (respuesta == 0) {
+            hacerCheckOut(id);
+        } else if (respuesta == 1) {
+            // Gestionar Reserva
+        }
+ 
+    }
+    
+    public void seleccionarCheckIn() {
+        int fila = vista.getTablaCheckin().getSelectedRow();
+        int id = (int) vista.getTablaCheckin().getValueAt(fila, 0);
+        vista.setIdTabla(id);
+            
+        String[] opciones = {"Hacer Checkin", "Gestionar CheckIn"};
+
+        int respuesta = JOptionPane.showOptionDialog(
+            null,                          
+            "¿Qué deseas hacer?",          
+            "Opciones de CheckIn",         
+            JOptionPane.DEFAULT_OPTION,    
+            JOptionPane.QUESTION_MESSAGE,  
+            null,                          
+            opciones,                      
+            opciones[0]                    
+        );
+
+        if (respuesta == 0) {
+            hacerCheckIn(id);
+        } else if (respuesta == 1) {
+            // Gestionar Reserva
+        }
     }
     
     

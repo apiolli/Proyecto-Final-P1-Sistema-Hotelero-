@@ -203,6 +203,13 @@ public class MainFrame extends JFrame {
         ControladorFacturacion controlador = new ControladorFacturacion(panelFacturacion, contexto.getFacturacionDAO(), contexto.getCheckDAO(), contexto.getConsumosDAO());
         panelFacturacion.setControlador(controlador);
         
+        panelFacturacion.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                controlador.iniciar();
+            }
+        });
+        
         return panelFacturacion;
     }
     
