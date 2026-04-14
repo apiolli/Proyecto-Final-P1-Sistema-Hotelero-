@@ -41,6 +41,9 @@ CREATE TABLE reservas (
 
 select * from reservas;
 select * from huesped;
+select * from usuarios;
+select * from Habitacion;
+UPDATE reservas SET estado = 'Pendiente' WHERE id = 2;
 
 CREATE TABLE Usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -64,8 +67,30 @@ CREATE TABLE consumos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_reserva INT NOT NULL,
     descripcion VARCHAR(100) NOT NULL,
+    cantidad INT NOT NULL DEFAULT 1,
     precio DECIMAL(10,2) NOT NULL,
     fecha DATETIME DEFAULT NOW(),
+    FOREIGN KEY (id_reserva) REFERENCES reservas(id)
+);
+
+
+select * from consumos;
+
+
+
+CREATE TABLE ReporteVenta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_reserva INT NOT NULL,
+    huesped VARCHAR(100),
+    habitacion INT,
+    fecha_entrada DATE,
+    fecha_salida DATE,
+    subtotal DECIMAL(10,2),
+    itbis DECIMAL(10,2),
+    descuento DECIMAL(10,2),
+    total DECIMAL(10,2),
+    forma_pago VARCHAR(50),
+    fecha_venta DATETIME DEFAULT NOW(),
     FOREIGN KEY (id_reserva) REFERENCES reservas(id)
 );
 
