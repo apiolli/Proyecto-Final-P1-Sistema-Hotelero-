@@ -26,16 +26,17 @@ public class LoginDAO {
         this.con=con;
     }
     
-    public int validarUsuario(Empleado empleado) throws SQLException{
-        String sql = "SELECT usuario,contrasena from Usuarios WHERE usuario=?,contrasena=?";
-        try (PreparedStatement ps= con.prepareStatement(sql)){
-            ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
-                rs.getString("usuario");
-                rs.getString("contrasena");
-            }
-          return -1;
-        }  
+    public boolean validarUsuario(Empleado empleado) throws SQLException{
+    String sql = "SELECT 1 FROM Usuarios WHERE usuario=? AND contrasena=?";
+   
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, empleado.getUsuario());
+        ps.setString(2, empleado.getContrasena());
+
+        try (ResultSet rs = ps.executeQuery()) {
+           return rs.next();
+        }
     }
+
+}
 }
