@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
+//import modelo.GeneradorPDF;
 import modelo.ReporteFactura;
 import modelo.personas.Huesped;
 import vista.PanelFacturacion;
@@ -42,6 +43,10 @@ public class ControladorFacturacion {
             vista.mostrarError("Error SQL");
         }
     
+    }
+    
+    public void reiniciar() {
+        
     }
     
     public void cargarFactura() {
@@ -114,6 +119,8 @@ public class ControladorFacturacion {
     
     public void registrarVenta() {
         try {
+            
+            DefaultTableModel tabla = (DefaultTableModel) vista.getTablaFactura().getModel();
             int idReserva = idsReservas.get(vista.getCmbReservasCompletadas().getSelectedIndex());
             System.out.println("Huesped: '" + vista.getTxtHuesped().getText() + "'");
             
@@ -140,8 +147,10 @@ public class ControladorFacturacion {
             int respuesta = dao.registrarVenta(reporte);
             if (respuesta > 0) {
                 dao.eliminarReserva(idReserva);
-                vista.mostrarExito("Venta registrada con éxito");
                 iniciar();
+//                GeneradorPDF.generar(reporte, tabla);
+                vista.mostrarExito("Venta registrada con éxito");
+                reiniciar();
             } else {
                 vista.mostrarError("Error al registrar la venta");
             }
