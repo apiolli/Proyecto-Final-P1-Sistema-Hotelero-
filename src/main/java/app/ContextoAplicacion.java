@@ -9,6 +9,7 @@ import dao.HabitacionDAO;
 import dao.HuespedDAO;
 import dao.ReservaDAO;
 import java.sql.Connection;
+import dao.LoginDAO;
 
 public class ContextoAplicacion {
     private static HuespedDAO huespedDAO;
@@ -18,7 +19,8 @@ public class ContextoAplicacion {
     private static CheckDAO checkDAO;
     private static ConsumosDAO consumosDAO;
     private static FacturacionDAO facturacionDAO;
-
+    private static LoginDAO loginDAO;
+    
     public ContextoAplicacion() {
         Connection con = Conexion.getConexion();
         huespedDAO = new HuespedDAO(con);
@@ -28,6 +30,7 @@ public class ContextoAplicacion {
         checkDAO = new CheckDAO(con);
         consumosDAO = new ConsumosDAO(con);
         facturacionDAO = new FacturacionDAO(con);
+        loginDAO = new LoginDAO(con);
     }
 
     public HuespedDAO getHuespedDAO() {
@@ -58,11 +61,9 @@ public class ContextoAplicacion {
         return facturacionDAO;
     }
     
+    public LoginDAO getLoginDAO() {
+        return loginDAO;
+    }
     
-    
-    
-    
-    
-    
-    
+   
 }
