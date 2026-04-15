@@ -58,7 +58,8 @@ CREATE TABLE Usuarios (
     sueldo DECIMAL(10, 2),
     usuario VARCHAR(50) UNIQUE NOT NULL,
     contrasena VARCHAR(255) NOT NULL, 
-    fecha_ingreso DATE not null
+    fecha_ingreso DATE not null,
+    nivel_acceso VARCHAR(20)
 );
 
 drop table usuarios;

@@ -28,8 +28,8 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     public int guardar(Empleado empleado) throws SQLException {
         PreparedStatement ps = con.prepareStatement("INSERT INTO Usuarios"
         + "(nombre,apellido,nacionalidad,documento_identidad,fecha_nacimiento,telefono,"
-        + "cargo,sueldo,usuario,contrasena,fecha_ingreso) "
-        + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+        + "cargo,sueldo,usuario,contrasena,fecha_ingreso,nivel_acceso) "
+        + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
         
         ps.setString(1, empleado.getNombre());
         ps.setString(2, empleado.getApellido());
@@ -42,12 +42,13 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         ps.setString(9, empleado.getUsuario());
         ps.setString(10, empleado.getContrasena());
         ps.setDate(11, new Date(empleado.getFechaIngreso()));
+        ps.setString(12, empleado.getNivelAcceso());
         return ps.executeUpdate();      
     }
     
     public ArrayList<Object[]> buscarEmpleadoAdmin(String usuario) throws SQLException{
         ArrayList<Object[]> lista = new ArrayList<>();
-        String sql= "SELECT id_usuario, nombre, usuario, contrasena FROM Usuarios where usuario=?";
+        String sql= "SELECT id_usuario, nombre, usuario, contrasena, nivel_acceso FROM Usuarios where usuario=?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, usuario);
         ResultSet rs = ps.executeQuery();
@@ -57,7 +58,9 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
               rs.getInt("id_usuario"),
               rs.getString("nombre"),
               rs.getString("usuario"),
-              rs.getString("contrasena")
+              rs.getString("contrasena"),
+              rs.getString("cargo"),
+              rs.getString("nivel_acceso")
             });
             return lista;
         }
@@ -82,7 +85,7 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     
     public int editarEmpleadoAdmin(Empleado empleado) throws SQLException{
         PreparedStatement ps = con.prepareStatement("UPDATE Usuario SET nombre=? ,apellido=?,nacionalidad=?,"
-        + "documento_identidad=?,fecha_nacimiento=?,telefono=?,cargo=?,sueldo=?,usuario=?,contrasena=?,fecha_ingreso=?");
+        + "documento_identidad=?,fecha_nacimiento=?,telefono=?,cargo=?,sueldo=?,usuario=?,contrasena=?,fecha_ingreso=?, nivel_acceso=?");
         ps.setString(1, empleado.getNombre());
         ps.setString(2, empleado.getApellido());
         ps.setString(3, empleado.getNacionalidad());
@@ -94,6 +97,7 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         ps.setString(9, empleado.getUsuario());
         ps.setString(10, empleado.getContrasena());
         ps.setDate(11, new Date(empleado.getFechaIngreso()));
+        ps.setString(12, empleado.getNivelAcceso());
         
         int respuesta = ps.executeUpdate();
         
@@ -103,9 +107,9 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         return -1;
     }
     
-    public ArrayList<Object[]> cargarReservas() throws SQLException {  
+    public ArrayList<Object[]> cargarEmpleadoAdmin() throws SQLException {  
         ArrayList<Object[]> lista = new ArrayList<>();
-        PreparedStatement ps = con.prepareStatement("select id_usuario, usuario, contrasena, cargo from Usuarios");            
+        PreparedStatement ps = con.prepareStatement("select id_usuario, usuario, contrasena, cargo, nivel_acceso from Usuarios");            
         ResultSet rs = ps.executeQuery();
             
         while (rs.next()) {
@@ -114,6 +118,7 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
                 rs.getString("usuario"),
                 rs.getString("contrasena"),
                 rs.getString("cargo"),
+                rs.getString("nivel_acceso")
             });
         }
          
