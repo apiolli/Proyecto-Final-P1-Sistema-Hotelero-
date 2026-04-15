@@ -241,3 +241,27 @@ SELECT *
 FROM Reserva
 WHERE CURDATE() BETWEEN fechaInicio AND fechaFin;
 
+select *
+from Habitacion;
+
+select * 
+from ReporteFactura;
+
+
+CREATE TABLE productos (
+    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL
+);
+
+
+INSERT INTO productos (nombre, precio) VALUES 
+('Agua Planeta Azul 600ml', 35.00),
+('Refresco (Coca-Cola/Country Club)', 50.00),
+('Cerveza Presidente (Pequeña)', 175.00),
+('Sándwich de Jamón y Queso', 150.00),
+('Pica Pollo (Servicio 2 piezas)', 250.00),
+('Snack (Platanitos/Papitas)', 40.00),
+('Jugo Natural de Chinola', 125.00),
+('Servicio de Lavado (Camisa)', 100.00),
+('Café Santo Domingo (Taza)', 45.00);
