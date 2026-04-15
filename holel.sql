@@ -43,7 +43,8 @@ select * from reservas;
 select * from huesped;
 select * from usuarios;
 select * from Habitacion;
-UPDATE reservas SET estado = 'Pendiente' WHERE id = 2;
+UPDATE reservas SET estado = 'Pendiente' WHERE id = 5;
+UPDATE huesped SET nombre = 'Patria' WHERE id = 2;
 
 CREATE TABLE Usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -78,21 +79,28 @@ select * from consumos;
 
 
 
-CREATE TABLE ReporteVenta (
+CREATE TABLE ReporteFactura (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_reserva INT NOT NULL,
     huesped VARCHAR(100),
     habitacion INT,
-    fecha_entrada DATE,
-    fecha_salida DATE,
     subtotal DECIMAL(10,2),
     itbis DECIMAL(10,2),
     descuento DECIMAL(10,2),
     total DECIMAL(10,2),
     forma_pago VARCHAR(50),
-    fecha_venta DATETIME DEFAULT NOW(),
-    FOREIGN KEY (id_reserva) REFERENCES reservas(id)
+    fecha_facturacion DATETIME DEFAULT NOW()
 );
+
+ALTER TABLE ReporteFactura 
+DROP FOREIGN KEY reportefactura_ibfk_1;
+
+ALTER TABLE ReporteFactura 
+DROP COLUMN fecha_venta;
+
+select * from ReporteFactura;
+
+drop table reporteventa;
 
 INSERT INTO Persona (
     nombre,
