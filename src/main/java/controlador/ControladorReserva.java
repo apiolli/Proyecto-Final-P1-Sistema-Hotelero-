@@ -120,22 +120,33 @@ public class ControladorReserva {
         }
     }
 
-    public void cargarReservas(JTable tabla) {   
-        DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();
-        modeloTabla.setRowCount(0);
-
-        try {
-            
-            ArrayList<Object[]> lista = dao.cargarReservas();
-            for (Object[] reserva : lista) {
-                modeloTabla.addRow(reserva);
-            }
+    public void cargarReservas(JTable tabla) {
+    // Creamos un modelo personalizado que siempre retorna 'false' para editar
+    DefaultTableModel modeloTabla = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; // Esto bloquea todas las celdas de todas las columnas
         }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
-            vista.mostrarError("Error al cargar los datos");
-        }
+    };
+    
+    // Volvemos a configurar los encabezados de tu tabla
+    modeloTabla.setColumnIdentifiers(new Object[]{
+        "ID", "Huesped", "Total personas", "Habitacion", 
+        "Fecha entrada", "Fecha salida", "Fecha reserva", "Estado", "Dinero abonado"
+    });
 
+    tabla.setModel(modeloTabla);
+    modeloTabla.setRowCount(0);
+
+    try {
+        ArrayList<Object[]> lista = dao.cargarReservas();
+        for (Object[] reserva : lista) {
+            modeloTabla.addRow(reserva);
+        }
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        vista.mostrarError("Error al cargar los datos");
+    }
     }
     
     public void iniciar(JTable tabla) {
