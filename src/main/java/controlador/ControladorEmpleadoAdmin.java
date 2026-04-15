@@ -7,6 +7,7 @@ package controlador;
 import dao.EmpleadoAdminDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.Timer;
@@ -74,14 +75,29 @@ public class ControladorEmpleadoAdmin {
         
     }
     
+    public void eliminarEmpleadoAdmin(int id){
+      try{
+          boolean eliminado= dao.eliminarEmpleadoAdmin(id);
+          
+          if(eliminado){
+              vista.mostrarExito("Usuario eliminado");
+          }else{
+              vista.mostrarError("Error al eliminar usuario");
+          }
+      }catch(SQLException e){
+          vista.mostrarError("Ha ocurrido un error al eliminar el usuario, intente nuevamente" + e.getMessage());
+          
+      }
+    }
+    
     public void buscarEmpleadoAdmin(JTextField usuario, JTable tabla){
         try{
             
-            ArrayList<Object[]> nombreEmpleado = dao.buscarEmpleadoAdmin(usuario.getText());
+            ArrayList<Object[]> usuarioEmpleado = dao.buscarEmpleadoAdmin(usuario.getText());
             DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();
             modeloTabla.setRowCount(0);
             
-            for (Object[] nombre : nombreEmpleado) {
+            for (Object[] nombre : usuarioEmpleado) {
                 modeloTabla.addRow(nombre);
             }
             

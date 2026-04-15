@@ -27,13 +27,13 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     @Override
     public int guardar(Empleado empleado) throws SQLException {
         PreparedStatement ps = con.prepareStatement("INSERT INTO Usuarios(nombre,apellido,cargo,usuario,contrasena,nivel_acceso)"
-        + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+        + "VALUES(?,?,?,?,?,?)");
         ps.setString(1, empleado.getNombre());
         ps.setString(2, empleado.getApellido());
-        ps.setString(7, empleado.getCargo());
-        ps.setString(9, empleado.getUsuario());
-        ps.setString(10, empleado.getContrasena());
-        ps.setString(12, empleado.getNivelAcceso());
+        ps.setString(3, empleado.getCargo());
+        ps.setString(4, empleado.getUsuario());
+        ps.setString(5, empleado.getContrasena());
+        ps.setString(6, empleado.getNivelAcceso());
         return ps.executeUpdate();      
     }
     
@@ -60,19 +60,14 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
         return null;
     }
     
-    public Empleado eliminarEmpleadoAdmin(Empleado empleado) throws SQLException{
-        String sql = "DELETE FROM Usuarios WHERE usuario=?";
+    public boolean eliminarEmpleadoAdmin(int id) throws SQLException{
+        String sql = "DELETE FROM Usuarios WHERE id_usuario=?";
         try(PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setString(1, empleado.getUsuario());
+            ps.setInt(1, id);
  
-        int respuesta = ps.executeUpdate();
-        
-        if(respuesta > 0){
-            return empleado;
-        } else{
-         return null;   
+        int filas = ps.executeUpdate();
+        return filas > 0;
         }
-      }
     } 
     
     public int editarEmpleadoAdmin(Empleado empleado) throws SQLException{

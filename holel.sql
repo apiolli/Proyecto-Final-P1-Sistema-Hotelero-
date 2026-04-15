@@ -13,9 +13,6 @@ CREATE TABLE Huesped (
 );
 
 
-
-
-
 CREATE TABLE Habitacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     noHabitacion INT UNIQUE,
@@ -269,7 +266,6 @@ UPDATE productos SET categoria = 'Bebidas' WHERE nombre LIKE '%Agua%' OR nombre 
 UPDATE productos SET categoria = 'Comidas' WHERE nombre LIKE '%Sándwich%' OR nombre LIKE '%Pica Pollo%';
 UPDATE productos SET categoria = 'Snacks' WHERE nombre LIKE '%Snack%' OR nombre LIKE '%Platanitos%';
 UPDATE productos SET categoria = 'Bebidas' WHERE nombre LIKE '%Café%' OR nombre LIKE '%Cafe%';
-
 
 select * from productos;
 select * from huesped;
