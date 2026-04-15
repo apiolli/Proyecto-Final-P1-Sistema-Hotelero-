@@ -114,16 +114,25 @@ public class CheckDAO {
     
     }
     
-    public ArrayList<Integer> cargarHabitacionesOcupadas() throws SQLException {
-        ArrayList<Integer> ocupadas = new ArrayList<>();
-        PreparedStatement ps = con.prepareStatement(
-            "SELECT noHabitacion FROM habitacion WHERE estado = 'Ocupada'"
-        );
-        ResultSet rs = ps.executeQuery();
+   public ArrayList<Integer> cargarHabitacionesConReserva() throws SQLException {
+    ArrayList<Integer> lista = new ArrayList<>();
+    
+    // Consulta corregida usando los nombres exactos de tu base de datos
+    String sql = "SELECT h.noHabitacion " +
+                 "FROM Habitacion h " +
+                 "INNER JOIN reservas r ON h.id = r.id_habitacion " +
+                 "WHERE r.estado = 'Activa'"; 
+
+    // Aquí asumo que tu variable de conexión se llama "con" (como en ConsumosDAO)
+    try (PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+        
         while (rs.next()) {
-            ocupadas.add(rs.getInt("noHabitacion"));
+            // Extraemos la columna "noHabitacion"
+            lista.add(rs.getInt("noHabitacion"));
         }
-        return ocupadas;
     }
+    return lista;
+}
     
 }

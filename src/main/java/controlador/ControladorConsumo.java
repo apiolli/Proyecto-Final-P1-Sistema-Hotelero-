@@ -10,6 +10,7 @@ import modelo.Consumo;
 import modelo.Producto; 
 import vista.consumo.DiagAggConsumo;
 import vista.consumo.PanelConsumo;
+import vista.consumo.DiagAggProducto;
 
 public class ControladorConsumo {
     private ConsumosDAO dao;
@@ -25,7 +26,8 @@ public class ControladorConsumo {
 
     public void cargarBotonesProductos() {
         try {
-            ArrayList<Producto> productos = dao.listarProductosCatálogo();
+            String categoria = vista.getCmbCategorias().getSelectedItem().toString();
+            ArrayList<Producto> productos = dao.listarProductosPorCategoria(categoria);
             
             vista.renderizarBotones(productos, e -> {
                 JButton btn = (JButton) e.getSource();
@@ -38,28 +40,43 @@ public class ControladorConsumo {
             });
 
         } catch (SQLException e) {
-            System.out.println("Error al cargar botones: " + e.getMessage());
+            System.out.println("Error al cargar botones filtrados: " + e.getMessage());
         }
     }
 
     public void iniciar() {
+        // --- BLOQUE 1: HABITACIONES ---
         try {
-  
             vista.getCmbHabitaciones().removeAllItems();
-            ArrayList<Integer> habitaciones = checkDAO.cargarHabitacionesOcupadas();
+            ArrayList<Integer> habitaciones = checkDAO.cargarHabitacionesConReserva();
             for (Integer hab : habitaciones) {
                 vista.getCmbHabitaciones().addItem("Habitación " + hab);
             }
-            cargarBotonesProductos();
-            
-            for (java.awt.event.ActionListener al : vista.getBtnConfirmarCargo().getActionListeners()) {
-                vista.getBtnConfirmarCargo().removeActionListener(al);
-            }
-            vista.getBtnConfirmarCargo().addActionListener(e -> procesarCargoHabitacion());
-
         } catch (SQLException e) {
-            System.out.println("Error al iniciar POS: " + e.getMessage());
+            System.out.println("Error al cargar habitaciones (Revisa las columnas de tu BD): " + e.getMessage());
         }
+
+        // --- BLOQUE 2: PRODUCTOS (Ahora están a salvo de los errores de arriba) ---
+        cargarBotonesProductos();
+
+        // --- BLOQUE 3: EVENTOS ---
+        // Filtro de Categorías
+        for (java.awt.event.ActionListener al : vista.getCmbCategorias().getActionListeners()) {
+            vista.getCmbCategorias().removeActionListener(al);
+        }
+        vista.getCmbCategorias().addActionListener(e -> cargarBotonesProductos());
+
+        // Botón Confirmar Cargo
+        for (java.awt.event.ActionListener al : vista.getBtnConfirmarCargo().getActionListeners()) {
+            vista.getBtnConfirmarCargo().removeActionListener(al);
+        }
+        vista.getBtnConfirmarCargo().addActionListener(e -> procesarCargoHabitacion());
+
+        // Botón + Nuevo Producto
+        for (java.awt.event.ActionListener al : vista.getBtnAgregarProducto().getActionListeners()) {
+            vista.getBtnAgregarProducto().removeActionListener(al);
+        }
+        vista.getBtnAgregarProducto().addActionListener(e -> abrirDialogoNuevoProducto());
     }
 
     public void procesarCargoHabitacion() {
@@ -95,7 +112,6 @@ public class ControladorConsumo {
             }
 
             javax.swing.JOptionPane.showMessageDialog(vista, "¡Cargos aplicados con éxito!");
-            
             vista.limpiarCarrito(); 
             
         } catch (SQLException e) {
@@ -132,6 +148,41 @@ public class ControladorConsumo {
         } catch (Exception e) {
             diagAggConsumo.mostrarError("Error al guardar");
         }
+    }
+    
+    public void abrirDialogoNuevoProducto() {
+        java.awt.Frame parent = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(vista);
+        DiagAggProducto dialogo = new DiagAggProducto(parent, true);
+        
+        dialogo.getBtnGuardar().addActionListener(e -> {
+            try {
+                String nombre = dialogo.getTxtNombre().getText();
+                double precio = Double.parseDouble(dialogo.getTxtPrecio().getText());
+                String categoria = (String) dialogo.getCmbCategoria().getSelectedItem();
+                
+                if (nombre.isEmpty()) { 
+                    dialogo.mostrarError("El nombre no puede estar vacío"); 
+                    return; 
+                }
+
+                Producto nuevoProducto = new Producto();
+                nuevoProducto.setNombre(nombre);
+                nuevoProducto.setPrecio(precio);
+                nuevoProducto.setCategoria(categoria);
+
+                if (dao.guardarProductoCatalogo(nuevoProducto)) {
+                    dialogo.mostrarExito("Producto agregado correctamente.");
+                    dialogo.dispose(); 
+                    cargarBotonesProductos(); 
+                }
+            } catch (NumberFormatException ex) {
+                dialogo.mostrarError("Precio inválido.");
+            } catch (SQLException ex) {
+                dialogo.mostrarError("Error BD: " + ex.getMessage());
+            }
+        });
+
+        dialogo.setVisible(true);
     }
 
     public void setDiagAggConsumo(DiagAggConsumo diagAggConsumo) {
