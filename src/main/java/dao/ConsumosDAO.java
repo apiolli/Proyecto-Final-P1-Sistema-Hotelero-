@@ -60,5 +60,21 @@ public class ConsumosDAO implements Gestionable<Consumo>{
         return ps.executeUpdate();
     }
     
-
+    public ArrayList<modelo.Producto> listarProductosCatálogo() throws SQLException {
+        ArrayList<modelo.Producto> lista = new ArrayList<>();
+        String sql = "SELECT id_producto, nombre, precio FROM productos";
+        
+        try (PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            
+            while (rs.next()) {
+                lista.add(new modelo.Producto(
+                    rs.getInt("id_producto"),
+                    rs.getString("nombre"),
+                    rs.getDouble("precio")
+                ));
+            }
+        }
+        return lista;
+    }
 }
