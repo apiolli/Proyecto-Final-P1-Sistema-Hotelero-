@@ -78,7 +78,7 @@ public class ConsumosDAO implements Gestionable<Consumo>{
         return lista;
     }
     
-    // --- ESTE ES EL MÉTODO CORREGIDO ---
+  
     public boolean guardarProductoCatalogo(modelo.Producto producto) throws java.sql.SQLException {
         String sql = "INSERT INTO productos (nombre, precio, categoria) VALUES (?, ?, ?)";
         try (java.sql.PreparedStatement ps = con.prepareStatement(sql)) { // Se usa "con"

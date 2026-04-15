@@ -4,20 +4,20 @@ public class Producto {
     private int id;
     private String nombre;
     private double precio;
-    private String categoria; // ¡Agregamos la categoría aquí!
+    private String categoria; 
 
     // 1. Constructor vacío (Esto arregla el error "found: no arguments")
     public Producto() {
     }
 
-    // 2. Constructor clásico (el que ya tenías)
+    // 2. Constructor clásico 
     public Producto(int id, String nombre, double precio) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
     }
 
-    // 3. Constructor completo (por si lo necesitas después)
+    // 3. Constructor completo 
     public Producto(int id, String nombre, double precio, String categoria) {
         this.id = id;
         this.nombre = nombre;
@@ -26,7 +26,6 @@ public class Producto {
     }
 
     // --- GETTERS Y SETTERS ---
-    // (Esto arregla todos los errores de "cannot find symbol" con setNombre, setPrecio, etc.)
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

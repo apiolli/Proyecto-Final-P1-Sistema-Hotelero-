@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import dao.EmpleadoAdminDAO;
@@ -12,14 +8,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import modelo.personas.Empleado;
+import modelo.personas.Empleado; 
 import vista.gestionUsuarios.DiagAggUsuarioAdmin;
 import vista.gestionUsuarios.DiagEditarUsuarioAdmin;
 import vista.gestionUsuarios.PanelGestionUsuarios;
-/**
- *
- * @author Star_
- */
+
+
 public class ControladorEmpleadoAdmin {
     private PanelGestionUsuarios vista;
     private DiagAggUsuarioAdmin diagAgg;
@@ -41,20 +35,21 @@ public class ControladorEmpleadoAdmin {
         String nivelAcceso = diagAgg.getNivelAcceso();
         
         try{
-         int respuesta = dao.guardar(new Empleado(nombre,apellido,cargo,usuario,contrasena,nivelAcceso));
+            int respuesta = dao.guardar(new Empleado(nombre,apellido,cargo,usuario,contrasena,nivelAcceso));
             if(respuesta > 0){
-            diagAgg.mostrarExito("El usuario se ha agregado con exito");
-        }
-            else{
+                diagAgg.mostrarExito("El usuario se ha agregado con exito");
+            } else {
                 diagAgg.mostrarError("No se ha podido registrar el usuario");
             }
         }catch(SQLException e){
            System.out.println(e.getMessage());
            diagAgg.mostrarError("Ha ocurrido un error al registrar al usuario, intente nuevamente");
         }
-        
     }
-    public void editarEmpleadoAdmin(){
+
+    public void editarEmpleadoAdmin() {
+        int id = diagEdit.getIdUsuario(); 
+        
         String nombre = diagEdit.getNombre();
         String apellido = diagEdit.getApellido();
         String cargo = diagEdit.getCargo();
@@ -62,21 +57,21 @@ public class ControladorEmpleadoAdmin {
         String contrasena = diagEdit.getContrasena();
         String nivelAcceso = diagEdit.getNivelAcceso();
         
-        try{
-         int respuesta = dao.editarEmpleadoAdmin(new Empleado(nombre,apellido,cargo,usuario,contrasena,nivelAcceso));
-            if(respuesta > 0){
-            diagEdit.mostrarExito("El usuario se ha editado con éxito");
-        }
-            else{
-                diagEdit.mostrarError("No se ha podido editar el usuario");
+        try {
+            
+            int respuesta = dao.editar(new Empleado(id, nombre, apellido, cargo, usuario, contrasena, nivelAcceso));
+            
+            if (respuesta > 0) {
+                diagEdit.mostrarExito("¡Usuario actualizado correctamente!");
+            } else {
+                diagEdit.mostrarError("No se pudo actualizar el usuario.");
             }
-        }catch(SQLException e){
-           System.out.println(e.getMessage());
-           diagEdit.mostrarError("Ha ocurrido un error al editar al usuario, intente nuevamente");
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            diagEdit.mostrarError("Error de base de datos al editar.");
         }
-        
     }
-    
+
     public void eliminarEmpleadoAdmin(int id){
       try{
           boolean eliminado= dao.eliminarEmpleadoAdmin(id);
@@ -88,13 +83,11 @@ public class ControladorEmpleadoAdmin {
           }
       }catch(SQLException e){
           vista.mostrarError("Ha ocurrido un error al eliminar el usuario, intente nuevamente");
-          
       }
     }
     
     public void buscarEmpleadoAdmin(JTextField usuario, JTable tabla){
         try{
-            
             ArrayList<Object[]> usuarioEmpleado = dao.buscarEmpleadoAdmin(usuario.getText());
             DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();
             modeloTabla.setRowCount(0);
@@ -102,14 +95,11 @@ public class ControladorEmpleadoAdmin {
             for (Object[] nombre : usuarioEmpleado) {
                 modeloTabla.addRow(nombre);
             }
-            
-            
         }catch(SQLException e){
             System.out.println(e.getMessage());
             vista.mostrarError("Error al cargar los usuarios");
         }
     }
-
     
     public void cargarTabla(JTable tabla) {
         try{
@@ -120,8 +110,6 @@ public class ControladorEmpleadoAdmin {
             for (Object[] user : usuarios) {
                 modeloTabla.addRow(user);
             }
-            
-            
         }catch(SQLException e){
             System.out.println(e.getMessage());
             vista.mostrarError("Error al cargar los usuarios");
@@ -138,17 +126,31 @@ public class ControladorEmpleadoAdmin {
     public void setDiagAgg(DiagAggUsuarioAdmin diagAgg) {
         this.diagAgg = diagAgg;
     }
+
     public void setDiagEdit(DiagEditarUsuarioAdmin diagEdit){
         this.diagEdit=diagEdit;
     }
-    
     
     public EmpleadoAdminDAO getDao() {
         return dao;
     }
     
-    
-    
-    
-    
+    public void cargarDatosParaEdicion(int id) {
+        try {
+         
+            Empleado empleado = dao.buscarPorId(id); 
+            
+            if (empleado != null) {
+                diagEdit.setNombre(empleado.getNombre());
+                diagEdit.setApellido(empleado.getApellido());
+                diagEdit.setCargo(empleado.getCargo());
+                diagEdit.setUsuario(empleado.getUsuario());
+                diagEdit.setContrasena(empleado.getContrasena());
+                diagEdit.setNivelAcceso(empleado.getNivelAcceso());
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al cargar usuario: " + e.getMessage());
+            diagEdit.mostrarError("Error al cargar los datos del usuario.");
+        }
+    }
 }

@@ -20,15 +20,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import modelo.interfaces.Mensajes;
 
-/**
- *
- * @author DELL
- */
+
 public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes{
 
-    /**
-     * Creates new form PanelGestionUsuarios
-     */
+   
     private ControladorEmpleadoAdmin controlador;
     private ContextoAplicacion contexto;
     
@@ -41,6 +36,18 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
         add(panelAbajo, BorderLayout.SOUTH);
         labelArriba();
         panelAbajo();
+        
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {}, 
+            new String [] {
+                "ID", "Nombre", "Apellido", "Cargo", "Usuario", "Contraseña", "Nivel Acceso"
+            }
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+        });
     }
     
     @SuppressWarnings("unchecked")
@@ -230,12 +237,24 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            java.awt.EventQueue.invokeLater(new Runnable() {
+            int fila = tabla.getSelectedRow();
+        if (fila == -1) {
+            mostrarError("Por favor, seleccione un usuario de la tabla para editar.");
+            return;
+        }
+      
+        int idSeleccionado = (int) tabla.getValueAt(fila, 0);
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 DiagEditarUsuarioAdmin dialog = new DiagEditarUsuarioAdmin(new javax.swing.JFrame(), true);
                 controlador.setDiagEdit(dialog);
                 dialog.setControlador(controlador);
+                dialog.setIdUsuario(idSeleccionado);
+                               
+                controlador.cargarDatosParaEdicion(idSeleccionado);
+                
                 dialog.setVisible(true);
             }
         });

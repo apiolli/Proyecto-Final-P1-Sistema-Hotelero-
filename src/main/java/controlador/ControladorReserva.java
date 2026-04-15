@@ -43,7 +43,7 @@ public class ControladorReserva {
                 vista.mostrarError("Esa cantidad (" + numPersonas + ") excede la capacidad de la habitación (Máximo: " + capacidadMaxima + ").");
                 return false; 
             }
-            // --------------------------------
+           
 
             int idHabitacion = habitacionDAO.buscarIdPorNumero(noHabitacion);
             if (idHabitacion == -1) {
@@ -121,7 +121,7 @@ public class ControladorReserva {
     }
 
     public void cargarReservas(JTable tabla) {
-    // Creamos un modelo personalizado que siempre retorna 'false' para editar
+    
     DefaultTableModel modeloTabla = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -129,7 +129,7 @@ public class ControladorReserva {
         }
     };
     
-    // Volvemos a configurar los encabezados de tu tabla
+    
     modeloTabla.setColumnIdentifiers(new Object[]{
         "ID", "Huesped", "Total personas", "Habitacion", 
         "Fecha entrada", "Fecha salida", "Fecha reserva", "Estado", "Dinero abonado"

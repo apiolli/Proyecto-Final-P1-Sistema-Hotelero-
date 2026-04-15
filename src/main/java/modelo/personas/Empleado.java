@@ -1,19 +1,36 @@
 package modelo.personas;
 
-import modelo.personas.Persona;
-
 public class Empleado extends Persona {
+    
+    private int id; // <--- Agregamos el ID para poder editarlo en la BD
     private String cargo;
     private String usuario;
     private String contrasena;
     private String nivelAcceso;
     
-    public Empleado(String nombre, String apellido, String cargo,String usuario,String contrasena,String nivelAcceso) {
-        super(nombre,apellido);
-        this.cargo=cargo;
-        this.usuario=usuario;
-        this.contrasena=contrasena;
-        this.nivelAcceso=nivelAcceso;
+    
+    public Empleado(String nombre, String apellido, String cargo, String usuario, String contrasena, String nivelAcceso) {
+        super(nombre, apellido); // Llama a la clase Persona
+        this.cargo = cargo;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.nivelAcceso = nivelAcceso;
+    }
+
+   
+    public Empleado(int id, String nombre, String apellido, String cargo, String usuario, String contrasena, String nivelAcceso) {
+        super(nombre, apellido); // Llama a la clase Persona
+        this.id = id;            // Guarda el ID
+        this.cargo = cargo;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.nivelAcceso = nivelAcceso;
+    }
+    
+    
+    @Override
+    public int getId() {
+        return id;
     }
     
     public String getCargo(){
@@ -29,19 +46,21 @@ public class Empleado extends Persona {
         return nivelAcceso;
     }  
     
-    public void setCargo(String cargo){
-        this.cargo=cargo;
+    // --- SETTERS ---
+    public void setId(int id) {
+        this.id = id;
     }
-     public void setUsuario(String usuario) {
+
+    public void setCargo(String cargo){
+        this.cargo = cargo;
+    }
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
     public void setContrasena(String contrasena){
-        this.contrasena=contrasena;
+        this.contrasena = contrasena;
     } 
     public void setNivelAcceso(String nivelAcceso){
-        this.nivelAcceso=nivelAcceso;
+        this.nivelAcceso = nivelAcceso;
     }
-   
-    
-    
 }

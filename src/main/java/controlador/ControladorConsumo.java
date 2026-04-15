@@ -56,23 +56,22 @@ public class ControladorConsumo {
             System.out.println("Error al cargar habitaciones (Revisa las columnas de tu BD): " + e.getMessage());
         }
 
-        // --- BLOQUE 2: PRODUCTOS (Ahora están a salvo de los errores de arriba) ---
+
         cargarBotonesProductos();
 
-        // --- BLOQUE 3: EVENTOS ---
-        // Filtro de Categorías
+      
         for (java.awt.event.ActionListener al : vista.getCmbCategorias().getActionListeners()) {
             vista.getCmbCategorias().removeActionListener(al);
         }
         vista.getCmbCategorias().addActionListener(e -> cargarBotonesProductos());
 
-        // Botón Confirmar Cargo
+      
         for (java.awt.event.ActionListener al : vista.getBtnConfirmarCargo().getActionListeners()) {
             vista.getBtnConfirmarCargo().removeActionListener(al);
         }
         vista.getBtnConfirmarCargo().addActionListener(e -> procesarCargoHabitacion());
 
-        // Botón + Nuevo Producto
+      
         for (java.awt.event.ActionListener al : vista.getBtnAgregarProducto().getActionListeners()) {
             vista.getBtnAgregarProducto().removeActionListener(al);
         }

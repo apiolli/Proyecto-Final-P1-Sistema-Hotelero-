@@ -69,7 +69,7 @@ public class PanelConsumo extends JPanel {
         cmbHabitaciones.setBounds(100, 55, 120, 25);
         add(cmbHabitaciones);
 
-        // --- NUEVOS CONTROLES DE INVENTARIO ---
+       
         btnAgregarProducto = new JButton("+ Nuevo Producto");
         btnAgregarProducto.setBounds(240, 55, 150, 25);
         btnAgregarProducto.setBackground(new Color(0, 204, 204)); // El Cian del botón confirmar
@@ -96,9 +96,8 @@ public class PanelConsumo extends JPanel {
         panelBotones.setBackground(new Color(30, 30, 30));
 
         scrollBotones = new JScrollPane(panelBotones);
-        scrollBotones.setBounds(20, 100, 600, 530); // Área grande para los productos
+        scrollBotones.setBounds(20, 100, 600, 530);
         scrollBotones.setBorder(null);
-        // Ajustar velocidad del scroll
         scrollBotones.getVerticalScrollBar().setUnitIncrement(16); 
         add(scrollBotones);
 
@@ -112,7 +111,7 @@ public class PanelConsumo extends JPanel {
        modeloCarrito = new DefaultTableModel(new Object[]{"Cant.", "Descripción", "Subtotal"}, 0) {
         @Override
          public boolean isCellEditable(int row, int column) {
-        return false; // Esto bloquea la edición de todas las celdas
+        return false; 
             }
            };
         tablaCarrito = new JTable(modeloCarrito);
@@ -142,12 +141,11 @@ public class PanelConsumo extends JPanel {
 
     // --- MÉTODO ACTUALIZADO PARA RENDERIZAR EN GRID LAYOUT ---
     public void renderizarBotones(ArrayList<Producto> productos, java.awt.event.ActionListener accion) {
-        // Limpiamos solo el contenedor interno de botones
         panelBotones.removeAll();
 
         for (Producto p : productos) {
             JButton btn = new JButton("<html><center>" + p.getNombre() + "<br><b>RD$ " + p.getPrecio() + "</b></center></html>");
-            btn.setPreferredSize(new Dimension(180, 120)); // Tamaño fijo para el grid
+            btn.setPreferredSize(new Dimension(180, 120)); 
             
             btn.setBackground(new Color(51, 51, 51));
             btn.setForeground(new Color(192, 255, 255));
@@ -156,10 +154,9 @@ public class PanelConsumo extends JPanel {
             btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
             
             btn.addActionListener(accion);
-            panelBotones.add(btn); // Lo agregamos al Grid en lugar del panel principal
+            panelBotones.add(btn); 
         }
         
-        // Actualizamos la vista del contenedor
         panelBotones.revalidate();
         panelBotones.repaint();
     }

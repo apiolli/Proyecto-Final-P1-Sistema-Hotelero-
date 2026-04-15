@@ -13,10 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- *
- * @author Star_
- */
+
 public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     
     private Connection con;
@@ -106,5 +103,46 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
          
         return lista;
         
+    }
+    
+    public modelo.personas.Empleado buscarPorId(int id) throws java.sql.SQLException {
+        
+        String sql = "SELECT * FROM Usuarios WHERE id_usuario = ?"; 
+        
+        try (java.sql.PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (java.sql.ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new modelo.personas.Empleado(
+                        rs.getInt("id_usuario"), 
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("cargo"),
+                        rs.getString("usuario"),
+                        rs.getString("contrasena"),
+                        rs.getString("nivel_acceso")
+                    );
+                }
+            }
+        }
+        return null;
+    }
+
+   
+    public int editar(modelo.personas.Empleado empleado) throws java.sql.SQLException {
+        
+        String sql = "UPDATE Usuarios SET nombre = ?, apellido = ?, cargo = ?, usuario = ?, contrasena = ?, nivel_acceso = ? WHERE id_usuario = ?";
+        
+        try (java.sql.PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, empleado.getNombre());
+            ps.setString(2, empleado.getApellido());
+            ps.setString(3, empleado.getCargo());
+            ps.setString(4, empleado.getUsuario());
+            ps.setString(5, empleado.getContrasena());
+            ps.setString(6, empleado.getNivelAcceso());
+            ps.setInt(7, empleado.getId()); 
+            
+            return ps.executeUpdate();
+        }
     }
 }
