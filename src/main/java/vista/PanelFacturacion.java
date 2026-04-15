@@ -96,7 +96,15 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
             new String [] {
                 "Cantidad", "Descripcion", "Precio Unitario", "Descuento", "ITBIS", "Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaFactura.setRowHeight(23);
         tablaFactura.setShowGrid(true);
         jScrollPane1.setViewportView(tablaFactura);

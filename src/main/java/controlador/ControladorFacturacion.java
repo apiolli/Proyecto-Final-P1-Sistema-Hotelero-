@@ -6,9 +6,7 @@ import dao.ConsumosDAO;
 import dao.FacturacionDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
-//import modelo.GeneradorPDF;
 import modelo.ReporteFactura;
 import modelo.personas.Huesped;
 import vista.PanelFacturacion;
@@ -148,8 +146,9 @@ public class ControladorFacturacion {
             if (respuesta > 0) {
                 dao.eliminarReserva(idReserva);
                 iniciar();
-//                GeneradorPDF.generar(reporte, tabla);
+                ControladorFacturaPDF pdf = new ControladorFacturaPDF(vista);
                 vista.mostrarExito("Venta registrada con éxito");
+                pdf.generarFacturaPDF();
                 reiniciar();
             } else {
                 vista.mostrarError("Error al registrar la venta");

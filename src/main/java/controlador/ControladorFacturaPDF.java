@@ -13,79 +13,46 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
-import conexion.Conexion;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import vista.PanelFacturacion;
 
 public class ControladorFacturaPDF {
-
-    private String nombreCliente;
-    private String cedulaCliente;
-    private String telefonoCliente;
-    private String direccionCliente;
-
-    private String fechaActual = "";
-    private String nombreArchivoPDFVenta = "";
     
     private PanelFacturacion vista;
 
     public ControladorFacturaPDF(PanelFacturacion vista) {
         this.vista = vista;
     }
-   
-
-    //metodo para obtener datos del cliente
-    public void DatosCliente(int idCliente) {
-        Connection cn = Conexion.getConexion();
-        String sql = "select * from tb_cliente where idCliente = '" + idCliente + "'";
-        Statement st;
-        try {
-
-            st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                nombreCliente = rs.getString("nombre") + " " + rs.getString("apellido");
-                cedulaCliente = rs.getString("cedula");
-                telefonoCliente = rs.getString("telefono");
-                direccionCliente = rs.getString("direccion");
-            }
-            cn.close();
-        } catch (SQLException e) {
-            System.out.println("Error al obtener datos del cliente: " + e);
-        }
-    }
 
     public void generarFacturaPDF() {
         try {
 
             Date date = new Date();
-            fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(date);
+            String fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(date);
             String fechaNueva = fechaActual.replaceAll("/", "_");
 
-            nombreArchivoPDFVenta = "Venta_" + nombreCliente + "_" + fechaNueva + ".pdf";
+            String ruta = "facturas" + File.separator + "Facturacion_" + fechaNueva + ".pdf";
 
-            FileOutputStream archivo;
-            File file = new File("src/pdf/" + nombreArchivoPDFVenta);
-            archivo = new FileOutputStream(file);
+            File carpeta = new File("facturas");
+            if (!carpeta.exists()) {
+                carpeta.mkdirs();
+            }
 
             Document doc = new Document();
-            PdfWriter.getInstance(doc, archivo);
+            PdfWriter.getInstance(doc, new FileOutputStream(ruta));
+
             doc.open();
 
             String rutaLogo = ControladorFacturaPDF.class.getResource("/img/hotelink.png").getPath();
             Image logo = Image.getInstance(rutaLogo);
             
             Paragraph fecha = new Paragraph();
-            Font negrita = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLUE);
+            Font negrita = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.BLUE);
             
             
             logo.setAlignment(Element.ALIGN_CENTER);
@@ -147,7 +114,7 @@ public class ControladorFacturaPDF {
             espacio.setAlignment(Element.ALIGN_CENTER);
             doc.add(espacio);
             
-            PdfPTable tablaProducto = new PdfPTable(4);
+            PdfPTable tablaProducto = new PdfPTable(6);
             tablaProducto.setWidthPercentage(100);
             tablaProducto.getDefaultCell().setBorder(0);
             
@@ -183,26 +150,26 @@ public class ControladorFacturaPDF {
             tablaProducto.addCell(total);
             
             for(int i = 0; i < vista.getTablaFactura().getRowCount(); i++){
-                String cantidadTabla = vista.getTablaFactura().getValueAt(i, 1).toString();
-                String descripcionTabla = vista.getTablaFactura().getValueAt(i, 2).toString();
-                String precioUTabla = vista.getTablaFactura().getValueAt(i, 3).toString();
-                String descuentoTabla = vista.getTablaFactura().getValueAt(i, 4).toString();
-                String itbisTabla = vista.getTablaFactura().getValueAt(i, 5).toString();
-                String totalTabla = vista.getTablaFactura().getValueAt(i, 6).toString();
+                String cantidadTabla = vista.getTablaFactura().getValueAt(i, 0).toString();
+                String descripcionTabla = vista.getTablaFactura().getValueAt(i, 1).toString();
+                String precioUTabla = vista.getTablaFactura().getValueAt(i, 2).toString();
+                String descuentoTabla = vista.getTablaFactura().getValueAt(i, 3).toString();
+                String itbisTabla = vista.getTablaFactura().getValueAt(i, 4).toString();
+                String totalTabla = vista.getTablaFactura().getValueAt(i, 5).toString();
                 
-                tablaProducto.addCell(cantidad);
+                tablaProducto.addCell(cantidadTabla);
                 tablaProducto.addCell(descripcionTabla);
                 tablaProducto.addCell(precioUTabla);
                 tablaProducto.addCell(descuentoTabla);
-                tablaProducto.addCell(total);
-                tablaProducto.addCell(total);
+                tablaProducto.addCell(itbisTabla);
+                tablaProducto.addCell(totalTabla);
             }
             
-            //agregar al documento
             doc.add(tablaProducto);
             
             //Total pagar
             Paragraph info = new Paragraph();
+            doc.add(new Chunk(linea));
             info.add(Chunk.NEWLINE);
             info.add("Total a pagar: " + vista.getTxtTotal().getText());
             info.setAlignment(Element.ALIGN_RIGHT);
@@ -223,9 +190,8 @@ public class ControladorFacturaPDF {
            doc.add(mensaje);
            
            doc.close();
-           archivo.close();
            
-           Desktop.getDesktop().open(file);
+           Desktop.getDesktop().open(new File(ruta));
             
             
         } catch (DocumentException | IOException e) {
