@@ -2,6 +2,7 @@ package controlador;
 
 import dao.HuespedDAO;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException; // <--- Importamos esta excepción
 import modelo.personas.Huesped;
 import vista.reservas.DiagRegistrarHuesped;
 
@@ -25,16 +26,21 @@ public class ControladorHuesped {
         try {
             int respuesta = dao.guardar(new Huesped(nombre, apellido, nacionalidad, documentoIdentidad, fecha, telefono));
             if (respuesta > 0) {
-                vista.mostrarExito("El cliente se ha agregado con exito!");
+                vista.mostrarExito("¡El cliente se ha agregado con éxito!");
             }
             else {
                 vista.mostrarError("No se ha podido registrar el cliente");
             }
 
+        // 1. ATRAPAMOS EL ERROR DE DOCUMENTO DUPLICADO PRIMERO
+        } catch (SQLIntegrityConstraintViolationException e) {
+            System.err.println("Documento duplicado: " + e.getMessage());
+            vista.mostrarError("Error: Ya existe un huésped registrado con ese Documento de Identidad.");
+            
+        // 2. ATRAPAMOS CUALQUIER OTRO ERROR DE MYSQL DESPUÉS
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            vista.mostrarError("Ha ocurrido un error al agregar el cliente, intente nuevamente");
-
+            vista.mostrarError("Ha ocurrido un error al agregar el cliente, intente nuevamente.");
         }
     }
 }

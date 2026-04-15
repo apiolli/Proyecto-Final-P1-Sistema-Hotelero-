@@ -27,6 +27,8 @@ public class DiagEditarHabitacion extends javax.swing.JDialog implements Mensaje
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setIconImage(new ImageIcon(getClass().getResource("/img/logopeque.png")).getImage());
         getContentPane().setBackground(new Color(0x1C2B3A));
+        spCapacidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1)); 
+        spNivel.setModel(new javax.swing.SpinnerNumberModel(1, 1, 50, 1));
 
     }
     

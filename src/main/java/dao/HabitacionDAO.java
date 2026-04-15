@@ -148,5 +148,18 @@ public class HabitacionDAO implements Gestionable<Habitacion> {
             return -1;
     }
     
+    public int obtenerCapacidad(int noHabitacion) throws SQLException {
+        String sql = "SELECT capacidad FROM habitacion WHERE noHabitacion = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, noHabitacion);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("capacidad");
+                }
+            }
+        }
+        return 0; 
+    }
+    
     
 }

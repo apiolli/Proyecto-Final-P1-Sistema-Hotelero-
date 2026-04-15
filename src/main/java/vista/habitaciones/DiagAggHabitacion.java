@@ -17,11 +17,14 @@ public class DiagAggHabitacion extends javax.swing.JDialog implements Mensajes{
     public DiagAggHabitacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(parent);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        setIconImage(new ImageIcon(getClass().getResource("/img/logopeque.png")).getImage());
-        getContentPane().setBackground(new Color(0x1C2B3A));
+        this.setLocationRelativeTo(parent);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.setIconImage(new ImageIcon(getClass().getResource("/img/logopeque.png")).getImage());
+        this.getContentPane().setBackground(new Color(0x1C2B3A));
 
+  
+        spCapacidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1)); 
+        spNivel.setModel(new javax.swing.SpinnerNumberModel(1, 1, 50, 1));
     }
     
     @SuppressWarnings("unchecked")
@@ -237,9 +240,26 @@ public class DiagAggHabitacion extends javax.swing.JDialog implements Mensajes{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDIagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDIagActionPerformed
+        btnDIag.setEnabled(false);
+        
+       try {
+            int numero = Integer.parseInt(txtNumoerHab.getText().trim());
+            double precio = Double.parseDouble(txtPrecio.getText().trim());
+            
+            if (numero < 0 || precio < 0) {
+                mostrarError("El número de habitación y el precio no pueden ser negativos.");
+                btnDIag.setEnabled(true); 
+                return;
+            }
+        } catch (NumberFormatException e) {
+            mostrarError("El número de habitación y el precio deben ser numéricos.");
+            btnDIag.setEnabled(true); 
+            return; 
+        }
+        
         controlador.agregarHabitacion();
         this.dispose();
-
+        
     }//GEN-LAST:event_btnDIagActionPerformed
 
 

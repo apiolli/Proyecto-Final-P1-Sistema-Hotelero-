@@ -29,38 +29,50 @@ public class ControladorReserva {
         this.dao = dao;
     }
 
-    public void crearReserva() {
+   public boolean crearReserva() {
         try {
             int idHuesped = diagCrear.getTxtID();
             String numHabSeleccionada = diagCrear.getHabDisponibles();
             int noHabitacion = Integer.parseInt(numHabSeleccionada);
+            int numPersonas = diagCrear.getSpNoPersonas();
+
+            // --- VALIDACIÓN DE CAPACIDAD ---
+            int capacidadMaxima = habitacionDAO.obtenerCapacidad(noHabitacion);
+
+            if (numPersonas > capacidadMaxima) {
+                vista.mostrarError("Esa cantidad (" + numPersonas + ") excede la capacidad de la habitación (Máximo: " + capacidadMaxima + ").");
+                return false; 
+            }
+            // --------------------------------
 
             int idHabitacion = habitacionDAO.buscarIdPorNumero(noHabitacion);
             if (idHabitacion == -1) {
-                vista.mostrarError("No se encontró la habitación seleccionada");
-                return;
+                vista.mostrarError("No se encontró el ID de la habitación seleccionada");
+                return false;
             }
 
             long fechaEntrada = diagCrear.getFechaEntrada();
             long fechaSalida = diagCrear.getFechaSalida();
-            int numPersonas = diagCrear.getSpNoPersonas();
             double dineroAbonado = diagCrear.getDineroAbonado();
 
-            int respuesta = dao.guardarConIds(idHuesped, idHabitacion,
-                    fechaEntrada, fechaSalida, numPersonas, dineroAbonado);
+            int respuesta = dao.guardarConIds(idHuesped, idHabitacion, fechaEntrada, fechaSalida, numPersonas, dineroAbonado);
 
             if (respuesta > 0) {
                 vista.mostrarExito("Reserva creada correctamente");
+                return true; 
             } else {
                 vista.mostrarError("No se pudo crear la reserva");
+                return false; 
             }
 
         } catch (NumberFormatException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Error de formato: " + e.getMessage());
             vista.mostrarError("Datos numéricos inválidos");
+            return false;
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            vista.mostrarError("Error al crear la reserva");
+            System.err.println("Error SQL: " + e.getMessage());
+            vista.mostrarError("Error al conectar con la base de datos");
+            return false;
         }
     }
 
