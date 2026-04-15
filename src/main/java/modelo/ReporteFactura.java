@@ -17,8 +17,6 @@ public class ReporteFactura {
     private int idReserva;
     private Huesped huesped;
     private int habitacion;
-    private Date fechaEntrada;
-    private Date fechaSalida;
     private double subtotal;
     private double itbis;
     private double descuento;
@@ -32,6 +30,9 @@ public class ReporteFactura {
         this.idReserva = idReserva;
         this.huesped = huesped;
         this.fechaVenta = fechaVenta;
+    }
+
+    public ReporteFactura() {
     }
 
     public int getId() {
@@ -64,22 +65,6 @@ public class ReporteFactura {
 
     public void setHabitacion(int habitacion) {
         this.habitacion = habitacion;
-    }
-
-    public Date getFechaEntrada() {
-        return fechaEntrada;
-    }
-
-    public void setFechaEntrada(Date fechaEntrada) {
-        this.fechaEntrada = fechaEntrada;
-    }
-
-    public Date getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public void setFechaSalida(Date fechaSalida) {
-        this.fechaSalida = fechaSalida;
     }
 
     public double getSubtotal() {

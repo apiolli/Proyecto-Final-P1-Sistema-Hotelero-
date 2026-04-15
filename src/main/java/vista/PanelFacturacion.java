@@ -237,6 +237,7 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
         txtHuesped.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         txtHuesped.setForeground(new java.awt.Color(0, 0, 0));
         txtHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        txtHuesped.setEnabled(false);
 
         txtDocumentoIdentida.setEditable(false);
         txtDocumentoIdentida.setBackground(new java.awt.Color(255, 255, 255));
@@ -406,21 +407,26 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
         jLabel9.setText("Cambio:");
 
         txtITBIS.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtITBIS.setForeground(new java.awt.Color(0, 0, 0));
         txtITBIS.setEnabled(false);
 
         txtTotal.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtTotal.setForeground(new java.awt.Color(0, 0, 0));
         txtTotal.setEnabled(false);
 
         txtEfectivo.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        txtEfectivo.setEnabled(false);
+        txtEfectivo.setForeground(new java.awt.Color(0, 0, 0));
 
         txtDescuento.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        txtDescuento.setEnabled(false);
+        txtDescuento.setForeground(new java.awt.Color(0, 0, 0));
 
         txtCambio.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtCambio.setForeground(new java.awt.Color(0, 0, 0));
+        txtCambio.setEnabled(false);
         txtCambio.addActionListener(this::txtCambioActionPerformed);
 
         txtSubtotal.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtSubtotal.setForeground(new java.awt.Color(0, 0, 0));
         txtSubtotal.setEnabled(false);
         txtSubtotal.addActionListener(this::txtSubtotalActionPerformed);
 
@@ -437,6 +443,7 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
                 btnCalcularCambioMouseExited(evt);
             }
         });
+        btnCalcularCambio.addActionListener(this::btnCalcularCambioActionPerformed);
 
         btnRegistrarVenta.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         btnRegistrarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/registrarVenta.png"))); // NOI18N
@@ -452,6 +459,7 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
                 btnRegistrarVentaMouseExited(evt);
             }
         });
+        btnRegistrarVenta.addActionListener(this::btnRegistrarVentaActionPerformed);
 
         javax.swing.GroupLayout panelAbajoLayout = new javax.swing.GroupLayout(panelAbajo);
         panelAbajo.setLayout(panelAbajoLayout);
@@ -604,6 +612,16 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
         // TODO add your handling code here:
         controlador.cargarFactura();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVentaActionPerformed
+        // TODO add your handling code here:
+        controlador.registrarVenta();
+    }//GEN-LAST:event_btnRegistrarVentaActionPerformed
+
+    private void btnCalcularCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularCambioActionPerformed
+        // TODO add your handling code here:
+        controlador.calcularCambio();
+    }//GEN-LAST:event_btnCalcularCambioActionPerformed
 
     private JPanel panelDeArriba() {
         int padding = 20;
