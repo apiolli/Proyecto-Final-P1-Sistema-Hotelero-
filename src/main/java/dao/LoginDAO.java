@@ -35,7 +35,7 @@ public class LoginDAO {
                 rs.getString("usuario");
                 rs.getString("contrasena");
             }
-        }
-        return -1;
+          return -1;
+        }  
     }
 }
