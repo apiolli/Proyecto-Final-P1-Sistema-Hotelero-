@@ -265,3 +265,36 @@ INSERT INTO productos (nombre, precio) VALUES
 ('Jugo Natural de Chinola', 125.00),
 ('Servicio de Lavado (Camisa)', 100.00),
 ('Café Santo Domingo (Taza)', 45.00);
+
+ALTER TABLE productos 
+ADD COLUMN categoria VARCHAR(50) DEFAULT 'Otros';
+
+
+-- Ejecuta esto para las bebidas
+UPDATE productos 
+SET categoria = 'Bebidas' 
+WHERE nombre LIKE '%Agua%' OR nombre LIKE '%Refresco%' OR nombre LIKE '%Cerveza%' OR nombre LIKE '%Jugo%';
+
+-- Ejecuta esto para las comidas
+UPDATE productos 
+SET categoria = 'Comidas' 
+WHERE nombre LIKE '%Sándwich%' OR nombre LIKE '%Pica Pollo%';
+
+-- Ejecuta esto para los snacks
+UPDATE productos 
+SET categoria = 'Snacks' 
+WHERE nombre LIKE '%Snack%' OR nombre LIKE '%Platanitos%';
+
+-- 1. Apagamos el modo seguro temporalmente
+SET SQL_SAFE_UPDATES = 0;
+
+-- 2. Hacemos todas las actualizaciones
+UPDATE productos SET categoria = 'Bebidas' WHERE nombre LIKE '%Agua%' OR nombre LIKE '%Refresco%' OR nombre LIKE '%Cerveza%' OR nombre LIKE '%Jugo%';
+UPDATE productos SET categoria = 'Comidas' WHERE nombre LIKE '%Sándwich%' OR nombre LIKE '%Pica Pollo%';
+UPDATE productos SET categoria = 'Snacks' WHERE nombre LIKE '%Snack%' OR nombre LIKE '%Platanitos%';
+UPDATE productos SET categoria = 'Bebidas' WHERE nombre LIKE '%Café%' OR nombre LIKE '%Cafe%';
+
+-- 3. Volvemos a encender el modo seguro 
+SET SQL_SAFE_UPDATES = 1;
+
+select * from productos;
