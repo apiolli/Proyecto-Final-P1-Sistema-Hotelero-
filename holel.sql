@@ -52,15 +52,9 @@ CREATE TABLE Usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
-    nacionalidad VARCHAR(50),
-    documento_identidad VARCHAR(20) UNIQUE NOT NULL,
-    fecha_nacimiento DATE not null, 
-    telefono VARCHAR(20),
     cargo VARCHAR(50),
-    sueldo DECIMAL(10, 2),
     usuario VARCHAR(50) UNIQUE NOT NULL,
     contrasena VARCHAR(255) NOT NULL, 
-    fecha_ingreso DATE not null,
     nivel_acceso VARCHAR(20)
 );
 

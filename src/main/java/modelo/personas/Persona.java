@@ -17,6 +17,11 @@ public abstract class Persona {
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.telefono = telefono;
     }
+    
+    public Persona(String nombre, String apellido){
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
 
     public Persona(String nombre, String apellido, int id) {
         this.nombre = nombre;

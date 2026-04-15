@@ -30,22 +30,15 @@ public class ControladorEmpleadoAdmin {
     }
     
     public void registrarEmpleadoAdmin(){
-        String documento = diagAgg.getDocumento();
         String nombre = diagAgg.getNombre();
         String apellido = diagAgg.getApellido();
-        long fechaNacimiento = diagAgg.getFechaNacimiento();
-        String nacionalidad = diagAgg.getNacionalidad();
         String cargo = diagAgg.getCargo();
-        double sueldo = Double.parseDouble(diagAgg.getSueldo());
-        String telefono = diagAgg.getTelefono();
         String usuario = diagAgg.getUsuario();
         String contrasena = diagAgg.getContrasena();
-        long fechaIngreso = diagAgg.getFechaIngreso();
         String nivelAcceso = diagAgg.getNivelAcceso();
         
         try{
-         int respuesta = dao.guardar(new Empleado(nombre,apellido,nacionalidad,documento,
-         fechaNacimiento,telefono,cargo,sueldo,usuario,contrasena,fechaIngreso,nivelAcceso));
+         int respuesta = dao.guardar(new Empleado(nombre,apellido,cargo,usuario,contrasena,nivelAcceso));
             if(respuesta > 0){
             diagAgg.mostrarExito("El usuario se ha agregado con exito");
         }
@@ -59,22 +52,15 @@ public class ControladorEmpleadoAdmin {
         
     }
     public void editarEmpleadoAdmin(){
-        String documento = diagAgg.getDocumento();
         String nombre = diagAgg.getNombre();
         String apellido = diagAgg.getApellido();
-        long fechaNacimiento = diagAgg.getFechaNacimiento();
-        String nacionalidad = diagAgg.getNacionalidad();
         String cargo = diagAgg.getCargo();
-        double sueldo = Double.parseDouble(diagAgg.getSueldo());
-        String telefono = diagAgg.getTelefono();
         String usuario = diagAgg.getUsuario();
         String contrasena = diagAgg.getContrasena();
-        long fechaIngreso = diagAgg.getFechaIngreso();
         String nivelAcceso = diagAgg.getNivelAcceso();
         
         try{
-         int respuesta = dao.editarEmpleadoAdmin(new Empleado(nombre,apellido,nacionalidad,documento,
-         fechaNacimiento,telefono,cargo,sueldo,usuario,contrasena,fechaIngreso,nivelAcceso));
+         int respuesta = dao.editarEmpleadoAdmin(new Empleado(nombre,apellido,cargo,usuario,contrasena,nivelAcceso));
             if(respuesta > 0){
             diagAgg.mostrarExito("El usuario se ha editado con éxito");
         }

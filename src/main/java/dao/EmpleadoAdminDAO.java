@@ -26,29 +26,20 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     
     @Override
     public int guardar(Empleado empleado) throws SQLException {
-        PreparedStatement ps = con.prepareStatement("INSERT INTO Usuarios"
-        + "(nombre,apellido,nacionalidad,documento_identidad,fecha_nacimiento,telefono,"
-        + "cargo,sueldo,usuario,contrasena,fecha_ingreso,nivel_acceso) "
+        PreparedStatement ps = con.prepareStatement("INSERT INTO Usuarios(nombre,apellido,cargo,usuario,contrasena,nivel_acceso)"
         + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
-        
         ps.setString(1, empleado.getNombre());
         ps.setString(2, empleado.getApellido());
-        ps.setString(3, empleado.getNacionalidad());
-        ps.setString(4, empleado.getDocumentoIdentidad());
-        ps.setDate(5, new Date(empleado.getFechaDeNacimiento()));
-        ps.setString(6, empleado.getTelefono());
         ps.setString(7, empleado.getCargo());
-        ps.setDouble(8, empleado.getSueldo());
         ps.setString(9, empleado.getUsuario());
         ps.setString(10, empleado.getContrasena());
-        ps.setDate(11, new Date(empleado.getFechaIngreso()));
         ps.setString(12, empleado.getNivelAcceso());
         return ps.executeUpdate();      
     }
     
     public ArrayList<Object[]> buscarEmpleadoAdmin(String usuario) throws SQLException{
         ArrayList<Object[]> lista = new ArrayList<>();
-        String sql= "SELECT id_usuario, nombre, usuario, contrasena, nivel_acceso FROM Usuarios where usuario=?";
+        String sql= "SELECT id_usuario,nombre,apellido,cargo,usuario,contrasena,nivel_acceso FROM Usuarios where usuario=?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, usuario);
         ResultSet rs = ps.executeQuery();
@@ -57,9 +48,10 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
             lista.add(new Object[]{
               rs.getInt("id_usuario"),
               rs.getString("nombre"),
-              rs.getString("usuario"),
-              rs.getString("contrasena"),
+              rs.getString("apellido"),
               rs.getString("cargo"),
+              rs.getString("usuario"),
+              rs.getString("contrasena"),   
               rs.getString("nivel_acceso")
             });
             return lista;
@@ -84,19 +76,12 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     } 
     
     public int editarEmpleadoAdmin(Empleado empleado) throws SQLException{
-        PreparedStatement ps = con.prepareStatement("UPDATE Usuario SET nombre=? ,apellido=?,nacionalidad=?,"
-        + "documento_identidad=?,fecha_nacimiento=?,telefono=?,cargo=?,sueldo=?,usuario=?,contrasena=?,fecha_ingreso=?, nivel_acceso=?");
+        PreparedStatement ps = con.prepareStatement("UPDATE Usuario SET nombre=?,apellido=?,cargo=?,usuario=?,contrasena=?,nivel_acceso=?");
         ps.setString(1, empleado.getNombre());
         ps.setString(2, empleado.getApellido());
-        ps.setString(3, empleado.getNacionalidad());
-        ps.setString(4, empleado.getDocumentoIdentidad());
-        ps.setDate(5, new Date(empleado.getFechaDeNacimiento()));
-        ps.setString(6, empleado.getTelefono());
         ps.setString(7, empleado.getCargo());
-        ps.setDouble(8, empleado.getSueldo());
         ps.setString(9, empleado.getUsuario());
         ps.setString(10, empleado.getContrasena());
-        ps.setDate(11, new Date(empleado.getFechaIngreso()));
         ps.setString(12, empleado.getNivelAcceso());
         
         int respuesta = ps.executeUpdate();
@@ -109,15 +94,17 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     
     public ArrayList<Object[]> cargarEmpleadoAdmin() throws SQLException {  
         ArrayList<Object[]> lista = new ArrayList<>();
-        PreparedStatement ps = con.prepareStatement("select id_usuario, usuario, contrasena, cargo, nivel_acceso from Usuarios");            
+        PreparedStatement ps = con.prepareStatement("select id_usuario,nombre,apellido,cargo,usuario,contrasena,nivel_acceso from Usuarios");            
         ResultSet rs = ps.executeQuery();
             
         while (rs.next()) {
             lista.add(new Object[]{
                 rs.getInt("id_usuario"),
+                rs.getString("nombre"),
+                rs.getString("apellido"),
+                rs.getString("cargo"),
                 rs.getString("usuario"),
                 rs.getString("contrasena"),
-                rs.getString("cargo"),
                 rs.getString("nivel_acceso")
             });
         }
