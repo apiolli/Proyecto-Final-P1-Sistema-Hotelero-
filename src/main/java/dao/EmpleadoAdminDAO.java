@@ -71,13 +71,13 @@ public class EmpleadoAdminDAO implements Gestionable<Empleado> {
     } 
     
     public int editarEmpleadoAdmin(Empleado empleado) throws SQLException{
-        PreparedStatement ps = con.prepareStatement("UPDATE Usuario SET nombre=?,apellido=?,cargo=?,usuario=?,contrasena=?,nivel_acceso=?");
+        PreparedStatement ps = con.prepareStatement("UPDATE Usuarios SET nombre=?,apellido=?,cargo=?,usuario=?,contrasena=?,nivel_acceso=?");
         ps.setString(1, empleado.getNombre());
         ps.setString(2, empleado.getApellido());
-        ps.setString(7, empleado.getCargo());
-        ps.setString(9, empleado.getUsuario());
-        ps.setString(10, empleado.getContrasena());
-        ps.setString(12, empleado.getNivelAcceso());
+        ps.setString(3, empleado.getCargo());
+        ps.setString(4, empleado.getUsuario());
+        ps.setString(5, empleado.getContrasena());
+        ps.setString(6, empleado.getNivelAcceso());
         
         int respuesta = ps.executeUpdate();
         

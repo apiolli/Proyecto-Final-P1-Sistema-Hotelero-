@@ -14,6 +14,7 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import modelo.personas.Empleado;
 import vista.gestionUsuarios.DiagAggUsuarioAdmin;
+import vista.gestionUsuarios.DiagEditarUsuarioAdmin;
 import vista.gestionUsuarios.PanelGestionUsuarios;
 /**
  *
@@ -22,6 +23,7 @@ import vista.gestionUsuarios.PanelGestionUsuarios;
 public class ControladorEmpleadoAdmin {
     private PanelGestionUsuarios vista;
     private DiagAggUsuarioAdmin diagAgg;
+    private DiagEditarUsuarioAdmin diagEdit;
     private EmpleadoAdminDAO dao;
     private Timer timer;
     
@@ -53,24 +55,24 @@ public class ControladorEmpleadoAdmin {
         
     }
     public void editarEmpleadoAdmin(){
-        String nombre = diagAgg.getNombre();
-        String apellido = diagAgg.getApellido();
-        String cargo = diagAgg.getCargo();
-        String usuario = diagAgg.getUsuario();
-        String contrasena = diagAgg.getContrasena();
-        String nivelAcceso = diagAgg.getNivelAcceso();
+        String nombre = diagEdit.getNombre();
+        String apellido = diagEdit.getApellido();
+        String cargo = diagEdit.getCargo();
+        String usuario = diagEdit.getUsuario();
+        String contrasena = diagEdit.getContrasena();
+        String nivelAcceso = diagEdit.getNivelAcceso();
         
         try{
          int respuesta = dao.editarEmpleadoAdmin(new Empleado(nombre,apellido,cargo,usuario,contrasena,nivelAcceso));
             if(respuesta > 0){
-            diagAgg.mostrarExito("El usuario se ha editado con éxito");
+            diagEdit.mostrarExito("El usuario se ha editado con éxito");
         }
             else{
-                diagAgg.mostrarError("No se ha podido editar el usuario");
+                diagEdit.mostrarError("No se ha podido editar el usuario");
             }
         }catch(SQLException e){
            System.out.println(e.getMessage());
-           diagAgg.mostrarError("Ha ocurrido un error al editar al usuario, intente nuevamente");
+           diagEdit.mostrarError("Ha ocurrido un error al editar al usuario, intente nuevamente");
         }
         
     }
@@ -85,7 +87,7 @@ public class ControladorEmpleadoAdmin {
               vista.mostrarError("Error al eliminar usuario");
           }
       }catch(SQLException e){
-          vista.mostrarError("Ha ocurrido un error al eliminar el usuario, intente nuevamente" + e.getMessage());
+          vista.mostrarError("Ha ocurrido un error al eliminar el usuario, intente nuevamente");
           
       }
     }
@@ -135,6 +137,9 @@ public class ControladorEmpleadoAdmin {
 
     public void setDiagAgg(DiagAggUsuarioAdmin diagAgg) {
         this.diagAgg = diagAgg;
+    }
+    public void setDiagEdit(DiagEditarUsuarioAdmin diagEdit){
+        this.diagEdit=diagEdit;
     }
     
     

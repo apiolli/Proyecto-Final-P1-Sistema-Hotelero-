@@ -5,6 +5,7 @@
 package vista.gestionUsuarios;
 
 import vista.gestionUsuarios.DiagAggUsuarioAdmin;
+import vista.gestionUsuarios.DiagEditarUsuarioAdmin;
 import app.ContextoAplicacion;
 import controlador.ControladorEmpleadoAdmin;
 import controlador.ControladorReserva;
@@ -229,7 +230,15 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controlador.editarEmpleadoAdmin();
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                DiagEditarUsuarioAdmin dialog = new DiagEditarUsuarioAdmin(new javax.swing.JFrame(), true);
+                controlador.setDiagEdit(dialog);
+                dialog.setControlador(controlador);
+                dialog.setVisible(true);
+            }
+        });
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -246,7 +255,7 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
     if (opcion == JOptionPane.YES_OPTION) {
     controlador.eliminarEmpleadoAdmin(id);
     }
-    controlador.cargarTabla(tabla);
+//    controlador.cargarTabla(tabla);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void labelArriba() {
