@@ -14,6 +14,8 @@ CREATE TABLE Huesped (
 
 
 
+
+
 CREATE TABLE Habitacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     noHabitacion INT UNIQUE,
@@ -240,3 +242,60 @@ SELECT *
 FROM Reserva
 WHERE CURDATE() BETWEEN fechaInicio AND fechaFin;
 
+select *
+from Habitacion;
+
+select * 
+from ReporteFactura;
+
+
+CREATE TABLE productos (
+    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL
+);
+
+
+INSERT INTO productos (nombre, precio) VALUES 
+('Agua Planeta Azul 600ml', 35.00),
+('Refresco (Coca-Cola/Country Club)', 50.00),
+('Cerveza Presidente (Pequeña)', 175.00),
+('Sándwich de Jamón y Queso', 150.00),
+('Pica Pollo (Servicio 2 piezas)', 250.00),
+('Snack (Platanitos/Papitas)', 40.00),
+('Jugo Natural de Chinola', 125.00),
+('Servicio de Lavado (Camisa)', 100.00),
+('Café Santo Domingo (Taza)', 45.00);
+
+ALTER TABLE productos 
+ADD COLUMN categoria VARCHAR(50) DEFAULT 'Otros';
+
+
+-- Ejecuta esto para las bebidas
+UPDATE productos 
+SET categoria = 'Bebidas' 
+WHERE nombre LIKE '%Agua%' OR nombre LIKE '%Refresco%' OR nombre LIKE '%Cerveza%' OR nombre LIKE '%Jugo%';
+
+-- Ejecuta esto para las comidas
+UPDATE productos 
+SET categoria = 'Comidas' 
+WHERE nombre LIKE '%Sándwich%' OR nombre LIKE '%Pica Pollo%';
+
+-- Ejecuta esto para los snacks
+UPDATE productos 
+SET categoria = 'Snacks' 
+WHERE nombre LIKE '%Snack%' OR nombre LIKE '%Platanitos%';
+
+-- 1. Apagamos el modo seguro temporalmente
+SET SQL_SAFE_UPDATES = 0;
+
+-- 2. Hacemos todas las actualizaciones
+UPDATE productos SET categoria = 'Bebidas' WHERE nombre LIKE '%Agua%' OR nombre LIKE '%Refresco%' OR nombre LIKE '%Cerveza%' OR nombre LIKE '%Jugo%';
+UPDATE productos SET categoria = 'Comidas' WHERE nombre LIKE '%Sándwich%' OR nombre LIKE '%Pica Pollo%';
+UPDATE productos SET categoria = 'Snacks' WHERE nombre LIKE '%Snack%' OR nombre LIKE '%Platanitos%';
+UPDATE productos SET categoria = 'Bebidas' WHERE nombre LIKE '%Café%' OR nombre LIKE '%Cafe%';
+
+-- 3. Volvemos a encender el modo seguro 
+SET SQL_SAFE_UPDATES = 1;
+
+select * from productos;

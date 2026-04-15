@@ -190,14 +190,24 @@ public class MainFrame extends JFrame {
         return panelCheks;
     }
     
-    private JPanel panelConsumos() {
+private JPanel panelConsumos() {
         PanelConsumo panelCon = new PanelConsumo(contexto);
         ControladorConsumo controlador = new ControladorConsumo(panelCon, contexto.getConsumosDAO());
+        
+        controlador.setCheckDAO(contexto.getCheckDAO()); 
+        
         panelCon.setControlador(controlador);
+        
+
+        panelCon.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                controlador.iniciar(); 
+            }
+        });
         
         return panelCon;
     }
-    
     private JPanel panelFacturacion() {
         PanelFacturacion panelFacturacion = new PanelFacturacion(contexto);
         ControladorFacturacion controlador = new ControladorFacturacion(panelFacturacion, contexto.getFacturacionDAO(), contexto.getCheckDAO(), contexto.getConsumosDAO());

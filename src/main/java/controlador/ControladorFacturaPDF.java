@@ -1,87 +1,236 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
 import conexion.Conexion;
-import dao.PdfDAO;
-import java.awt.Image;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import vista.PanelFacturacion;
 
-/**
- *
- * @author DELL
- */
 public class ControladorFacturaPDF {
-    private String nombreHuesped;
-    private String documentoHuesped;
-    private String telefonoHuesped;
-    private String nacionalidadHuesped;
-    
-    private String fechaActual = "";
-    private String nombrePDF = "";
-    
-    private PanelFacturacion vistaFacturacion;
-    private PdfDAO dao;
 
-    public ControladorFacturaPDF(PanelFacturacion vistaFacturacion, PdfDAO dao) {
-        this.vistaFacturacion = vistaFacturacion;
-        this.dao = dao;
-    }
+    private String nombreCliente;
+    private String cedulaCliente;
+    private String telefonoCliente;
+    private String direccionCliente;
+
+    private String fechaActual = "";
+    private String nombreArchivoPDFVenta = "";
     
-    private void datosHuesped(int id) {
-        Connection con = Conexion.getConexion();
+    private PanelFacturacion vista;
+
+    public ControladorFacturaPDF(PanelFacturacion vista) {
+        this.vista = vista;
+    }
+   
+
+    //metodo para obtener datos del cliente
+    public void DatosCliente(int idCliente) {
+        Connection cn = Conexion.getConexion();
+        String sql = "select * from tb_cliente where idCliente = '" + idCliente + "'";
+        Statement st;
         try {
-            PreparedStatement ps = con.prepareStatement("select nombre, apellido, documentoIdentidad, telefono, nacionalidad from huesped where id=?*");
-            ResultSet rs = ps.executeQuery();
-            
-            if (rs.next()) {
-                nombreHuesped = rs.getString("nombre") + rs.getString("apellido");
-                documentoHuesped = rs.getString("documentoIdentidad");
-                telefonoHuesped = rs.getString("telefono");
-                nacionalidadHuesped = rs.getString("nacionalidadCliente");
-                
+
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                nombreCliente = rs.getString("nombre") + " " + rs.getString("apellido");
+                cedulaCliente = rs.getString("cedula");
+                telefonoCliente = rs.getString("telefono");
+                direccionCliente = rs.getString("direccion");
             }
-            con.close();
-            
+            cn.close();
         } catch (SQLException e) {
-            vistaFacturacion.mostrarError("Error al obtener los datos del PDF");
+            System.out.println("Error al obtener datos del cliente: " + e);
         }
-        
     }
-    
-//    private void generarPDF() {
-//        try {
-//            fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-//            String fechaNueva = "";
-//            fechaNueva = fechaActual.replaceAll("/", "_");
-//            
-//            nombrePDF = "Facturacion_" + nombreHuesped + "_" + fechaNueva + ".pdf";
-//            
-//            FileOutputStream archivo;
-//            File file = new File("src/pdf/" + nombrePDF);
-//            archivo = new FileOutputStream(file);
-//            
-//            Document doc = new Document();
-//            PdfWriter.getInstance(doc, archivo);
-//            
-//            Image img = Image.getInstance("src/img/hotelink.png");
-//            Image 
-//
-//        } catch (DocumentException | IOException e) {
-//            System.out.println("Error en: " + e.getMessage());
-//        }
-//    }
+
+    public void generarFacturaPDF() {
+        try {
+
+            Date date = new Date();
+            fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(date);
+            String fechaNueva = fechaActual.replaceAll("/", "_");
+
+            nombreArchivoPDFVenta = "Venta_" + nombreCliente + "_" + fechaNueva + ".pdf";
+
+            FileOutputStream archivo;
+            File file = new File("src/pdf/" + nombreArchivoPDFVenta);
+            archivo = new FileOutputStream(file);
+
+            Document doc = new Document();
+            PdfWriter.getInstance(doc, archivo);
+            doc.open();
+
+            String rutaLogo = ControladorFacturaPDF.class.getResource("/img/hotelink.png").getPath();
+            Image logo = Image.getInstance(rutaLogo);
+            
+            Paragraph fecha = new Paragraph();
+            Font negrita = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLUE);
+            
+            
+            logo.setAlignment(Element.ALIGN_CENTER);
+            logo.scaleToFit(80, 80);
+            doc.add(logo);
+
+            Font fuenteTitulo = new Font(Font.FontFamily.HELVETICA, 24, Font.BOLD, BaseColor.DARK_GRAY);
+            Paragraph titulo = new Paragraph("Hotelink - Sistema Hotelero", fuenteTitulo);
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            doc.add(titulo);
+
+            Font fuenteSubtitulo = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.GRAY);
+            Paragraph datosHotel = new Paragraph("Calle Principal 123  |  +1 809-000-0000  |  hotelink@gmail.com", fuenteSubtitulo);
+            datosHotel.setAlignment(Element.ALIGN_CENTER);
+            doc.add(datosHotel);
+
+            LineSeparator linea = new LineSeparator();
+            doc.add(new Chunk(linea));
+
+            Paragraph cliente = new Paragraph();
+            cliente.add(Chunk.NEWLINE);
+            cliente.add("Datos del cliente: " + "\n\n");
+            doc.add(cliente);
+
+            PdfPTable tablaCliente = new PdfPTable(4);
+            tablaCliente.setWidthPercentage(100);
+            tablaCliente.getDefaultCell().setBorder(0);
+
+            
+            float[] ColumnaCliente = new float[]{25f, 45f, 30f, 40f};
+            tablaCliente.setWidths(ColumnaCliente);
+            tablaCliente.setHorizontalAlignment(Element.ALIGN_LEFT);
+            PdfPCell cliente1 = new PdfPCell(new Phrase("Doc de identidad: ", negrita));
+            PdfPCell cliente2 = new PdfPCell(new Phrase("Nombre: ", negrita));
+            PdfPCell cliente3 = new PdfPCell(new Phrase("Telefono: ", negrita));
+            PdfPCell cliente4 = new PdfPCell(new Phrase("ID Reserva: ", negrita));
+
+            cliente1.setBorder(0);
+            cliente2.setBorder(0);
+            cliente3.setBorder(0);
+            cliente4.setBorder(0);
+
+            tablaCliente.addCell(cliente1);
+            tablaCliente.addCell(cliente2);
+            tablaCliente.addCell(cliente3);
+            tablaCliente.addCell(cliente4);
+            tablaCliente.addCell(vista.getTxtDocumentoIdentida().getText());
+            tablaCliente.addCell(vista.getTxtHuesped().getText());
+            tablaCliente.addCell(vista.getTxtTelefono().getText());
+            tablaCliente.addCell(vista.getTxtIDReserva().getText());
+
+            doc.add(tablaCliente);
+            
+            Paragraph espacio = new Paragraph();
+            doc.add(new Chunk(linea));
+
+            espacio.add(Chunk.NEWLINE);
+            espacio.add("");
+            espacio.setAlignment(Element.ALIGN_CENTER);
+            doc.add(espacio);
+            
+            PdfPTable tablaProducto = new PdfPTable(4);
+            tablaProducto.setWidthPercentage(100);
+            tablaProducto.getDefaultCell().setBorder(0);
+            
+             float[] ColumnaProducto = new float[]{1, 3, 2, 2, 2, 2};
+             tablaProducto.setWidths(ColumnaProducto);
+             tablaProducto.setHorizontalAlignment(Element.ALIGN_LEFT);
+             PdfPCell cantidad = new PdfPCell(new Phrase("Cantidad: ", negrita));
+             PdfPCell descrip = new PdfPCell(new Phrase("Descripcion: ", negrita));
+             PdfPCell precioU = new PdfPCell(new Phrase("Precio Unitario: ", negrita));
+             PdfPCell descuento = new PdfPCell(new Phrase("Descuento: ", negrita));
+             PdfPCell itbis = new PdfPCell(new Phrase("ITBIS: ", negrita));
+             PdfPCell total = new PdfPCell(new Phrase("Total: ", negrita));
+
+             cantidad.setBorder(0);
+             descrip.setBorder(0);
+             precioU.setBorder(0);
+             descuento.setBorder(0);
+             itbis.setBorder(0);
+             total.setBorder(0);
+
+            cantidad.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            descrip.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            precioU.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            descuento.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            itbis.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            total.setBackgroundColor(BaseColor.LIGHT_GRAY);
+
+            tablaProducto.addCell(cantidad);
+            tablaProducto.addCell(descrip);
+            tablaProducto.addCell(precioU);
+            tablaProducto.addCell(descuento);
+            tablaProducto.addCell(itbis);
+            tablaProducto.addCell(total);
+            
+            for(int i = 0; i < vista.getTablaFactura().getRowCount(); i++){
+                String cantidadTabla = vista.getTablaFactura().getValueAt(i, 1).toString();
+                String descripcionTabla = vista.getTablaFactura().getValueAt(i, 2).toString();
+                String precioUTabla = vista.getTablaFactura().getValueAt(i, 3).toString();
+                String descuentoTabla = vista.getTablaFactura().getValueAt(i, 4).toString();
+                String itbisTabla = vista.getTablaFactura().getValueAt(i, 5).toString();
+                String totalTabla = vista.getTablaFactura().getValueAt(i, 6).toString();
+                
+                tablaProducto.addCell(cantidad);
+                tablaProducto.addCell(descripcionTabla);
+                tablaProducto.addCell(precioUTabla);
+                tablaProducto.addCell(descuentoTabla);
+                tablaProducto.addCell(total);
+                tablaProducto.addCell(total);
+            }
+            
+            //agregar al documento
+            doc.add(tablaProducto);
+            
+            //Total pagar
+            Paragraph info = new Paragraph();
+            info.add(Chunk.NEWLINE);
+            info.add("Total a pagar: " + vista.getTxtTotal().getText());
+            info.setAlignment(Element.ALIGN_RIGHT);
+            doc.add(info);
+            
+            //Firma
+           Paragraph firma = new Paragraph();
+           firma.add(Chunk.NEWLINE);
+           firma.add("Cancelacion y firma\n\n");
+           firma.add("_______________________");
+           firma.setAlignment(Element.ALIGN_CENTER);
+           doc.add(firma);
+           
+           Paragraph mensaje = new Paragraph();
+           mensaje.add(Chunk.NEWLINE);
+           mensaje.add("¡Gracias por preferirnos!");
+           mensaje.setAlignment(Element.ALIGN_CENTER);
+           doc.add(mensaje);
+           
+           doc.close();
+           archivo.close();
+           
+           Desktop.getDesktop().open(file);
+            
+            
+        } catch (DocumentException | IOException e) {
+            System.out.println("Error en: " + e);
+        }
+    }
+
 }
