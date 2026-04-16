@@ -501,13 +501,43 @@ public class PanelHabitaciones extends javax.swing.JPanel implements Mensajes {
     
     public void cargarHabitaciones(ArrayList<Habitacion> lista) {
         panelHab.removeAll();
+        
+      
+        int contDisponibles = 0;
+        int contOcupadas = 0;
+        int contMantenimiento = 0;
+        int contSucias = 0;
+
         for (Habitacion habitacion : lista) {
+        
             agregarHabitacion(String.valueOf(habitacion.getNumHabitacion()), habitacion.getTipo(), habitacion.getEstado());
+            
+
+            switch (habitacion.getEstado()) {
+                case "Disponible":
+                    contDisponibles++;
+                    break;
+                case "Ocupada":
+                    contOcupadas++;
+                    break;
+                case "Mantenimiento":
+                    contMantenimiento++;
+                    break;
+                case "Sucia":
+                    contSucias++;
+                    break;
+            }
         }
+        
+        
+        jLabel2.setText(String.valueOf(contDisponibles)); 
+        jLabel4.setText(String.valueOf(contOcupadas));    
+        jLabel6.setText(String.valueOf(contMantenimiento)); 
+        jLabel8.setText(String.valueOf(contSucias));  
+
         panelHab.revalidate();
         panelHab.repaint();
     }
-    
     public void setControlador(ControladorHabitacion controlador) {
         this.controlador = controlador;
     }
