@@ -34,6 +34,7 @@ public class MainFrame extends JFrame {
         add(crearSidebar(),   BorderLayout.WEST);
         add(crearContenido(), BorderLayout.CENTER);
         setIconImage(new ImageIcon(getClass().getResource("/img/logopeque.png")).getImage());
+        // PEPA
     }
 
     private JPanel crearHeader() {
