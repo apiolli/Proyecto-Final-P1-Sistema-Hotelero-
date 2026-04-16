@@ -272,16 +272,13 @@ private JPanel panelConsumos() {
   public void configurarAccesos(String nivelAcceso, String nombreUsuario) {
         boolean esAdmin = nivelAcceso != null && nivelAcceso.equalsIgnoreCase("Administrador");
 
-        // 1. Control de botones laterales
         btnReportes.setVisible(esAdmin);
         btnGestionUsuarios.setVisible(esAdmin);
         
-        // 2. Control de permisos en Habitaciones
         if (ph != null) {
             ph.setModoEdicion(esAdmin);
         }
-
-        // 3. Actualizar el nombre en el Header
+        
         if (lblUsuarioHeader != null) {
             lblUsuarioHeader.setText("Usuario: " + nombreUsuario + "      ");
         }
