@@ -27,6 +27,8 @@ public class PanelHabitaciones extends javax.swing.JPanel implements Mensajes {
     
     private ContextoAplicacion contexto;
     private ControladorHabitacion controlador;
+    private boolean isAdmin = false;
+    
     public PanelHabitaciones(ContextoAplicacion contexto) {
         this.contexto = contexto;
         initComponents();
@@ -37,6 +39,15 @@ public class PanelHabitaciones extends javax.swing.JPanel implements Mensajes {
         add(panelGestion(), BorderLayout.CENTER);
 
 
+    }
+    
+    public void setModoEdicion(boolean permitido) {
+        this.isAdmin = permitido;
+        if (btnAgregarHab != null) {
+            btnAgregarHab.setVisible(permitido);
+        }
+        this.revalidate();
+        this.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -425,30 +436,30 @@ public class PanelHabitaciones extends javax.swing.JPanel implements Mensajes {
                 .addComponent(panEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         
+        habitacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         habitacion.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
+                // SOLO SI ES ADMIN SE ABRE EL EDITOR
+                if (isAdmin) {
+                    java.awt.EventQueue.invokeLater(() -> {
                         DiagEditarHabitacion dialog = new DiagEditarHabitacion(new javax.swing.JFrame(), true);
                         dialog.setControlador(controlador);
                         controlador.setDiagEditar(dialog);
                         controlador.llenarDatos(Integer.valueOf(numero));
                         dialog.setVisible(true);
-                    }
-                });
+                    });
+                }
             }
-            
         });
-        
-//        habitacion.setPreferredSize(new Dimension(205, 150));
+
         cambiarEstado(habitacion, panEstado, estadoHab, iconoEstado, estado);
         panelHab.add(habitacion);
         return habitacion;
     }
-                
     
+       
     private void cambiarEstado(JPanel habitacion, JPanel panelEstado, JLabel lbEstado, JLabel icono, String status) {
         switch (status) {
             case "Disponible":

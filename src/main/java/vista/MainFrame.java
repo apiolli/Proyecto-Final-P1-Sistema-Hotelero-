@@ -23,6 +23,8 @@ public class MainFrame extends JFrame {
     private JButton btnGestionUsuarios; 
     private JPanel contenedor;
     private ContextoAplicacion contexto;
+    private PanelHabitaciones ph;
+    private JLabel lblUsuarioHeader;
     
     public MainFrame(ContextoAplicacion contexto) {
         this.contexto = contexto;
@@ -58,10 +60,11 @@ public class MainFrame extends JFrame {
         titulo.setVerticalAlignment(JLabel.CENTER);
         header.add(titulo, BorderLayout.WEST);
         
-        JLabel usuario = new JLabel("Usuario: Cesar Diaz      ");
-        usuario.setForeground(new Color(0xAAAAAA));
-        usuario.setFont(new Font("Poppins", Font.PLAIN, 13));
-        header.add(usuario, BorderLayout.EAST);
+       // ... dentro de crearHeader
+    lblUsuarioHeader = new JLabel("Usuario: Cargando...      "); // Texto inicial
+    lblUsuarioHeader.setForeground(new Color(0xAAAAAA));
+    lblUsuarioHeader.setFont(new Font("Poppins", Font.PLAIN, 13));
+    header.add(lblUsuarioHeader, BorderLayout.EAST);
 
         return header;
     }
@@ -191,18 +194,19 @@ public class MainFrame extends JFrame {
     }
     
     private JPanel panelHabitaciones() {
-        PanelHabitaciones panelHabs = new PanelHabitaciones(contexto);
-        ControladorHabitacion controlador = new ControladorHabitacion(panelHabs, contexto.getHabitacionDAO());
-        panelHabs.setControlador(controlador);
+        // En lugar de crear una variable local, usamos la de la clase
+        this.ph = new PanelHabitaciones(contexto); 
+        ControladorHabitacion controlador = new ControladorHabitacion(ph, contexto.getHabitacionDAO());
+        ph.setControlador(controlador);
         
-        panelHabs.addComponentListener(new ComponentAdapter() {
+        ph.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 controlador.cargarHabitaciones();
             }
         });
         
-        return panelHabs;
+        return ph;
     }
     
     private JPanel panelReservas() {
@@ -265,15 +269,21 @@ private JPanel panelConsumos() {
         return panelFacturacion;
     }
     
-    public void configurarAccesos(String nivelAcceso, String nombreUsuario) {
-       
-        if (nivelAcceso != null && nivelAcceso.equalsIgnoreCase("Usuario")) {
-            btnReportes.setVisible(false);
-            btnGestionUsuarios.setVisible(false);
-        }
+  public void configurarAccesos(String nivelAcceso, String nombreUsuario) {
+        boolean esAdmin = nivelAcceso != null && nivelAcceso.equalsIgnoreCase("Administrador");
+
+        // 1. Control de botones laterales
+        btnReportes.setVisible(esAdmin);
+        btnGestionUsuarios.setVisible(esAdmin);
         
+        // 2. Control de permisos en Habitaciones
+        if (ph != null) {
+            ph.setModoEdicion(esAdmin);
+        }
 
+        // 3. Actualizar el nombre en el Header
+        if (lblUsuarioHeader != null) {
+            lblUsuarioHeader.setText("Usuario: " + nombreUsuario + "      ");
+        }
     }
-    
-
 }
