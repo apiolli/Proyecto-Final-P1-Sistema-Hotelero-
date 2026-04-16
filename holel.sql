@@ -13,6 +13,9 @@ CREATE TABLE Huesped (
 );
 
 
+
+
+
 CREATE TABLE Habitacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     noHabitacion INT UNIQUE,
@@ -55,8 +58,20 @@ CREATE TABLE Usuarios (
     nivel_acceso VARCHAR(20)
 );
 
-drop table usuarios;
-select * from usuarios;
+
+insert into usuarios (nombre, apellido, cargo, usuario, contrasena, nivel_acceso) values ('cesar', 'diaz', 'admin', 'admin', '123', 'Administrador');
+
+INSERT INTO Persona (
+    nombre,
+    apellido,
+    nacionalidad,
+    correoElectronico,
+    telefono,
+    rol
+)
+VALUES (
+    ?, 'Empleado'
+);
 CREATE TABLE consumos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_reserva INT NOT NULL,
@@ -259,14 +274,6 @@ INSERT INTO productos (nombre, precio) VALUES
 ('Café Santo Domingo (Taza)', 45.00);
 
 
-UPDATE productos SET categoria = 'Bebidas' WHERE nombre LIKE '%Agua%' OR nombre LIKE '%Refresco%' OR nombre LIKE '%Cerveza%' OR nombre LIKE '%Jugo%';
-UPDATE productos SET categoria = 'Comidas' WHERE nombre LIKE '%Sándwich%' OR nombre LIKE '%Pica Pollo%';
-UPDATE productos SET categoria = 'Snacks' WHERE nombre LIKE '%Snack%' OR nombre LIKE '%Platanitos%';
-UPDATE productos SET categoria = 'Bebidas' WHERE nombre LIKE '%Agua%' OR nombre LIKE '%Refresco%' OR nombre LIKE '%Cerveza%' OR nombre LIKE '%Jugo%';
-UPDATE productos SET categoria = 'Comidas' WHERE nombre LIKE '%Sándwich%' OR nombre LIKE '%Pica Pollo%';
-UPDATE productos SET categoria = 'Snacks' WHERE nombre LIKE '%Snack%' OR nombre LIKE '%Platanitos%';
-UPDATE productos SET categoria = 'Bebidas' WHERE nombre LIKE '%Café%' OR nombre LIKE '%Cafe%';
 
-select * from productos;
-select * from huesped;
-select * from ReporteFactura;
+
+
