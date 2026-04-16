@@ -92,10 +92,10 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel3" min="-2" pref="185" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField1" min="-2" pref="254" max="-2" attributes="0"/>
+                          <Component id="txtUsuario" min="-2" pref="254" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="111" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
-                          <Component id="jTextField2" min="-2" pref="254" max="-2" attributes="0"/>
+                          <Component id="txtContrasena" min="-2" pref="254" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="64" max="32767" attributes="0"/>
@@ -110,11 +110,11 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="txtUsuario" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField2" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="txtContrasena" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" pref="62" max="-2" attributes="0"/>
                   <EmptySpace pref="140" max="32767" attributes="0"/>
@@ -145,7 +145,7 @@
             <Property name="text" type="java.lang.String" value="Usuario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txtUsuario">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -190,7 +190,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="txtContrasena">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -206,6 +206,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtContrasenaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

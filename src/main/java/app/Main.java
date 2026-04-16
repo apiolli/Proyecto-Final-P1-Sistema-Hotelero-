@@ -11,7 +11,7 @@ public class Main {
         // TODO code application logic here
         
                 // Login
-//                java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
+                java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
                 
                 // MainFrame
             SwingUtilities.invokeLater(() -> {

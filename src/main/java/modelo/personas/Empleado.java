@@ -27,6 +27,10 @@ public class Empleado extends Persona {
         this.nivelAcceso = nivelAcceso;
     }
     
+    public Empleado(){
+        
+    }
+    
     
     @Override
     public int getId() {
