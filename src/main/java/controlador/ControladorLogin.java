@@ -25,34 +25,43 @@ public class ControladorLogin {
         this.dao = dao;
     }
 
-    public void validarUsuario(String usuario, String contrasena){
-        
-        if(usuario == null || usuario.trim().isEmpty() ||  
-           contrasena == null || contrasena.trim().isEmpty()){
+    public void validarUsuario(String usuario, String contrasena) {
+
+        if (usuario == null || usuario.trim().isEmpty()
+                || contrasena == null || contrasena.trim().isEmpty()) {
             vista.mostrarError("Debe completar usuario y contraseña");
-            return; 
+            return;
         }
 
         try {
-           
-            boolean valido = dao.validarUsuario(usuario.trim(), contrasena.trim());
+  
+            modelo.personas.Empleado emp = dao.validarUsuario(usuario.trim(), contrasena.trim());
 
-            if (valido) {
-                vista.mostrarExito("¡Bienvenido al sistema, " + usuario + "!");                        
-                vista.dispose(); 
-                
-               
+            if (emp != null) {
+              
+                vista.dispose();
+
+            
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        new MainFrame(new ContextoAplicacion()).setVisible(true);
+                     
+                        MainFrame main = new MainFrame(new ContextoAplicacion());
+                        
+   
+                        main.configurarAccesos(emp.getNivelAcceso(), emp.getNombre());
+                        
+                       
+                        main.setVisible(true);
                     }
                 });
+                
+                vista.mostrarExito("¡Bienvenido al sistema, " + emp.getNombre() + "!");
 
             } else {
                 vista.mostrarError("Usuario o contraseña incorrectos.");
             }
-            
-        } catch(SQLException e) {
+
+        } catch (SQLException e) {
             vista.mostrarError("Error al conectar con la base de datos.");
             System.err.println("Error SQL: " + e.getMessage());
         }

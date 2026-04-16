@@ -1,13 +1,10 @@
-/*
- 
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template*/
 package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modelo.personas.Empleado; 
 
 /**
  *
@@ -21,18 +18,31 @@ public class LoginDAO {
         this.con = con;
     }
 
-    public boolean validarUsuario(String usuario, String contrasena) throws SQLException {
+    
+    public Empleado validarUsuario(String usuario, String contrasena) throws SQLException {
         
-        String sql = "SELECT 1 FROM Usuarios WHERE usuario = ? AND contrasena = ?";
+       
+        String sql = "SELECT * FROM Usuarios WHERE usuario = ? AND contrasena = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, usuario);
             ps.setString(2, contrasena);
 
             try (ResultSet rs = ps.executeQuery()) {
-
-                return rs.next(); 
+                if (rs.next()) {
+           
+                    return new Empleado(
+                        rs.getInt("id_usuario"), 
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("cargo"),
+                        rs.getString("usuario"),
+                        rs.getString("contrasena"),
+                        rs.getString("nivel_acceso") 
+                    );
+                }
             }
         }
+        return null; 
     }
 }

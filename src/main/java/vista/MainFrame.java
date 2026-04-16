@@ -19,6 +19,8 @@ import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
     private CardLayout cardLayout;
+    private JButton btnReportes; 
+    private JButton btnGestionUsuarios; 
     private JPanel contenedor;
     private ContextoAplicacion contexto;
     
@@ -64,7 +66,7 @@ public class MainFrame extends JFrame {
         return header;
     }
 
-    private JPanel crearSidebar() {
+   private JPanel crearSidebar() {
         JPanel sidebar = new JPanel();
         sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
         sidebar.setBackground(new Color(0,204,204));
@@ -72,11 +74,15 @@ public class MainFrame extends JFrame {
 
         sidebar.add(crearBotonNav("Habitaciones",   "habitaciones", "/img/habitaciones.png"));
         sidebar.add(crearBotonNav("Reservas",       "reservas",     "/img/reservas.png"));
-        sidebar.add(crearBotonNav("Check In / Out", "check",       "/img/checkin.png"));
-        sidebar.add(crearBotonNav("Consumo", "consumo",       "/img/consumibles.png"));
-        sidebar.add(crearBotonNav("Facturacion",    "facturacion", "/img/facturacion.png"));
-        sidebar.add(crearBotonNav("Reportes",       "reportes",   "/img/reportes.png"));
-        sidebar.add(crearBotonNav("Gestionar Usuarios",       "usuarios",   "/img/usuarios.png"));
+        sidebar.add(crearBotonNav("Check In / Out", "check",        "/img/checkin.png"));
+        sidebar.add(crearBotonNav("Consumo",        "consumo",      "/img/consumibles.png"));
+        sidebar.add(crearBotonNav("Facturacion",    "facturacion",  "/img/facturacion.png"));
+        btnReportes = crearBotonNav("Reportes", "reportes", "/img/reportes.png");
+        btnGestionUsuarios = crearBotonNav("Gestionar Usuarios", "usuarios", "/img/usuarios.png");
+        
+        sidebar.add(btnReportes);
+        sidebar.add(btnGestionUsuarios);
+        
         sidebar.add(crearBotonNav("Cerrar Sesion",  "sesion",       "/img/sesion.png"));
 
         sidebar.add(Box.createVerticalGlue());
@@ -222,6 +228,16 @@ private JPanel panelConsumos() {
         });
         
         return panelFacturacion;
+    }
+    
+    public void configurarAccesos(String nivelAcceso, String nombreUsuario) {
+       
+        if (nivelAcceso != null && nivelAcceso.equalsIgnoreCase("Usuario")) {
+            btnReportes.setVisible(false);
+            btnGestionUsuarios.setVisible(false);
+        }
+        
+
     }
     
 
