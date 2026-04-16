@@ -31,7 +31,30 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
         disenoTabla();
         add(panelTitulo, BorderLayout.NORTH);
         add(panelMedio(), BorderLayout.CENTER);
-
+        
+        
+        tablaReservas.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+               
+                if (evt.getClickCount() == 2) {
+                    int fila = tablaReservas.getSelectedRow();
+                    if (fila != -1 && controlador != null) {
+                        
+                  
+                        int id = (int) tablaReservas.getValueAt(fila, 0);
+                        String huesped = (String) tablaReservas.getValueAt(fila, 1);
+                        int personas = (int) tablaReservas.getValueAt(fila, 2);
+                        String hab = String.valueOf(tablaReservas.getValueAt(fila, 3));
+                        java.util.Date fEntrada = (java.util.Date) tablaReservas.getValueAt(fila, 4);
+                        java.util.Date fSalida = (java.util.Date) tablaReservas.getValueAt(fila, 5);
+                        double abono = (double) tablaReservas.getValueAt(fila, 8);
+                        controlador.abrirEdicionReserva(id, huesped, fEntrada, fSalida, personas, hab, abono);
+                    }
+                }
+            }
+        });
+        // ----------------------------------------
     }
         
     
@@ -533,6 +556,12 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
     
     public void setControlador(ControladorReserva controlador) {
         this.controlador = controlador;
+        
+   
+        if (this.contexto != null) {
+            this.controlador.setHuespedDAO(contexto.getHuespedDAO());
+            this.controlador.setHabitacionDAO(contexto.getHabitacionDAO());
+        }
     }
 
     public JTable getTablaReservas() {

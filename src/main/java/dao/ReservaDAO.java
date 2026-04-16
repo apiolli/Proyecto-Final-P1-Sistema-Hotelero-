@@ -114,5 +114,44 @@ public class ReservaDAO implements Gestionable<Reserva> {
         ps2.setInt(1, idHabitacion);
         ps2.executeUpdate();
     }
+   
+    public int editar(int idReserva, int idHabitacion, long fechaEntrada, long fechaSalida, int numPersonas, double dineroAbonado) throws SQLException {
+        PreparedStatement ps = con.prepareStatement(
+            "UPDATE reservas SET id_habitacion=?, fecha_entrada=?, fecha_salida=?, num_personas=?, dineroAbonado=? WHERE id=?"
+        );
+        ps.setInt(1, idHabitacion);
+        ps.setDate(2, new java.sql.Date(fechaEntrada));
+        ps.setDate(3, new java.sql.Date(fechaSalida));
+        ps.setInt(4, numPersonas);
+        ps.setDouble(5, dineroAbonado);
+        ps.setInt(6, idReserva); 
+        
+        return ps.executeUpdate();
+    }
+
+   
+    public int eliminar(int idReserva) throws SQLException {
+        PreparedStatement ps = con.prepareStatement("DELETE FROM reservas WHERE id=?");
+        ps.setInt(1, idReserva);
+        
+        return ps.executeUpdate();
+    }
+    
+    public String obtenerDocumentoPorReserva(int idReserva) throws SQLException {
+    String documento = "";
+    String sql = "SELECT h.documentoIdentidad FROM reservas r "
+               + "INNER JOIN Huesped h ON r.id_huesped = h.id "
+               + "WHERE r.id = ?";
+    
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setInt(1, idReserva);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                documento = rs.getString("documentoIdentidad");
+            }
+        }
+    }
+    return documento;
+}
        
 }

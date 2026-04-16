@@ -11,6 +11,7 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import modelo.personas.Huesped;
 import vista.reservas.DiagCrearReserva;
+import vista.reservas.DiagEditarReserva; 
 import vista.habitaciones.DiagEditarHabitacion;
 import vista.reservas.PanelReservas;
 import vista.checkInOut.DiagRegistrarCheckIn;
@@ -18,6 +19,7 @@ import vista.checkInOut.DiagRegistrarCheckIn;
 public class ControladorReserva {
 
     private DiagCrearReserva diagCrear;
+    private DiagEditarReserva diagEditarReserva; 
     private DiagEditarHabitacion diagEditar;
     private DiagRegistrarCheckIn diagCheckIn;
     private PanelReservas vista;
@@ -31,7 +33,7 @@ public class ControladorReserva {
         this.dao = dao;
     }
 
-   public boolean crearReserva() {
+    public boolean crearReserva() {
         try {
             int idHuesped = diagCrear.getTxtID();
             String numHabSeleccionada = diagCrear.getHabDisponibles();
@@ -44,7 +46,7 @@ public class ControladorReserva {
                 vista.mostrarError("Esa cantidad (" + numPersonas + ") excede la capacidad de la habitación (Máximo: " + capacidadMaxima + ").");
                 return false; 
             }
-           
+            
             int idHabitacion = habitacionDAO.buscarIdPorNumero(noHabitacion);
             if (idHabitacion == -1) {
                 vista.mostrarError("No se encontró el ID de la habitación seleccionada");
@@ -59,6 +61,7 @@ public class ControladorReserva {
 
             if (respuesta > 0) {
                 vista.mostrarExito("Reserva creada correctamente");
+                iniciar(vista.getTablaReservas()); // Actualiza la tabla automáticamente
                 return true; 
             } else {
                 vista.mostrarError("No se pudo crear la reserva");
@@ -125,30 +128,34 @@ public class ControladorReserva {
     }
 
     public void cargarReservas(JTable tabla) {
-    
-    DefaultTableModel modeloTabla = new DefaultTableModel() {};
-    
-    
-    modeloTabla.setColumnIdentifiers(new Object[]{
-        "ID", "Huesped", "Total personas", "Habitacion", 
-        "Fecha entrada", "Fecha salida", "Fecha reserva", "Estado", "Dinero abonado"
-    });
+       
+        DefaultTableModel modeloTabla = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Nadie puede escribir directamente en la tabla
+            }
+        };
+        
+        modeloTabla.setColumnIdentifiers(new Object[]{
+            "ID", "Huesped", "Total personas", "Habitacion", 
+            "Fecha entrada", "Fecha salida", "Fecha reserva", "Estado", "Dinero abonado"
+        });
 
-    tabla.setModel(modeloTabla);
-    modeloTabla.setRowCount(0);
+        tabla.setModel(modeloTabla);
+        modeloTabla.setRowCount(0);
 
-    try {
-        ArrayList<Object[]> lista = dao.cargarReservas();
-        for (Object[] reserva : lista) {
-            modeloTabla.addRow(reserva);
+        try {
+            ArrayList<Object[]> lista = dao.cargarReservas();
+            for (Object[] reserva : lista) {
+                modeloTabla.addRow(reserva);
+            }
+            
+            vista.actualizarContador(modeloTabla.getRowCount());
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            vista.mostrarError("Error al cargar los datos");
         }
-        
-        vista.actualizarContador(modeloTabla.getRowCount());
-        
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
-        vista.mostrarError("Error al cargar los datos");
-    }
     }
     
     public void iniciar(JTable tabla) {
@@ -284,9 +291,12 @@ public class ControladorReserva {
         }
 
         JTable tabla = vista.getTablaReservas();
+        
         DefaultTableModel modeloTabla = new DefaultTableModel() {
             @Override
-            public boolean isCellEditable(int row, int column) { return false; }
+            public boolean isCellEditable(int row, int column) { 
+                return false; 
+            }
         };
         
         modeloTabla.setColumnIdentifiers(new Object[]{
@@ -309,6 +319,96 @@ public class ControladorReserva {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             vista.mostrarError("Error al filtrar las reservas: " + e.getMessage());
+        }
+    }
+
+    
+    // --- REEMPLAZA ESTE MÉTODO EN TU ControladorReserva ---
+    public void abrirEdicionReserva(int id, String huesped, java.util.Date fEntrada, java.util.Date fSalida, int personas, String hab, double abono) {
+    if (timer != null && timer.isRunning()) timer.stop(); 
+    
+    java.awt.Frame parent = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(vista);
+    DiagEditarReserva dialog = new DiagEditarReserva(parent, true);
+    this.diagEditarReserva = dialog; 
+    dialog.setControlador(this);
+    
+    try {
+        // Buscamos el documento que no estaba en la tabla
+        String documento = dao.obtenerDocumentoPorReserva(id);
+        
+        // Enviamos los datos a la ventana, incluyendo el documento recuperado
+        dialog.cargarDatos(id, documento, huesped, fEntrada, fSalida, personas, hab, abono);
+    } catch (SQLException e) {
+        vista.mostrarError("Error al recuperar el documento: " + e.getMessage());
+    }
+    
+    dialog.setVisible(true);
+    iniciar(vista.getTablaReservas()); 
+    }
+    public boolean editarReserva(int idReserva) {
+        try {
+            long fechaEntrada = diagEditarReserva.getFechaEntrada();
+            long fechaSalida = diagEditarReserva.getFechaSalida();
+            int numPersonas = diagEditarReserva.getSpNoPersonas();
+            int noHabitacion = Integer.parseInt(diagEditarReserva.getHabDisponibles());
+            double dineroAbonado = diagEditarReserva.getDineroAbonado();
+            
+            int capacidadMaxima = habitacionDAO.obtenerCapacidad(noHabitacion);
+            if (numPersonas > capacidadMaxima) {
+                vista.mostrarError("La cantidad excede la capacidad máxima (" + capacidadMaxima + " personas).");
+                return false; 
+            }
+
+            int idHabitacion = habitacionDAO.buscarIdPorNumero(noHabitacion);
+            
+            int respuesta = dao.editar(idReserva, idHabitacion, fechaEntrada, fechaSalida, numPersonas, dineroAbonado);
+            
+            if (respuesta > 0) {
+                vista.mostrarExito("Reserva actualizada correctamente.");
+                return true;
+            } else {
+                vista.mostrarError("No se pudo actualizar la reserva.");
+                return false;
+            }
+            
+        } catch (SQLException e) {
+            vista.mostrarError("Error de base de datos al actualizar: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public void eliminarReserva(int idReserva) {
+        try {
+            int respuesta = dao.eliminar(idReserva);
+            
+            if (respuesta > 0) {
+                vista.mostrarExito("Reserva eliminada con éxito.");
+                iniciar(vista.getTablaReservas()); 
+            } else {
+                vista.mostrarError("No se encontró la reserva en la base de datos.");
+            }
+        } catch (SQLException e) { 
+            vista.mostrarError("Error de base de datos al eliminar: " + e.getMessage());
+        }
+    }
+    
+    public void buscarHabitacionesDisponiblesEdicion() {
+        try {
+            String tipo = diagEditarReserva.getTipoHab();
+            int numPersonas = diagEditarReserva.getSpNoPersonas(); 
+
+            ArrayList<Integer> disponibles = habitacionDAO.buscarDisponiblesPorTipoYCapacidad(tipo, numPersonas);
+
+            if (disponibles.isEmpty()) {
+                vista.mostrarError("No hay habitaciones de tipo " + tipo + " para " + numPersonas + " personas.");
+                diagEditarReserva.cargarHabitacionesDisponibles(new ArrayList<>()); 
+                return;
+            }
+
+            diagEditarReserva.cargarHabitacionesDisponibles(disponibles);
+
+        } catch (SQLException e) {
+            vista.mostrarError("Error al buscar habitaciones.");
         }
     }
 }
