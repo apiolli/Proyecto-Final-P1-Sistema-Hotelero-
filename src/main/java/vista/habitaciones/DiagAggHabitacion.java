@@ -23,8 +23,8 @@ public class DiagAggHabitacion extends javax.swing.JDialog implements Mensajes{
         this.getContentPane().setBackground(new Color(0x1C2B3A));
 
   
-        spCapacidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1)); 
-        spNivel.setModel(new javax.swing.SpinnerNumberModel(1, 1, 50, 1));
+        spCapacidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1)); 
+        spNivel.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
     }
     
     @SuppressWarnings("unchecked")
