@@ -72,16 +72,16 @@ public class MainFrame extends JFrame {
         sidebar.setBackground(new Color(0,204,204));
         sidebar.setPreferredSize(new Dimension(200, 0));
 
-        sidebar.add(crearBotonNav("Habitaciones",   "habitaciones", "/img/habitaciones.png"));
-        sidebar.add(crearBotonNav("Reservas",       "reservas",     "/img/reservas.png"));
-        sidebar.add(crearBotonNav("Check In / Out", "check",        "/img/checkin.png"));
-        sidebar.add(crearBotonNav("Consumo",        "consumo",      "/img/consumibles.png"));
-        sidebar.add(crearBotonNav("Facturacion",    "facturacion",  "/img/facturacion.png"));
-        btnGestionUsuarios = crearBotonNav("Gestionar Usuarios", "usuarios", "/img/usuarios.png");
+        sidebar.add(crearBotonNav("Habitaciones",   "habitaciones", "/img/habitacion.png"));
+        sidebar.add(crearBotonNav("Reservas",       "reservas",     "/img/reserve.png"));
+        sidebar.add(crearBotonNav("Check In / Out", "check",        "/img/out.png"));
+        sidebar.add(crearBotonNav("Consumo",        "consumo",      "/img/consum.png"));
+        sidebar.add(crearBotonNav("Facturacion",    "facturacion",  "/img/pay.png"));
+        btnGestionUsuarios = crearBotonNav("Gestionar Usuarios", "usuarios", "/img/user.png");
         
         sidebar.add(btnGestionUsuarios);
         
-    JButton btnCerrarSesion = crearBotonNav("Cerrar Sesion", "sesion", "/img/sesion.png");
+    JButton btnCerrarSesion = crearBotonNav("Cerrar Sesion", "sesion", "/img/log.png");
 
     
     for (ActionListener al : btnCerrarSesion.getActionListeners()) {
@@ -171,7 +171,7 @@ public class MainFrame extends JFrame {
         contenedor.add(panelFacturacion(),   "facturacion");
         contenedor.add(panelUsuarios(),   "usuarios");
 
-        cardLayout.show(contenedor, "inicio");
+        cardLayout.show(contenedor, "habitaciones");
 
         return contenedor;
     }
@@ -188,7 +188,6 @@ public class MainFrame extends JFrame {
     }
     
     private JPanel panelHabitaciones() {
-        // En lugar de crear una variable local, usamos la de la clase
         this.ph = new PanelHabitaciones(contexto); 
         ControladorHabitacion controlador = new ControladorHabitacion(ph, contexto.getHabitacionDAO());
         ph.setControlador(controlador);
@@ -215,7 +214,7 @@ public class MainFrame extends JFrame {
         PanelGestionUsuarios panelUs = new PanelGestionUsuarios(contexto);
         ControladorEmpleadoAdmin controlador = new ControladorEmpleadoAdmin(panelUs, contexto.getAdminDAO());
         panelUs.setControlador(controlador);
-        controlador.cargarTabla(panelUs.getTabla());
+        controlador.iniciar(panelUs.getTabla());
         
         return panelUs;
     }

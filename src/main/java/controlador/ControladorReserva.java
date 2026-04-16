@@ -154,7 +154,7 @@ public class ControladorReserva {
     public void iniciar(JTable tabla) {
         cargarReservas(tabla);
         
-        timer = new Timer(5000, e -> cargarReservas(tabla));
+        timer = new Timer(1000, e -> cargarReservas(tabla));
         timer.start();
     }
     
