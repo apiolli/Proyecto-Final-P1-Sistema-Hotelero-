@@ -1,7 +1,3 @@
-/*
- 
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template*/
 package controlador;
 
 import dao.LoginDAO;
@@ -36,16 +32,34 @@ public class ControladorLogin {
         try {
   
             modelo.personas.Empleado emp = dao.validarUsuario(usuario.trim(), contrasena.trim());
+            
             if (emp != null) {
-                vista.dispose();
+                // 1. Cerramos el login (vista actual)
+                vista.dispose(); 
+                
+                // 2. Creamos y mostramos el MainFrame
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         MainFrame main = new MainFrame(new ContextoAplicacion());
                         main.configurarAccesos(emp.getNivelAcceso(), emp.getNombre());
-                        main.setVisible(true);
+                        
+                        main.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); 
+                        main.setVisible(true); // Hacemos visible el sistema
+                        main.toFront(); 
+                        main.requestFocus(); 
+                        
+                        // 3. Mostramos el mensaje AQUÍ ADENTRO, amarrado a 'main'
+                        // Así, cuando le des "OK", te quedarás en el MainFrame
+                        JOptionPane.showMessageDialog(
+                            main, 
+                            "¡Bienvenido al sistema, " + emp.getNombre() + "!", 
+                            "Éxito", 
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
                     }
                 });
-                vista.mostrarExito("¡Bienvenido al sistema, " + emp.getNombre() + "!");
+                
+                // (OJO: Borra o comenta la línea antigua de vista.mostrarExito que tenías aquí abajo)
 
             } else {
                 vista.mostrarError("Usuario o contraseña incorrectos.");
