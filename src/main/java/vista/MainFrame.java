@@ -83,7 +83,42 @@ public class MainFrame extends JFrame {
         sidebar.add(btnReportes);
         sidebar.add(btnGestionUsuarios);
         
-        sidebar.add(crearBotonNav("Cerrar Sesion",  "sesion",       "/img/sesion.png"));
+    JButton btnCerrarSesion = crearBotonNav("Cerrar Sesion", "sesion", "/img/sesion.png");
+
+    
+    for (ActionListener al : btnCerrarSesion.getActionListeners()) {
+        btnCerrarSesion.removeActionListener(al);
+    }
+
+    btnCerrarSesion.addActionListener(e -> {
+        int opcion = JOptionPane.showConfirmDialog(
+            this, 
+            "¿Está seguro de que desea cerrar la sesión actual?", 
+            "Cerrar Sesión", 
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            
+            this.dispose();
+
+           
+            java.awt.EventQueue.invokeLater(() -> {
+                Login vistaLogin = new Login();
+                
+   
+                dao.LoginDAO daoLogin = new dao.LoginDAO(conexion.Conexion.getConexion());
+                controlador.ControladorLogin control = new controlador.ControladorLogin(vistaLogin, daoLogin);
+                
+                vistaLogin.setControlador(control);
+                vistaLogin.setVisible(true);
+            });
+        }
+    });
+
+   
+    sidebar.add(btnCerrarSesion);
 
         sidebar.add(Box.createVerticalGlue());
 
