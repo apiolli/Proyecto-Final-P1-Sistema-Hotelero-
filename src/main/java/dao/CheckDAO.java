@@ -146,4 +146,52 @@ public class CheckDAO {
         return false;
     }
     
+    public Object[] obtenerDatosCompletosPorId(int idReserva) throws java.sql.SQLException {
+        String sql = "SELECT h.documentoIdentidad, CONCAT(h.nombre, ' ', h.apellido) AS huesped, " +
+                     "r.fecha_entrada, r.fecha_salida, r.num_personas, hab.noHabitacion, r.dineroAbonado " +
+                     "FROM reservas r " +
+                     "INNER JOIN Huesped h ON r.id_huesped = h.id " +
+                     "INNER JOIN Habitacion hab ON r.id_habitacion = hab.id " +
+                     "WHERE r.id = ?";
+                     
+        java.sql.PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idReserva);
+        java.sql.ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()) {
+            return new Object[]{
+                rs.getString("documentoIdentidad"),
+                rs.getString("huesped"),
+                rs.getDate("fecha_entrada"),
+                rs.getDate("fecha_salida"),
+                rs.getInt("num_personas"),
+                String.valueOf(rs.getInt("noHabitacion")),
+                rs.getDouble("dineroAbonado")
+            };
+        }
+        return null;
+    }
+    
+
+    public int editar(int idReserva, int idHabitacion, long fechaEntrada, long fechaSalida, int numPersonas, double dineroAbonado) throws java.sql.SQLException {
+        String sql = "UPDATE reservas SET id_habitacion=?, fecha_entrada=?, fecha_salida=?, num_personas=?, dineroAbonado=? WHERE id=?";
+        java.sql.PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idHabitacion);
+        ps.setDate(2, new java.sql.Date(fechaEntrada));
+        ps.setDate(3, new java.sql.Date(fechaSalida));
+        ps.setInt(4, numPersonas);
+        ps.setDouble(5, dineroAbonado);
+        ps.setInt(6, idReserva);
+        return ps.executeUpdate();
+    }
+
+
+    public void actualizarEstadoReserva(int idReserva, String estado) throws java.sql.SQLException {
+        String sql = "UPDATE reservas SET estado = ? WHERE id = ?";
+        java.sql.PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, estado);
+        ps.setInt(2, idReserva);
+        ps.executeUpdate();
+    }
+    
 }

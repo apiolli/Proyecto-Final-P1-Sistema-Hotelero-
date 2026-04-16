@@ -341,8 +341,14 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
     private javax.swing.JTable tablaCheckout;
     // End of variables declaration//GEN-END:variables
 
+
     public void setControlador(ControladorChecks contro) {
         this.controlador = contro;
+        
+        if (this.contexto != null) {
+            this.controlador.setHuespedDAO(contexto.getHuespedDAO());
+            this.controlador.setHabitacionDAO(contexto.getHabitacionDAO());
+        }
     }
     
     @Override

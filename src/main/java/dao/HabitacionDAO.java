@@ -180,4 +180,12 @@ public class HabitacionDAO implements Gestionable<Habitacion> {
     }
     
     
+    public void actualizarEstado(int idHabitacion, String nuevoEstado) throws java.sql.SQLException {
+        String sql = "UPDATE Habitacion SET estado = ? WHERE id = ?";
+        java.sql.PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, nuevoEstado);
+        ps.setInt(2, idHabitacion);
+        ps.executeUpdate();
+    }
+    
 }
