@@ -181,7 +181,6 @@ public class PanelConsumo extends JPanel {
 
         lblTotalPagar = new JLabel("Total a cargar: RD$ 0.0");
         lblTotalPagar.setFont(new Font("Poppins", Font.BOLD, 22));
-//        lblTotalPagar.setForeground(new Color(192, 255, 255));
         lblTotalPagar.setForeground(new Color(0, 204, 204));
         lblTotalPagar.setBounds(650, 510, 400, 40);
         add(lblTotalPagar);

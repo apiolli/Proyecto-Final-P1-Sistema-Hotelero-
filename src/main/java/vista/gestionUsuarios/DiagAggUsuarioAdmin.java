@@ -1,17 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package vista.gestionUsuarios;
 
 import controlador.ControladorEmpleadoAdmin;
 import java.awt.Color;
-import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import modelo.interfaces.Mensajes;
-import com.toedter.calendar.JDateChooser;
 
 
 public class DiagAggUsuarioAdmin extends javax.swing.JDialog implements Mensajes{
@@ -232,8 +226,8 @@ public class DiagAggUsuarioAdmin extends javax.swing.JDialog implements Mensajes
             String.valueOf(txtContrasena.getPassword()).trim().isEmpty()) {
             
             mostrarError("Por favor, no deje ningún campo vacío.");
-            btnDIag.setEnabled(true); // Encendemos el botón de nuevo
-            return; // Detenemos la ejecución
+            btnDIag.setEnabled(true); 
+            return; 
         }
 
         

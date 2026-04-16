@@ -13,10 +13,6 @@ import javax.swing.table.DefaultTableModel;
 import vista.checkInOut.DiagRegistrarCheckIn;
 import vista.checkInOut.PanelCheckInOut;
 
-/**
- *
- * @author DELL
- */
 public class ControladorChecks {
     private CheckDAO dao;
     private PanelCheckInOut vista;
@@ -86,7 +82,6 @@ public class ControladorChecks {
     public void hacerCheckIn(int id) {
         
         try {
-            // Validación: verificar si la habitación ya está ocupada
             boolean ocupada = dao.habitacionEstaOcupada(id);
             if (ocupada) {
                 vista.mostrarError("No se puede hacer Check-In: la habitación ya está Ocupada.");
@@ -141,14 +136,14 @@ public class ControladorChecks {
         String[] opciones = {"Hacer CheckOut", "Gestionar CheckOut"};
 
         int respuesta = JOptionPane.showOptionDialog(
-            null,                          // padre
-            "¿Qué deseas hacer?",          // mensaje
-            "Opciones de CheckOut",         // título
-            JOptionPane.DEFAULT_OPTION,    // tipo
-            JOptionPane.QUESTION_MESSAGE,  // icono
-            null,                          // icono personalizado
-            opciones,                      // botones
-            opciones[0]                    // botón por defecto
+            null,                          
+            "¿Qué deseas hacer?",          
+            "Opciones de CheckOut",        
+            JOptionPane.DEFAULT_OPTION,    
+            JOptionPane.QUESTION_MESSAGE,  
+            null,                          
+            opciones,                      
+            opciones[0]                    
         );
 
         if (respuesta == 0) {
@@ -193,16 +188,13 @@ public class ControladorChecks {
             (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(vista), true
         );
 
-        // Establecer la fecha de entrada como hoy automáticamente y deshabilitada
         diag.setFechaEntradaHoy();
 
-        // Crear un ControladorReserva apuntando al DiagRegistrarCheckIn
-        controlador.ControladorReserva controladorReserva =
-            new controlador.ControladorReserva(null, reservaDAO);
+        ControladorReserva controladorReserva = new ControladorReserva(null, reservaDAO);
+        
         controladorReserva.setHuespedDAO(huespedDAO);
         controladorReserva.setHabitacionDAO(habitacionDAO);
         controladorReserva.setDiagCheckIn(diag);
-
         diag.setControlador(controladorReserva);
         diag.setVisible(true);
     }

@@ -357,36 +357,30 @@ public class DiagCrearReserva extends javax.swing.JDialog {
     private void btnDIagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDIagActionPerformed
         // TODO add your handling code here:
         btnDIag.setEnabled(false);
-
-        // 2. Validar que hayan buscado un huésped (El ID oculto no debe estar vacío)
         if (txtID.getText().trim().isEmpty() || txtNombre.getText().trim().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, busque y seleccione un huésped primero.", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
 
-        // 3. Validar que hayan seleccionado ambas fechas en el calendario
         if (fechaEntrada.getDate() == null || fechaSalida.getDate() == null) {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, seleccione las fechas de entrada y salida.", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
 
-        // Validar lógica de fechas (Salida debe ser después de Entrada)
         if (fechaSalida.getDate().before(fechaEntrada.getDate()) || fechaSalida.getDate().equals(fechaEntrada.getDate())) {
             javax.swing.JOptionPane.showMessageDialog(this, "La fecha de salida debe ser posterior a la de entrada.", "Error de fechas", javax.swing.JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
 
-        // 4. Validar que hayan buscado y seleccionado una habitación
         if (cmbHabDisponibles.getSelectedItem() == null) {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, seleccione una habitación disponible.", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
 
-        // 5. Validar Dinero Abonado (vacíos, letras o negativos)
         if (txtDineroAbonado.getText().trim().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Ingrese el dinero abonado (coloque 0 si no abona nada).", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);

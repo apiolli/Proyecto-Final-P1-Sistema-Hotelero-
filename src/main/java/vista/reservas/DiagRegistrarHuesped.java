@@ -221,7 +221,6 @@ public class DiagRegistrarHuesped extends javax.swing.JDialog implements Mensaje
     private void btnDIagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDIagActionPerformed
         btnDIag.setEnabled(false);
 
-        // 2. VALIDAMOS CAMPOS DE TEXTO VACÍOS
         if (txtNombre.getText().trim().isEmpty() || 
             txtApellido.getText().trim().isEmpty() || 
             txtDocumento.getText().trim().isEmpty() || 
@@ -229,18 +228,16 @@ public class DiagRegistrarHuesped extends javax.swing.JDialog implements Mensaje
             txtTelefono.getText().trim().isEmpty()) {
             
             mostrarError("Por favor, complete todos los campos de texto.");
-            btnDIag.setEnabled(true); // Encendemos de nuevo para que el usuario corrija
+            btnDIag.setEnabled(true); 
             return; 
         }
 
-        // 3. VALIDAMOS LA FECHA DE NACIMIENTO
         if (fechaNacimiento.getDate() == null) {
             mostrarError("Por favor, seleccione la fecha de nacimiento.");
             btnDIag.setEnabled(true);
             return;
         }
 
-        // 4. VALIDACIÓN LÓGICA DE FECHA (No puede nacer en el futuro)
         if (fechaNacimiento.getDate().after(new java.util.Date())) {
             mostrarError("La fecha de nacimiento no puede ser en el futuro.");
             btnDIag.setEnabled(true);

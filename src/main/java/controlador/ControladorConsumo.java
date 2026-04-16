@@ -56,9 +56,7 @@ public class ControladorConsumo {
             System.out.println("Error al cargar habitaciones (Revisa las columnas de tu BD): " + e.getMessage());
         }
 
-
         cargarBotonesProductos();
-
       
         for (java.awt.event.ActionListener al : vista.getCmbCategorias().getActionListeners()) {
             vista.getCmbCategorias().removeActionListener(al);

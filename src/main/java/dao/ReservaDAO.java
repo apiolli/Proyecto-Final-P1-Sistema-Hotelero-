@@ -68,8 +68,7 @@ public class ReservaDAO implements Gestionable<Reserva> {
         }
          
         return lista;
-    }
-    
+    }   
   
     public ArrayList<Object[]> obtenerReservasPorEstado(String estado) throws SQLException {  
         ArrayList<Object[]> lista = new ArrayList<>();
@@ -101,12 +100,7 @@ public class ReservaDAO implements Gestionable<Reserva> {
          
         return lista;
     }
-    // --------------------------------------------
 
-    /**
-     * Después de crear la reserva vía CheckIn directo,
-     * la pone en estado 'Activa' y marca la habitación como 'Ocupada'.
-     */
     public void marcarCheckInInmediato(int idReserva, int idHabitacion) throws java.sql.SQLException {
         java.sql.PreparedStatement ps = con.prepareStatement(
             "UPDATE reservas SET estado = 'Activa' WHERE id = ?"

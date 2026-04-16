@@ -57,12 +57,11 @@ public class MainFrame extends JFrame {
         titulo.setIconTextGap(10);
         titulo.setVerticalAlignment(JLabel.CENTER);
         header.add(titulo, BorderLayout.WEST);
-        
-       // ... dentro de crearHeader
-    lblUsuarioHeader = new JLabel("Usuario: Cargando...      "); // Texto inicial
-    lblUsuarioHeader.setForeground(new Color(0xAAAAAA));
-    lblUsuarioHeader.setFont(new Font("Poppins", Font.PLAIN, 13));
-    header.add(lblUsuarioHeader, BorderLayout.EAST);
+
+        lblUsuarioHeader = new JLabel("Usuario: Cargando...      "); 
+        lblUsuarioHeader.setForeground(new Color(0xAAAAAA));
+        lblUsuarioHeader.setFont(new Font("Poppins", Font.PLAIN, 13));
+        header.add(lblUsuarioHeader, BorderLayout.EAST);
 
         return header;
     }

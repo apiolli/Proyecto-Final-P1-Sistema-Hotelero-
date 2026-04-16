@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import modelo.personas.Empleado; 
 
-/**
- *
- * @author Star_
- */
 public class LoginDAO {
 
     private Connection con;
@@ -20,10 +16,8 @@ public class LoginDAO {
 
     
     public Empleado validarUsuario(String usuario, String contrasena) throws SQLException {
-        
        
         String sql = "SELECT * FROM Usuarios WHERE usuario = ? AND contrasena = ?";
-
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, usuario);
             ps.setString(2, contrasena);

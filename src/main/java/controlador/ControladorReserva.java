@@ -38,7 +38,6 @@ public class ControladorReserva {
             int noHabitacion = Integer.parseInt(numHabSeleccionada);
             int numPersonas = diagCrear.getSpNoPersonas();
 
-            // --- VALIDACIÓN DE CAPACIDAD ---
             int capacidadMaxima = habitacionDAO.obtenerCapacidad(noHabitacion);
 
             if (numPersonas > capacidadMaxima) {
@@ -46,7 +45,6 @@ public class ControladorReserva {
                 return false; 
             }
            
-
             int idHabitacion = habitacionDAO.buscarIdPorNumero(noHabitacion);
             if (idHabitacion == -1) {
                 vista.mostrarError("No se encontró el ID de la habitación seleccionada");
@@ -107,20 +105,17 @@ public class ControladorReserva {
    public void buscarHabitacionesDisponibles() {
         try {
             String tipo = diagCrear.getTipoHab();
-            int numPersonas = diagCrear.getSpNoPersonas(); // Extraemos cuántas personas van
+            int numPersonas = diagCrear.getSpNoPersonas();
 
-            // Llamamos al NUEVO método del DAO que filtra por capacidad
             ArrayList<Integer> disponibles = habitacionDAO.buscarDisponiblesPorTipoYCapacidad(tipo, numPersonas);
 
             if (disponibles.isEmpty()) {
                 vista.mostrarError("No hay habitaciones de tipo " + tipo + " con capacidad para " + numPersonas + " personas.");
                 
-                // Limpiamos el ComboBox para que no se quede con datos viejos
                 diagCrear.cargarHabitacionesDisponibles(new ArrayList<>()); 
                 return;
             }
 
-            // Si encontró, llenamos el ComboBox
             diagCrear.cargarHabitacionesDisponibles(disponibles);
 
         } catch (SQLException e) {
@@ -131,12 +126,7 @@ public class ControladorReserva {
 
     public void cargarReservas(JTable tabla) {
     
-    DefaultTableModel modeloTabla = new DefaultTableModel() {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false; // Esto bloquea todas las celdas de todas las columnas
-        }
-    };
+    DefaultTableModel modeloTabla = new DefaultTableModel() {};
     
     
     modeloTabla.setColumnIdentifiers(new Object[]{
@@ -181,9 +171,9 @@ public class ControladorReserva {
         this.diagEditar = diagEditar;
     }
 
-    // ---------- métodos para DiagRegistrarCheckIn ----------
-
     public boolean crearReservaCheckIn() {
+        
+        
         try {
             int idHuesped = diagCheckIn.getTxtID();
             String numHabSeleccionada = diagCheckIn.getHabDisponibles();
@@ -202,7 +192,6 @@ public class ControladorReserva {
                 return false;
             }
 
-            // Verificar que la habitación no esté ya ocupada
             boolean ocupada = habitacionDAO.estaOcupada(idHabitacion);
             if (ocupada) {
                 diagCheckIn.mostrarError("La habitación seleccionada ya está Ocupada.");
@@ -216,7 +205,6 @@ public class ControladorReserva {
             int respuesta = dao.guardarConIds(idHuesped, idHabitacion, fechaEntrada, fechaSalida, numPersonas, dineroAbonado);
 
             if (respuesta > 0) {
-                // Hacer el CheckIn inmediatamente (estado Activa + habitación Ocupada)
                 dao.marcarCheckInInmediato(respuesta, idHabitacion);
                 diagCheckIn.mostrarExito("CheckIn registrado correctamente.");
                 return true;
@@ -291,7 +279,6 @@ public class ControladorReserva {
     }
     
     public void filtrarReservas(String estado) {
-        // Detenemos el auto-refresh del Timer si está activo
         if (timer != null && timer.isRunning()) {
             timer.stop();
         }
@@ -311,14 +298,12 @@ public class ControladorReserva {
         modeloTabla.setRowCount(0);
 
         try {
-            // Llama a tu Base de Datos (Asegúrate de tener este método en tu ReservaDAO)
             ArrayList<Object[]> lista = dao.obtenerReservasPorEstado(estado); 
             
             for (Object[] reserva : lista) {
                 modeloTabla.addRow(reserva);
             }
             
-            // Actualizamos el contador con la cantidad de reservas filtradas
             vista.actualizarContador(modeloTabla.getRowCount());
             
         } catch (SQLException e) {

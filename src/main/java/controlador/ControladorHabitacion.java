@@ -8,7 +8,6 @@ import modelo.habitaciones.HabitacionDeluxe;
 import modelo.habitaciones.HabitacionDoble;
 import modelo.habitaciones.HabitacionIndividual;
 import modelo.habitaciones.HabitacionSuite;
-import vista.consumo.DiagAggConsumo;
 import vista.habitaciones.DiagAggHabitacion;
 import vista.habitaciones.DiagEditarHabitacion;
 import vista.habitaciones.PanelHabitaciones;
@@ -28,7 +27,6 @@ public class ControladorHabitacion {
         this.dao = dao;
     }
     
-
     public void agregarHabitacion() {
         int noHabitacion = dialogo.getNumeroHab();
         String tipo = dialogo.getTipo();

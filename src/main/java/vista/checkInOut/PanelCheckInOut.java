@@ -270,14 +270,12 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaCheckinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCheckinMouseClicked
-        // TODO add your handling code here:
         if (evt.getClickCount() == 2) { 
             controlador.seleccionarCheckIn();
         }        
     }//GEN-LAST:event_tablaCheckinMouseClicked
 
     private void tablaCheckoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCheckoutMouseClicked
-        // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
             controlador.seleccionarCheckOut();
         } 

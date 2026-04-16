@@ -14,8 +14,6 @@ import vista.PanelFacturacion;
 public class ControladorFacturacion implements Facturable{
     private PanelFacturacion vista;
     private FacturacionDAO dao;
-    private CheckDAO checkDAO;
-    private ConsumosDAO consumosDAO;
     private ArrayList<Integer> idsReservas = new ArrayList<>();
     
     public ControladorFacturacion(PanelFacturacion vista, FacturacionDAO dao, CheckDAO checkDAO, ConsumosDAO consumosDAO) {
@@ -44,7 +42,6 @@ public class ControladorFacturacion implements Facturable{
     }
     
     public void reiniciar() {
-        // Limpiar todos los campos de información
         vista.getTxtIDReserva().setText("");
         vista.getTxtHuesped().setText("");
         vista.getTxtTelefono().setText("");
@@ -57,10 +54,9 @@ public class ControladorFacturacion implements Facturable{
         vista.getTxtTotal().setText("");
         vista.getTxtEfectivo().setText("");
         vista.getTxtCambio().setText("");
-        // Limpiar tabla
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) vista.getTablaFactura().getModel();
         modelo.setRowCount(0);
-        // Resetear combobox forma de pago
+        
         vista.getCmbFormaPago().setSelectedIndex(0);
     }
     
@@ -136,7 +132,6 @@ public class ControladorFacturacion implements Facturable{
     @Override
     public void registrarVenta() {
         try {
-            // Validar que haya una reserva cargada
             if (vista.getTxtIDReserva().getText().trim().isEmpty()) {
                 vista.mostrarError("Primero busque y cargue una reserva antes de registrar la venta.");
                 return;
@@ -146,14 +141,12 @@ public class ControladorFacturacion implements Facturable{
                 return;
             }
 
-            // Validar que la tabla tenga items
             DefaultTableModel tabla = (DefaultTableModel) vista.getTablaFactura().getModel();
             if (tabla.getRowCount() == 0) {
                 vista.mostrarError("La factura no tiene items cargados.");
                 return;
             }
 
-            // Validar descuento
             String descuentoTxt = vista.getTxtDescuento().getText().trim();
             double descuento = 0.0;
             if (!descuentoTxt.isEmpty()) {

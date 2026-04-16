@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -88,13 +87,11 @@ public class ConsumosDAO implements Gestionable<Consumo>{
             return ps.executeUpdate() > 0;
         }
     }
-    
-    // --- NUEVO MÉTODO PARA FILTRAR ---
+
     public ArrayList<modelo.Producto> listarProductosPorCategoria(String categoria) throws SQLException {
         ArrayList<modelo.Producto> lista = new ArrayList<>();
         String sql;
         
-        // Si elige "Todas", buscamos sin filtro. Si no, filtramos por la columna.
         if (categoria.equals("Todas")) {
             sql = "SELECT id_producto, nombre, precio FROM productos";
         } else {
@@ -102,7 +99,6 @@ public class ConsumosDAO implements Gestionable<Consumo>{
         }
         
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            // Si hay un filtro, le inyectamos la categoría al WHERE
             if (!categoria.equals("Todas")) {
                 ps.setString(1, categoria);
             }

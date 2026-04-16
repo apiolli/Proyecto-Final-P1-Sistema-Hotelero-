@@ -1,7 +1,6 @@
 package vista.consumo;
 
 import controlador.ControladorConsumo;
-import controlador.ControladorHabitacion;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;

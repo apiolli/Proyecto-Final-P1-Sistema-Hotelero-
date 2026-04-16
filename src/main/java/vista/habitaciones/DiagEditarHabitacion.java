@@ -2,15 +2,11 @@ package vista.habitaciones;
 
 import controlador.ControladorHabitacion;
 import java.awt.Color;
-import java.util.logging.Logger;
-import javax.accessibility.AccessibleContext;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JRootPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import modelo.interfaces.Mensajes;

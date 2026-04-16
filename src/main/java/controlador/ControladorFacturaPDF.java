@@ -173,7 +173,6 @@ public class ControladorFacturaPDF implements GenerarFactura{
             
             doc.add(tablaProducto);
             
-            //Total pagar
             Paragraph info = new Paragraph();
             doc.add(new Chunk(linea));
             info.add(Chunk.NEWLINE);
@@ -181,7 +180,6 @@ public class ControladorFacturaPDF implements GenerarFactura{
             info.setAlignment(Element.ALIGN_RIGHT);
             doc.add(info);
             
-            //Firma
            Paragraph firma = new Paragraph();
            firma.add(Chunk.NEWLINE);
            firma.add("Cancelacion y firma\n\n");

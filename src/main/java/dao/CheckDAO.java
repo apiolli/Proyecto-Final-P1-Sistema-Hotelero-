@@ -132,10 +132,6 @@ public class CheckDAO {
     return lista;
 }
 
-    /**
-     * Verifica si la habitación asociada a una reserva ya está Ocupada.
-     * Se usa antes de ejecutar el CheckIn desde la tabla de pendientes.
-     */
     public boolean habitacionEstaOcupada(int idReserva) throws SQLException {
         PreparedStatement ps = con.prepareStatement(
             "SELECT h.estado FROM Habitacion h " +

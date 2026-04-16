@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package vista.gestionUsuarios;
 
 import vista.gestionUsuarios.DiagAggUsuarioAdmin;
 import vista.gestionUsuarios.DiagEditarUsuarioAdmin;
 import app.ContextoAplicacion;
 import controlador.ControladorEmpleadoAdmin;
-import controlador.ControladorReserva;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

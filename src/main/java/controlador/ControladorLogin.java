@@ -7,10 +7,6 @@ import vista.Login;
 import vista.MainFrame;
 import app.ContextoAplicacion;
 
-/**
- *
- * @author Star_
- */
 public class ControladorLogin {
     
     private Login vista;
@@ -30,14 +26,11 @@ public class ControladorLogin {
         }
 
         try {
-  
             modelo.personas.Empleado emp = dao.validarUsuario(usuario.trim(), contrasena.trim());
             
-            if (emp != null) {
-                
+            if (emp != null) {         
                 vista.dispose(); 
-                
-                
+   
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         MainFrame main = new MainFrame(new ContextoAplicacion());

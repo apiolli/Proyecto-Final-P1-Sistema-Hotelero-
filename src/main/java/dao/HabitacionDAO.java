@@ -1,12 +1,10 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import modelo.interfaces.Gestionable;
 import modelo.habitaciones.Habitacion;
 import modelo.habitaciones.HabitacionDeluxe;
@@ -158,7 +156,7 @@ public class HabitacionDAO implements Gestionable<Habitacion> {
         
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, tipo);
-        ps.setInt(2, numPersonas); // Filtramos para que la capacidad sea MAYOR O IGUAL a las personas
+        ps.setInt(2, numPersonas);
         
         ResultSet rs = ps.executeQuery();
             
