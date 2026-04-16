@@ -1,6 +1,7 @@
 package vista;
 import modelo.interfaces.Mensajes;
 import controlador.ControladorLogin;
+import java.awt.Color;
 
 public class Login extends javax.swing.JFrame implements Mensajes {
     
@@ -64,6 +65,7 @@ public class Login extends javax.swing.JFrame implements Mensajes {
         jLabel1.setText("Usuario");
 
         txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(5, 17, 98), 2, true));
 
@@ -71,7 +73,7 @@ public class Login extends javax.swing.JFrame implements Mensajes {
         jLabel4.setForeground(new java.awt.Color(0, 180, 216));
         jLabel4.setText("Contrasena");
 
-        jButton1.setBackground(new java.awt.Color(0, 180, 216));
+        jButton1.setBackground(new java.awt.Color(0, 204, 204));
         jButton1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Iniciar Sesion");
@@ -79,6 +81,7 @@ public class Login extends javax.swing.JFrame implements Mensajes {
 
         txtContrasena.setBackground(new java.awt.Color(255, 255, 255));
         txtContrasena.setForeground(new java.awt.Color(0, 0, 0));
+        txtContrasena.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(5, 17, 98), 2, true));
         txtContrasena.addActionListener(this::txtContrasenaActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -116,6 +119,27 @@ public class Login extends javax.swing.JFrame implements Mensajes {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(140, Short.MAX_VALUE))
         );
+
+        jButton1.setToolTipText("");
+
+        jButton1.setBorder(null);
+
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jButton1.setFocusable(false);
+
+        jButton1.setIconTextGap(10);
+
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1.setBackground(new Color(0x1C2B3A));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1.setBackground(new Color(0, 204, 204));
+            }
+        });
+
+        // Code adding the component to the parent container - not shown here
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 0, -1, -1));
 

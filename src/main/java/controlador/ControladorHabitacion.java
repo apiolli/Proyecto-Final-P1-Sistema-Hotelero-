@@ -2,6 +2,7 @@ package controlador;
 
 import dao.HabitacionDAO;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import modelo.habitaciones.Habitacion;
 import modelo.habitaciones.HabitacionDeluxe;
 import modelo.habitaciones.HabitacionDoble;
@@ -89,21 +90,40 @@ public class ControladorHabitacion {
     
     public void eliminarHabitacion() {
         int noHabitacion = Integer.valueOf(diagEditar.getTxtNumero().getText());
+        
+        String[] opciones = {"Eliminar Habitacion", "No"};
 
-        try {
-            int respuesta = dao.eliminar(noHabitacion);
+        int respuestaPane = JOptionPane.showOptionDialog(
+            null,                          
+            "¿Esta seguro que desea eliminar la habitacion?",
+            "Confirmacion",         
+            JOptionPane.DEFAULT_OPTION,  
+            JOptionPane.QUESTION_MESSAGE, 
+            null,                         
+            opciones,                    
+            opciones[0]              
+        );
 
-            if (respuesta > 0) {
-                diagEditar.mostrarExito("La habitacion ha sido eliminada con exito!");
-                cargarHabitaciones();
-            } else {
-                diagEditar.mostrarError("La habitacion no existe.");
+        if (respuestaPane == 0) {
+            try {
+                int respuesta = dao.eliminar(noHabitacion);
+
+                if (respuesta > 0) {
+                    diagEditar.mostrarExito("La habitacion ha sido eliminada con exito!");
+                    cargarHabitaciones();
+                } else {
+                    diagEditar.mostrarError("La habitacion no existe.");
+                }
+
+            } catch (SQLException e) {
+                diagEditar.mostrarError("Ha ocurrido un error al registrar la habitacion.");
+                System.out.println(e.getMessage());
             }
-
-        } catch (SQLException e) {
-            diagEditar.mostrarError("Ha ocurrido un error al registrar la habitacion.");
-            System.out.println(e.getMessage());
+        } else if (respuestaPane == 1) {
+            return;
         }
+
+
     }
     
     public void editarHabitacion() {

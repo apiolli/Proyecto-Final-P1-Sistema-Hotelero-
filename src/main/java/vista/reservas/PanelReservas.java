@@ -281,7 +281,7 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
 
         btnMostrarConfirmadas.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnMostrarConfirmadas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevoUsuario.png"))); // NOI18N
+        btnMostrarConfirmadas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/activa.png"))); // NOI18N
 
         btnMostrarConfirmadas.setToolTipText("");
 
@@ -311,7 +311,7 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
 
         btnMostrarActivas.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnMostrarActivas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevoUsuario.png"))); // NOI18N
+        btnMostrarActivas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmado.png"))); // NOI18N
 
         btnMostrarActivas.setToolTipText("");
 
@@ -341,7 +341,7 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
 
         btnMostrarCompletadas.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnMostrarCompletadas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevoUsuario.png"))); // NOI18N
+        btnMostrarCompletadas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/completed.png"))); // NOI18N
 
         btnMostrarCompletadas.setToolTipText("");
 
@@ -371,7 +371,7 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
 
         btnMostrarTodo.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnMostrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevoUsuario.png"))); // NOI18N
+        btnMostrarTodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/all.png"))); // NOI18N
 
         btnMostrarTodo.setToolTipText("");
 
