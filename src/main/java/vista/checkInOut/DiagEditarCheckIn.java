@@ -87,7 +87,7 @@ public class DiagEditarCheckIn extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         txtDineroAbonado = new javax.swing.JTextField();
         txtID = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         jLabel6.setText("jLabel6");
 
@@ -189,9 +189,9 @@ public class DiagEditarCheckIn extends javax.swing.JDialog {
         txtDineroAbonado.setForeground(new java.awt.Color(0, 0, 0));
         txtDineroAbonado.setBorder(null);
 
-        jButton1.setBackground(new java.awt.Color(204, 51, 51));
-        jButton1.setText("Realizar Check-Out");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnEliminar.setBackground(new java.awt.Color(204, 51, 51));
+        btnEliminar.setText("Eliminar Check-in");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,7 +254,7 @@ public class DiagEditarCheckIn extends javax.swing.JDialog {
                                 .addGap(23, 23, 23)
                                 .addComponent(btnDIag, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -307,7 +307,7 @@ public class DiagEditarCheckIn extends javax.swing.JDialog {
                     .addComponent(txtDineroAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDIag, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
@@ -394,6 +394,33 @@ public class DiagEditarCheckIn extends javax.swing.JDialog {
             }
         });
         txtID.setVisible(false);
+        btnEliminar.setBackground(new java.awt.Color(0, 204, 204));
+
+        btnEliminar.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminarHab.png"))); // NOI18N
+
+        btnEliminar.setToolTipText("");
+
+        btnEliminar.setBorder(null);
+
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnEliminar.setFocusable(false);
+
+        btnEliminar.setIconTextGap(10);
+
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminar.setBackground(new Color(81, 109, 110));
+
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminar.setBackground(new Color(0, 204, 204));
+            }
+        });
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -438,7 +465,7 @@ public class DiagEditarCheckIn extends javax.swing.JDialog {
         controlador.buscarHabitacionesDisponiblesCheckIn();
     }//GEN-LAST:event_btnBuscarHabActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         
         int confirm = JOptionPane.showConfirmDialog(this, "¿Seguro que desea realizar el Check-Out y liberar la habitación?", "Confirmar Check-Out", JOptionPane.YES_NO_OPTION);
@@ -446,7 +473,7 @@ public class DiagEditarCheckIn extends javax.swing.JDialog {
             controlador.procesarCheckOut(idReservaActual, idHabitacionActual);
             this.dispose();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     public void cargarHabitacionesDisponibles(ArrayList<Integer> habitaciones) {
         cmbHabDisponibles.removeAllItems();
@@ -460,11 +487,11 @@ public class DiagEditarCheckIn extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarDoc;
     private javax.swing.JButton btnBuscarHab;
     private javax.swing.JButton btnDIag;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox<String> cmbHabDisponibles;
     private javax.swing.JComboBox<String> cmbTipoHab;
     private com.toedter.calendar.JDateChooser fechaEntrada;
     private com.toedter.calendar.JDateChooser fechaSalida;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

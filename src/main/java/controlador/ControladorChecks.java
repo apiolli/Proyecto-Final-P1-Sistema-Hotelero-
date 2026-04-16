@@ -198,11 +198,9 @@ public class ControladorChecks {
 
         
         int idReserva = (int) tabla.getValueAt(fila, 0);
-
       
         Object[] opciones = {"Hacer Checkin", "Gestionar CheckIn"};
 
-     
         int seleccion = javax.swing.JOptionPane.showOptionDialog(
                 vista,
                 "¿Qué deseas hacer?",
@@ -218,6 +216,7 @@ public class ControladorChecks {
         if (seleccion == 0) {
          
             System.out.println("Haciendo checkin directo para el ID: " + idReserva);
+            hacerCheckIn(idReserva);
             
         } else if (seleccion == 1) {
            
@@ -239,8 +238,7 @@ public class ControladorChecks {
         diag.setControlador(controladorReserva);
         diag.setVisible(true);
     }
-    
-    // --- METODOS DE EDICION Y CHECKOUT ---
+
     public boolean editarCheckIn(int idReserva, int idHabitacionAntigua) {
         try {
             long fechaEntrada = diagEditarCheckIn.getFechaEntrada();
@@ -275,7 +273,6 @@ public class ControladorChecks {
             dao.actualizarEstadoReserva(idReserva, "Completada");
             habitacionDAO.actualizarEstado(idHabitacion, "Disponible");
             vista.mostrarExito("Check-Out completado. Habitación liberada.");
-            // iniciar(vista.getTablaCheckout()); // Recarga la tabla si tienes este método
         } catch (java.sql.SQLException e) { 
             vista.mostrarError("Error al realizar el Check-Out: " + e.getMessage());
         }

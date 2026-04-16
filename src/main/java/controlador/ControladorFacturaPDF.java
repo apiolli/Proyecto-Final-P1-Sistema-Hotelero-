@@ -53,17 +53,23 @@ public class ControladorFacturaPDF implements GenerarFactura{
             PdfWriter.getInstance(doc, new FileOutputStream(ruta));
 
             doc.open();
+            
+            java.net.URL urlLogo = ControladorFacturaPDF.class.getResource("/img/hotelink.png");
 
-            String rutaLogo = ControladorFacturaPDF.class.getResource("/img/hotelink.png").getPath();
-            Image logo = Image.getInstance(rutaLogo);
+            if (urlLogo != null) {
+                Image logo = Image.getInstance(urlLogo); 
+                logo.setAlignment(Element.ALIGN_CENTER);
+                logo.scaleToFit(80, 80);
+
+                doc.add(logo);
+            } else {
+                System.err.println("Error: No se encontró la imagen en /img/hotelink.png");
+                vista.mostrarError("Error: No se encontró la imagen");
+            }
             
             Paragraph fecha = new Paragraph();
             Font negrita = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.BLUE);
-            
-            
-            logo.setAlignment(Element.ALIGN_CENTER);
-            logo.scaleToFit(80, 80);
-            doc.add(logo);
+           
 
             Font fuenteTitulo = new Font(Font.FontFamily.HELVETICA, 24, Font.BOLD, BaseColor.DARK_GRAY);
             Paragraph titulo = new Paragraph("Hotelink - Sistema Hotelero", fuenteTitulo);

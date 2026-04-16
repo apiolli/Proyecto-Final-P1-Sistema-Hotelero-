@@ -84,7 +84,7 @@ public class DiagEditarReserva extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         txtDineroAbonado = new javax.swing.JTextField();
         txtID = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         jLabel6.setText("jLabel6");
 
@@ -187,9 +187,9 @@ public class DiagEditarReserva extends javax.swing.JDialog {
 
         txtID.addActionListener(this::txtIDActionPerformed);
 
-        jButton1.setBackground(new java.awt.Color(204, 51, 51));
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnEliminar.setBackground(new java.awt.Color(204, 51, 51));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -231,7 +231,7 @@ public class DiagEditarReserva extends javax.swing.JDialog {
                                 .addGap(30, 30, 30)
                                 .addComponent(btnDIag, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +307,7 @@ public class DiagEditarReserva extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDIag, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -393,6 +393,35 @@ public class DiagEditarReserva extends javax.swing.JDialog {
             }
         });
         txtID.setVisible(false);
+        btnEliminar.setBackground(new java.awt.Color(0, 204, 204));
+
+        btnEliminar.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminarHab.png"))); // NOI18N
+
+        btnEliminar.setToolTipText("");
+
+        btnEliminar.setBorder(null);
+
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnEliminar.setFocusable(false);
+
+        btnEliminar.setIconTextGap(10);
+
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminar.setBackground(new Color(81, 109, 110));
+
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminar.setBackground(new Color(0, 204, 204));
+            }
+        });
+
+        // Code adding the component to the parent container - not shown here
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -460,13 +489,13 @@ public class DiagEditarReserva extends javax.swing.JDialog {
         controlador.buscarHabitacionesDisponibles();
     }//GEN-LAST:event_btnBuscarHabActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar esta reserva?", "Confirmar eliminación", javax.swing.JOptionPane.YES_NO_OPTION);
         if (confirm == javax.swing.JOptionPane.YES_OPTION) {
             controlador.eliminarReserva(idReservaActual);
             this.dispose();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
@@ -484,11 +513,11 @@ public class DiagEditarReserva extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarDoc;
     private javax.swing.JButton btnBuscarHab;
     private javax.swing.JButton btnDIag;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox<String> cmbHabDisponibles;
     private javax.swing.JComboBox<String> cmbTipoHab;
     private com.toedter.calendar.JDateChooser fechaEntrada;
     private com.toedter.calendar.JDateChooser fechaSalida;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
