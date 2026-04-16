@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import modelo.interfaces.Gestionable;
 import modelo.reservas.Reserva;
 
@@ -70,7 +68,39 @@ public class ReservaDAO implements Gestionable<Reserva> {
         }
          
         return lista;
-        
     }
+    
+  
+    public ArrayList<Object[]> obtenerReservasPorEstado(String estado) throws SQLException {  
+        ArrayList<Object[]> lista = new ArrayList<>();
+        
+    
+        PreparedStatement ps = con.prepareStatement("SELECT r.id, CONCAT(h.nombre, ' ', h.apellido) AS huesped,"
+                + " r.num_personas AS total_personas, hab.noHabitacion AS habitacion, r.fecha_entrada, r.fecha_salida, "
+                + "r.fecha_reserva, r.estado, r.dineroAbonado FROM reservas r INNER JOIN Huesped h ON r.id_huesped = "
+                + "h.id INNER JOIN Habitacion hab ON r.id_habitacion = hab.id WHERE r.estado = ? ORDER BY r.fecha_entrada;");            
+        
+     
+        ps.setString(1, estado);
+        
+        ResultSet rs = ps.executeQuery();
+            
+        while (rs.next()) {
+            lista.add(new Object[]{
+                rs.getInt("id"),
+                rs.getString("huesped"),
+                rs.getInt("total_personas"),
+                rs.getInt("habitacion"),
+                rs.getDate("fecha_entrada"),
+                rs.getDate("fecha_salida"),
+                rs.getDate("fecha_reserva"),
+                rs.getString("estado"),
+                rs.getDouble("dineroAbonado")
+            });
+        }
+         
+        return lista;
+    }
+    // --------------------------------------------
        
 }

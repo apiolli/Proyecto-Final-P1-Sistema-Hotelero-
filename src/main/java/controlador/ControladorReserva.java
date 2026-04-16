@@ -143,6 +143,9 @@ public class ControladorReserva {
         for (Object[] reserva : lista) {
             modeloTabla.addRow(reserva);
         }
+        
+        vista.actualizarContador(modeloTabla.getRowCount());
+        
     } catch (SQLException e) {
         System.out.println(e.getMessage());
         vista.mostrarError("Error al cargar los datos");
@@ -171,5 +174,42 @@ public class ControladorReserva {
 
     public void setHabitacionDAO(HabitacionDAO habitacionDAO) {
         this.habitacionDAO = habitacionDAO;
+    }
+    
+    public void filtrarReservas(String estado) {
+        // Detenemos el auto-refresh del Timer si está activo
+        if (timer != null && timer.isRunning()) {
+            timer.stop();
+        }
+
+        JTable tabla = vista.getTablaReservas();
+        DefaultTableModel modeloTabla = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) { return false; }
+        };
+        
+        modeloTabla.setColumnIdentifiers(new Object[]{
+            "ID", "Huesped", "Total personas", "Habitacion", 
+            "Fecha entrada", "Fecha salida", "Fecha reserva", "Estado", "Dinero abonado"
+        });
+
+        tabla.setModel(modeloTabla);
+        modeloTabla.setRowCount(0);
+
+        try {
+            // Llama a tu Base de Datos (Asegúrate de tener este método en tu ReservaDAO)
+            ArrayList<Object[]> lista = dao.obtenerReservasPorEstado(estado); 
+            
+            for (Object[] reserva : lista) {
+                modeloTabla.addRow(reserva);
+            }
+            
+            // Actualizamos el contador con la cantidad de reservas filtradas
+            vista.actualizarContador(modeloTabla.getRowCount());
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            vista.mostrarError("Error al filtrar las reservas: " + e.getMessage());
+        }
     }
 }

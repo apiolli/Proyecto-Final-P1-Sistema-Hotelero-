@@ -31,7 +31,25 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
         disenoTabla();
         add(panelTitulo, BorderLayout.NORTH);
         add(panelMedio(), BorderLayout.CENTER);
+        btnMostrarConfirmadas.addActionListener(e -> {
+            if (controlador != null) controlador.filtrarReservas("Pendiente");
+        });
+        
+        btnMostrarActivas.addActionListener(e -> {
+            if (controlador != null) controlador.filtrarReservas("Activa");
+        });
+        
+        btnMostrarCompletadas.addActionListener(e -> {
+            if (controlador != null) controlador.filtrarReservas("Completada");
+        });
+        
+        btnMostrarTodo.addActionListener(e -> {
+            if (controlador != null) controlador.iniciar(tablaReservas);
+        });
+        // -----------------------------------------------
     }
+        
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -521,5 +539,13 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
         return tablaReservas;
     }
     
+    // --- PEGA ESTE MÉTODO AL FINAL DE LA CLASE ---
+    public void actualizarContador(int cantidad) {
+        // jLabel3 es el número grande arriba a la izquierda
+        if (jLabel3 != null) {
+            jLabel3.setText(String.valueOf(cantidad));
+        }
+    }
     
 }
+ 
