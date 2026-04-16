@@ -135,6 +135,8 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cliente: ");
 
+        cmbReservasCompletadas.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        cmbReservasCompletadas.setForeground(new java.awt.Color(0, 0, 0));
         cmbReservasCompletadas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnBuscar.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
@@ -168,7 +170,7 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        btnBuscar.setBackground(new java.awt.Color(0, 204, 204));
+        btnBuscar.setBackground(new java.awt.Color(20, 30, 40));
 
         btnBuscar.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
 
@@ -186,11 +188,12 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
 
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBuscar.setBackground(new Color(20, 30, 40));
+                btnBuscar.setBackground(new Color(0, 204, 204));
 
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnBuscar.setBackground(new Color(0, 204, 204));
+                btnBuscar.setBackground(new Color(20, 30, 40));
+
             }
         });
 
@@ -525,7 +528,7 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
                 .addContainerGap())
         );
 
-        btnCalcularCambio.setBackground(new java.awt.Color(0, 204, 204));
+        btnCalcularCambio.setBackground(new java.awt.Color(20, 30, 40));
 
         btnCalcularCambio.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -539,14 +542,14 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
 
         btnCalcularCambio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCalcularCambio.setBackground(new Color(81, 109, 110));
+                btnCalcularCambio.setBackground(new Color(0, 204, 204));
 
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnCalcularCambio.setBackground(new Color(0, 204, 204));
+                btnCalcularCambio.setBackground(new Color(20, 30, 40));
             }
         });
-        btnRegistrarVenta.setBackground(new java.awt.Color(0, 204, 204));
+        btnRegistrarVenta.setBackground(new java.awt.Color(20, 30, 40));
 
         btnRegistrarVenta.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -560,11 +563,11 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
 
         btnRegistrarVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnRegistrarVenta.setBackground(new Color(81, 109, 110));
+                btnRegistrarVenta.setBackground(new Color(0, 204, 204));
 
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRegistrarVenta.setBackground(new Color(0, 204, 204));
+                btnRegistrarVenta.setBackground(new Color(20, 30, 40));
             }
         });
 

@@ -231,6 +231,12 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbReservasCompletadas">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Poppins" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
                     <StringItem index="0" value="Item 1"/>
@@ -255,7 +261,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnBuscar.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnBuscar.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnBuscar.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnBuscar.setToolTipText(&quot;&quot;);&#xa;&#xa;btnBuscar.setBorder(null);&#xa;&#xa;btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnBuscar.setFocusable(false);&#xa;&#xa;btnBuscar.setIconTextGap(10);&#xa;&#xa;btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnBuscar.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnBuscar.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnBuscar.setBackground(new java.awt.Color(20, 30, 40));&#xa;&#xa;btnBuscar.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnBuscar.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnBuscar.setToolTipText(&quot;&quot;);&#xa;&#xa;btnBuscar.setBorder(null);&#xa;&#xa;btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnBuscar.setFocusable(false);&#xa;&#xa;btnBuscar.setIconTextGap(10);&#xa;&#xa;btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnBuscar.setBackground(new Color(0, 204, 204));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnBuscar.setBackground(new Color(20, 30, 40));&#xa;        &#xa;    }&#xa;});"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -883,7 +889,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularCambioActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnCalcularCambio.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnCalcularCambio.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnCalcularCambio.setToolTipText(&quot;&quot;);&#xa;&#xa;btnCalcularCambio.setBorder(null);&#xa;&#xa;btnCalcularCambio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnCalcularCambio.setFocusable(false);&#xa;&#xa;btnCalcularCambio.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnCalcularCambio.setBackground(new Color(81, 109, 110));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnCalcularCambio.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnCalcularCambio.setBackground(new java.awt.Color(20, 30, 40));&#xa;&#xa;btnCalcularCambio.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnCalcularCambio.setToolTipText(&quot;&quot;);&#xa;&#xa;btnCalcularCambio.setBorder(null);&#xa;&#xa;btnCalcularCambio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnCalcularCambio.setFocusable(false);&#xa;&#xa;btnCalcularCambio.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnCalcularCambio.setBackground(new Color(0, 204, 204));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnCalcularCambio.setBackground(new Color(20, 30, 40));&#xa;    }&#xa;});"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="btnRegistrarVenta">
@@ -903,7 +909,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarVentaActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnRegistrarVenta.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnRegistrarVenta.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnRegistrarVenta.setToolTipText(&quot;&quot;);&#xa;&#xa;btnRegistrarVenta.setBorder(null);&#xa;&#xa;btnRegistrarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnRegistrarVenta.setFocusable(false);&#xa;&#xa;btnRegistrarVenta.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnRegistrarVenta.setBackground(new Color(81, 109, 110));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnRegistrarVenta.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnRegistrarVenta.setBackground(new java.awt.Color(20, 30, 40));&#xa;&#xa;btnRegistrarVenta.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnRegistrarVenta.setToolTipText(&quot;&quot;);&#xa;&#xa;btnRegistrarVenta.setBorder(null);&#xa;&#xa;btnRegistrarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnRegistrarVenta.setFocusable(false);&#xa;&#xa;btnRegistrarVenta.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnRegistrarVenta.setBackground(new Color(0, 204, 204));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnRegistrarVenta.setBackground(new Color(20, 30, 40));&#xa;    }&#xa;});"/>
               </AuxValues>
             </Component>
           </SubComponents>

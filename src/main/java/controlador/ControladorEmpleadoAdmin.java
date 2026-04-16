@@ -32,11 +32,13 @@ public class ControladorEmpleadoAdmin {
         String usuario = diagAgg.getUsuario();
         String contrasena = diagAgg.getContrasena();
         String nivelAcceso = diagAgg.getNivelAcceso();
-        
+
         try{
             int respuesta = dao.guardar(new Empleado(nombre,apellido,cargo,usuario,contrasena,nivelAcceso));
             if(respuesta > 0){
                 diagAgg.mostrarExito("El usuario se ha agregado con exito");
+                diagAgg.dispose();
+                cargarTabla(vista.getTabla());
             } else {
                 diagAgg.mostrarError("No se ha podido registrar el usuario");
             }
@@ -48,20 +50,21 @@ public class ControladorEmpleadoAdmin {
 
     public void editarEmpleadoAdmin() {
         int id = diagEdit.getIdUsuario(); 
-        
+
         String nombre = diagEdit.getNombre();
         String apellido = diagEdit.getApellido();
         String cargo = diagEdit.getCargo();
         String usuario = diagEdit.getUsuario();
         String contrasena = diagEdit.getContrasena();
         String nivelAcceso = diagEdit.getNivelAcceso();
-        
+
         try {
-            
             int respuesta = dao.editar(new Empleado(id, nombre, apellido, cargo, usuario, contrasena, nivelAcceso));
-            
+
             if (respuesta > 0) {
                 diagEdit.mostrarExito("¡Usuario actualizado correctamente!");
+                diagEdit.dispose();
+                cargarTabla(vista.getTabla());
             } else {
                 diagEdit.mostrarError("No se pudo actualizar el usuario.");
             }
@@ -73,10 +76,11 @@ public class ControladorEmpleadoAdmin {
 
     public void eliminarEmpleadoAdmin(int id){
       try{
-          boolean eliminado= dao.eliminarEmpleadoAdmin(id);
-          
+          boolean eliminado = dao.eliminarEmpleadoAdmin(id);
+
           if(eliminado){
               vista.mostrarExito("Usuario eliminado");
+              cargarTabla(vista.getTabla());
           }else{
               vista.mostrarError("Error al eliminar usuario");
           }
@@ -118,7 +122,7 @@ public class ControladorEmpleadoAdmin {
     public void iniciar(JTable tabla) {
         cargarTabla(tabla);
         
-        timer = new Timer(5000, e -> cargarTabla(tabla));
+        timer = new Timer(1000, e -> cargarTabla(tabla));
         timer.start();
     }
 
@@ -152,4 +156,6 @@ public class ControladorEmpleadoAdmin {
             diagEdit.mostrarError("Error al cargar los datos del usuario.");
         }
     }
+    
+
 }

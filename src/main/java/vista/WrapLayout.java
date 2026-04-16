@@ -10,17 +10,17 @@ public class WrapLayout extends FlowLayout
 
 	public WrapLayout()
 	{
-		super();
+            super();
 	}
 
 	public WrapLayout(int align)
 	{
-		super(align);
+            super(align);
 	}
 
 	public WrapLayout(int align, int hgap, int vgap)
 	{
-		super(align, hgap, vgap);
+            super(align, hgap, vgap);
 	}
 
 	@Override
@@ -57,7 +57,6 @@ public class WrapLayout extends FlowLayout
 		int rowHeight = 0;
 
 		int nmembers = target.getComponentCount();
-
 		for (int i = 0; i < nmembers; i++)
 		{
 			Component m = target.getComponent(i);

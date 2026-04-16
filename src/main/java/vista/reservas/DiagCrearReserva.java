@@ -403,9 +403,9 @@ public class DiagCrearReserva extends javax.swing.JDialog {
         boolean reservaExitosa = controlador.crearReserva();
         
         if (reservaExitosa) {
-            this.dispose(); // Solo cierra la ventana si se guardó en la BD
+            this.dispose();
         } else {
-            btnDIag.setEnabled(true); // Si falló (ej. por capacidad), encendemos el botón para que corrija
+            btnDIag.setEnabled(true);
         }
         
     }//GEN-LAST:event_btnDIagActionPerformed
