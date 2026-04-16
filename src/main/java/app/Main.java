@@ -1,26 +1,25 @@
 package app;
 
-
-import java.sql.Connection;
-import javax.swing.SwingUtilities;
 import vista.Login;
-import vista.MainFrame;
+import controlador.ControladorLogin;
 
 public class Main {
     public static void main(String[] args) {
-        // TODO code application logic here
         
-                // Login
-                java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                Login vistaLogin = new Login();
                 
-                // MainFrame
-            SwingUtilities.invokeLater(() -> {
-                new MainFrame(new ContextoAplicacion()).setVisible(true);
-        });
+                java.sql.Connection con = conexion.Conexion.getConexion();
+                
+                dao.LoginDAO daoLogin = new dao.LoginDAO(con);
+
+                ControladorLogin controlador = new ControladorLogin(vistaLogin, daoLogin);
+                               
+                vistaLogin.setControlador(controlador);
             
-                
-
-
+                vistaLogin.setVisible(true);
+            }
+        });
     }
-    
 }

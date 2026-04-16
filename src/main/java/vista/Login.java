@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame implements Mensajes {
         txtUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        txtContrasena = new javax.swing.JTextField();
+        txtContrasena = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,7 +79,6 @@ public class Login extends javax.swing.JFrame implements Mensajes {
 
         txtContrasena.setBackground(new java.awt.Color(255, 255, 255));
         txtContrasena.setForeground(new java.awt.Color(0, 0, 0));
-        txtContrasena.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(5, 17, 98), 2, true));
         txtContrasena.addActionListener(this::txtContrasenaActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -87,19 +86,18 @@ public class Login extends javax.swing.JFrame implements Mensajes {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(82, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtContrasena))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,9 +110,9 @@ public class Login extends javax.swing.JFrame implements Mensajes {
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(140, Short.MAX_VALUE))
         );
@@ -126,9 +124,10 @@ public class Login extends javax.swing.JFrame implements Mensajes {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    String usuario = txtUsuario.getText();
-    String contrasena = txtContrasena.getText();
-    controlador.validarUsuario(usuario, contrasena);
+        String usuario = txtUsuario.getText().trim();
+        String contrasena = String.valueOf(txtContrasena.getPassword()).trim();
+       
+        controlador.validarUsuario(usuario, contrasena);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
@@ -143,17 +142,21 @@ public class Login extends javax.swing.JFrame implements Mensajes {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtContrasena;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    @Override
+  @Override
     public void mostrarExito(String mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
     }
 
     @Override
     public void mostrarError(String mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      
+    }
+    
+    public void setControlador(ControladorLogin controlador) {
+        this.controlador = controlador;
     }
 }

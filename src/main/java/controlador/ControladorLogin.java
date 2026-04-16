@@ -6,46 +6,55 @@ package controlador;
 
 import dao.LoginDAO;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import modelo.personas.Empleado;
 import vista.Login;
+import vista.MainFrame;
+import app.ContextoAplicacion;
+
 /**
  *
- 
-@author Star_*/
+ * @author Star_
+ */
 public class ControladorLogin {
+    
     private Login vista;
     private LoginDAO dao;
 
-
     public ControladorLogin(Login vista, LoginDAO dao){
-        this.vista=vista;
-        this.dao=dao;
+        this.vista = vista;
+        this.dao = dao;
     }
 
     public void validarUsuario(String usuario, String contrasena){
-        if(usuario==null|| usuario.trim().isEmpty()||  
-        contrasena==null|| contrasena.trim().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Debe completar usuario y contraseña", "Ventana de validación", JOptionPane.ERROR_MESSAGE);
+        
+        if(usuario == null || usuario.trim().isEmpty() ||  
+           contrasena == null || contrasena.trim().isEmpty()){
+            vista.mostrarError("Debe completar usuario y contraseña");
+            return; 
         }
 
-        try{
-            Empleado emp = new Empleado();
-            emp.setUsuario(usuario.trim());
-            emp.setContrasena(contrasena.trim());
+        try {
+           
+            boolean valido = dao.validarUsuario(usuario.trim(), contrasena.trim());
 
-            boolean valido = dao.validarUsuario(emp);
+            if (valido) {
+                vista.mostrarExito("¡Bienvenido al sistema, " + usuario + "!");                        
+                vista.dispose(); 
+                
+               
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new MainFrame(new ContextoAplicacion()).setVisible(true);
+                    }
+                });
 
-            if(valido){
-                vista.mostrarExito("Login validado"); 
-            }else{
-                vista.mostrarError("Fallo de autenticación");
+            } else {
+                vista.mostrarError("Usuario o contraseña incorrectos.");
             }
-        }catch(SQLException e){
-            vista.mostrarError("Error de validación, intente nuevamente");
-            System.out.println("Error SQL" + e.getMessage());
+            
+        } catch(SQLException e) {
+            vista.mostrarError("Error al conectar con la base de datos.");
+            System.err.println("Error SQL: " + e.getMessage());
         }
     }
 
