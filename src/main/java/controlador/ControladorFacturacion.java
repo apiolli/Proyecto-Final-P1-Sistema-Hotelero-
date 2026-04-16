@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.ReporteFactura;
 import modelo.interfaces.Facturable;
-import modelo.personas.Huesped;
 import vista.PanelFacturacion;
 
 public class ControladorFacturacion implements Facturable{
@@ -45,7 +44,24 @@ public class ControladorFacturacion implements Facturable{
     }
     
     public void reiniciar() {
-        
+        // Limpiar todos los campos de información
+        vista.getTxtIDReserva().setText("");
+        vista.getTxtHuesped().setText("");
+        vista.getTxtTelefono().setText("");
+        vista.getTxtDocumentoIdentida().setText("");
+        vista.getTxtFecha().setText("");
+        vista.getTxtNumeroFactura().setText("");
+        vista.getTxtSubtotal().setText("");
+        vista.getTxtITBIS().setText("");
+        vista.getTxtDescuento().setText("");
+        vista.getTxtTotal().setText("");
+        vista.getTxtEfectivo().setText("");
+        vista.getTxtCambio().setText("");
+        // Limpiar tabla
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) vista.getTablaFactura().getModel();
+        modelo.setRowCount(0);
+        // Resetear combobox forma de pago
+        vista.getCmbFormaPago().setSelectedIndex(0);
     }
     
     public void cargarFactura() {
@@ -120,24 +136,53 @@ public class ControladorFacturacion implements Facturable{
     @Override
     public void registrarVenta() {
         try {
-            
+            // Validar que haya una reserva cargada
+            if (vista.getTxtIDReserva().getText().trim().isEmpty()) {
+                vista.mostrarError("Primero busque y cargue una reserva antes de registrar la venta.");
+                return;
+            }
+            if (idsReservas.isEmpty() || vista.getCmbReservasCompletadas().getSelectedIndex() < 0) {
+                vista.mostrarError("No hay ninguna reserva seleccionada.");
+                return;
+            }
+
+            // Validar que la tabla tenga items
             DefaultTableModel tabla = (DefaultTableModel) vista.getTablaFactura().getModel();
+            if (tabla.getRowCount() == 0) {
+                vista.mostrarError("La factura no tiene items cargados.");
+                return;
+            }
+
+            // Validar descuento
+            String descuentoTxt = vista.getTxtDescuento().getText().trim();
+            double descuento = 0.0;
+            if (!descuentoTxt.isEmpty()) {
+                try {
+                    descuento = Double.parseDouble(descuentoTxt);
+                    if (descuento < 0) {
+                        vista.mostrarError("El descuento no puede ser negativo.");
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    vista.mostrarError("El descuento debe ser un número válido.");
+                    return;
+                }
+            }
+
             int idReserva = idsReservas.get(vista.getCmbReservasCompletadas().getSelectedIndex());
             System.out.println("Huesped: '" + vista.getTxtHuesped().getText() + "'");
             
             String nombreCompleto = vista.getTxtHuesped().getText();
             String[] partesNombres = nombreCompleto.split(" ");
             String nombre = partesNombres[0];
-            String apellido = partesNombres[1];
-            
+            String apellido = partesNombres.length > 1 ? partesNombres[1] : "";
             
             String seleccion = vista.getCmbReservasCompletadas().getSelectedItem().toString();
             int habitacion = Integer.parseInt(seleccion.split(" \\| ")[2].replace("Hab. ", ""));
-            double descuento = vista.getTxtDescuento().getText().isEmpty() ? 0.0 : Double.parseDouble(vista.getTxtDescuento().getText());
 
             ReporteFactura reporte = new ReporteFactura();
             reporte.setIdReserva(idReserva);
-            reporte.setHuesped(new Huesped(nombre, apellido));
+            reporte.setHuesped(new modelo.personas.Huesped(nombre, apellido));
             reporte.setHabitacion(habitacion);
             reporte.setSubtotal(Double.parseDouble(vista.getTxtSubtotal().getText()));
             reporte.setItbis(Double.parseDouble(vista.getTxtITBIS().getText()));
@@ -164,10 +209,29 @@ public class ControladorFacturacion implements Facturable{
     
     @Override
     public void calcularCambio() {
-        double efectivo = Double.parseDouble(vista.getTxtEfectivo().getText());
-        double total = Double.parseDouble(vista.getTxtTotal().getText());
-        double cambio = efectivo - total;
-        vista.getTxtCambio().setText(String.format("%.2f", cambio));
+        String efectivoTxt = vista.getTxtEfectivo().getText().trim();
+        String totalTxt = vista.getTxtTotal().getText().trim();
+
+        if (efectivoTxt.isEmpty()) {
+            vista.mostrarError("Ingrese el monto de efectivo recibido.");
+            return;
+        }
+        if (totalTxt.isEmpty()) {
+            vista.mostrarError("Primero cargue una factura para calcular el cambio.");
+            return;
+        }
+        try {
+            double efectivo = Double.parseDouble(efectivoTxt);
+            double total = Double.parseDouble(totalTxt);
+            if (efectivo < 0) {
+                vista.mostrarError("El efectivo no puede ser negativo.");
+                return;
+            }
+            double cambio = efectivo - total;
+            vista.getTxtCambio().setText(String.format("%.2f", cambio));
+        } catch (NumberFormatException e) {
+            vista.mostrarError("El efectivo debe ser un número válido.");
+        }
     }
     
     

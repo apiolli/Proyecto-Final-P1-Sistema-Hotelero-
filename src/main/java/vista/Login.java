@@ -2,6 +2,7 @@ package vista;
 import modelo.interfaces.Mensajes;
 import controlador.ControladorLogin;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame implements Mensajes {
@@ -13,6 +14,7 @@ public class Login extends javax.swing.JFrame implements Mensajes {
         this.setLocationRelativeTo(null);
         this.setTitle("LOGIN - HOTELINK");
         this.setResizable(false);
+        setIconImage(new ImageIcon(getClass().getResource("/img/logopeque.png")).getImage());
         
     }
     @SuppressWarnings("unchecked")
@@ -151,7 +153,7 @@ public class Login extends javax.swing.JFrame implements Mensajes {
         // TODO add your handling code here:
         String usuario = txtUsuario.getText().trim();
         String contrasena = String.valueOf(txtContrasena.getPassword()).trim();
-       
+    
         controlador.validarUsuario(usuario, contrasena);
     }//GEN-LAST:event_jButton1ActionPerformed
 

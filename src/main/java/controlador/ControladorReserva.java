@@ -13,11 +13,13 @@ import modelo.personas.Huesped;
 import vista.reservas.DiagCrearReserva;
 import vista.habitaciones.DiagEditarHabitacion;
 import vista.reservas.PanelReservas;
+import vista.checkInOut.DiagRegistrarCheckIn;
 
 public class ControladorReserva {
 
     private DiagCrearReserva diagCrear;
     private DiagEditarHabitacion diagEditar;
+    private DiagRegistrarCheckIn diagCheckIn;
     private PanelReservas vista;
     private ReservaDAO dao;
     private HuespedDAO huespedDAO;
@@ -171,8 +173,113 @@ public class ControladorReserva {
         this.diagCrear = diagCrear;
     }
 
+    public void setDiagCheckIn(DiagRegistrarCheckIn diagCheckIn) {
+        this.diagCheckIn = diagCheckIn;
+    }
+
     public void setDiagEditar(DiagEditarHabitacion diagEditar) {
         this.diagEditar = diagEditar;
+    }
+
+    // ---------- métodos para DiagRegistrarCheckIn ----------
+
+    public boolean crearReservaCheckIn() {
+        try {
+            int idHuesped = diagCheckIn.getTxtID();
+            String numHabSeleccionada = diagCheckIn.getHabDisponibles();
+            int noHabitacion = Integer.parseInt(numHabSeleccionada);
+            int numPersonas = diagCheckIn.getSpNoPersonas();
+
+            int capacidadMaxima = habitacionDAO.obtenerCapacidad(noHabitacion);
+            if (numPersonas > capacidadMaxima) {
+                diagCheckIn.mostrarError("Esa cantidad (" + numPersonas + ") excede la capacidad de la habitación (Máximo: " + capacidadMaxima + ").");
+                return false;
+            }
+
+            int idHabitacion = habitacionDAO.buscarIdPorNumero(noHabitacion);
+            if (idHabitacion == -1) {
+                diagCheckIn.mostrarError("No se encontró el ID de la habitación seleccionada.");
+                return false;
+            }
+
+            // Verificar que la habitación no esté ya ocupada
+            boolean ocupada = habitacionDAO.estaOcupada(idHabitacion);
+            if (ocupada) {
+                diagCheckIn.mostrarError("La habitación seleccionada ya está Ocupada.");
+                return false;
+            }
+
+            long fechaEntrada = diagCheckIn.getFechaEntrada();
+            long fechaSalida  = diagCheckIn.getFechaSalida();
+            double dineroAbonado = diagCheckIn.getDineroAbonado();
+
+            int respuesta = dao.guardarConIds(idHuesped, idHabitacion, fechaEntrada, fechaSalida, numPersonas, dineroAbonado);
+
+            if (respuesta > 0) {
+                // Hacer el CheckIn inmediatamente (estado Activa + habitación Ocupada)
+                dao.marcarCheckInInmediato(respuesta, idHabitacion);
+                diagCheckIn.mostrarExito("CheckIn registrado correctamente.");
+                return true;
+            } else {
+                diagCheckIn.mostrarError("No se pudo registrar el CheckIn.");
+                return false;
+            }
+
+        } catch (NumberFormatException e) {
+            diagCheckIn.mostrarError("Datos numéricos inválidos.");
+            return false;
+        } catch (SQLException e) {
+            System.err.println("Error SQL: " + e.getMessage());
+            diagCheckIn.mostrarError("Error al conectar con la base de datos.");
+            return false;
+        }
+    }
+
+    public void buscarHabitacionesDisponiblesCheckIn() {
+        try {
+            String tipo = diagCheckIn.getTipoHab();
+            int numPersonas = diagCheckIn.getSpNoPersonas();
+
+            ArrayList<Integer> disponibles = habitacionDAO.buscarDisponiblesPorTipoYCapacidad(tipo, numPersonas);
+
+            if (disponibles.isEmpty()) {
+                diagCheckIn.mostrarError("No hay habitaciones de tipo " + tipo + " con capacidad para " + numPersonas + " personas.");
+                diagCheckIn.cargarHabitacionesDisponibles(new ArrayList<>());
+                return;
+            }
+
+            diagCheckIn.cargarHabitacionesDisponibles(disponibles);
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            diagCheckIn.mostrarError("Error al buscar habitaciones disponibles.");
+        }
+    }
+
+    public void buscarHuespedCheckIn(javax.swing.JTextField nombre, javax.swing.JTextField apellido,
+                                      javax.swing.JTextField documento, javax.swing.JTextField id) {
+        try {
+            int idHuesped = huespedDAO.buscarIdPorDocumento(documento.getText());
+            if (idHuesped == -1) {
+                diagCheckIn.mostrarError("No existe un huésped con ese documento.");
+                return;
+            }
+            documento.setEditable(false);
+
+            modelo.personas.Huesped hues = huespedDAO.buscarNombreApellido(idHuesped);
+            if (hues == null) {
+                diagCheckIn.mostrarError("Error al obtener datos del huésped.");
+                return;
+            }
+
+            nombre.setText(hues.getNombre());
+            apellido.setText(hues.getApellido());
+            id.setText(String.valueOf(idHuesped));
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            diagCheckIn.mostrarError("Error al buscar huésped.");
+        }
     }
 
     public void setHuespedDAO(HuespedDAO huespedDAO) {

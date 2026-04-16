@@ -38,7 +38,11 @@ public class ControladorFacturaPDF implements GenerarFactura{
             String fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(date);
             String fechaNueva = fechaActual.replaceAll("/", "_");
 
-            String ruta = "facturas" + File.separator + "Facturacion_" + vista.getTxtHuesped()+ "_" + vista.getTxtIDReserva() + "_" + vista.getTxtFecha() + ".pdf";
+            String ruta = "facturas" + File.separator + "Facturacion_"
+                    + vista.getTxtHuesped().getText().replaceAll("[^a-zA-Z0-9_\\-]", "_")
+                    + "_" + vista.getTxtIDReserva().getText()
+                    + "_" + new SimpleDateFormat("yyyy_MM_dd").format(date)
+                    + ".pdf";
 
             File carpeta = new File("facturas");
             if (!carpeta.exists()) {
@@ -193,14 +197,19 @@ public class ControladorFacturaPDF implements GenerarFactura{
            
            doc.close();
            
-           Desktop.getDesktop().open(new File(ruta));
+           File archivoPDF = new File(ruta);
+           if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
+               Desktop.getDesktop().open(archivoPDF);
+           } else {
+               vista.mostrarError("No se puede abrir el PDF automáticamente.\nGuardado en: " + archivoPDF.getAbsolutePath());
+           }
             
             
         } catch (DocumentException | IOException e) {
             System.out.println("Error en: " + e);
+            vista.mostrarError("Error al generar el PDF: " + e.getMessage());
         }
     }
-
   
 
 }

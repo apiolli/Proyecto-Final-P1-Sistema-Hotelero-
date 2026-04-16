@@ -102,5 +102,23 @@ public class ReservaDAO implements Gestionable<Reserva> {
         return lista;
     }
     // --------------------------------------------
+
+    /**
+     * Después de crear la reserva vía CheckIn directo,
+     * la pone en estado 'Activa' y marca la habitación como 'Ocupada'.
+     */
+    public void marcarCheckInInmediato(int idReserva, int idHabitacion) throws java.sql.SQLException {
+        java.sql.PreparedStatement ps = con.prepareStatement(
+            "UPDATE reservas SET estado = 'Activa' WHERE id = ?"
+        );
+        ps.setInt(1, idReserva);
+        ps.executeUpdate();
+
+        java.sql.PreparedStatement ps2 = con.prepareStatement(
+            "UPDATE Habitacion SET estado = 'Ocupada' WHERE id = ?"
+        );
+        ps2.setInt(1, idHabitacion);
+        ps2.executeUpdate();
+    }
        
 }

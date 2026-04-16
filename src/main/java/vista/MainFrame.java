@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
     private CardLayout cardLayout;
-    private JButton btnReportes; 
     private JButton btnGestionUsuarios; 
     private JPanel contenedor;
     private ContextoAplicacion contexto;
@@ -38,7 +37,6 @@ public class MainFrame extends JFrame {
         add(crearSidebar(),   BorderLayout.WEST);
         add(crearContenido(), BorderLayout.CENTER);
         setIconImage(new ImageIcon(getClass().getResource("/img/logopeque.png")).getImage());
-        // PEPA
     }
 
     private JPanel crearHeader() {
@@ -80,10 +78,8 @@ public class MainFrame extends JFrame {
         sidebar.add(crearBotonNav("Check In / Out", "check",        "/img/checkin.png"));
         sidebar.add(crearBotonNav("Consumo",        "consumo",      "/img/consumibles.png"));
         sidebar.add(crearBotonNav("Facturacion",    "facturacion",  "/img/facturacion.png"));
-        btnReportes = crearBotonNav("Reportes", "reportes", "/img/reportes.png");
         btnGestionUsuarios = crearBotonNav("Gestionar Usuarios", "usuarios", "/img/usuarios.png");
         
-        sidebar.add(btnReportes);
         sidebar.add(btnGestionUsuarios);
         
     JButton btnCerrarSesion = crearBotonNav("Cerrar Sesion", "sesion", "/img/sesion.png");
@@ -174,7 +170,6 @@ public class MainFrame extends JFrame {
         contenedor.add(panelCheckinOut(),   "check");
         contenedor.add(panelConsumos(),   "consumo");
         contenedor.add(panelFacturacion(),   "facturacion");
-        contenedor.add(new PanelReportes(),   "reportes");
         contenedor.add(panelUsuarios(),   "usuarios");
 
         cardLayout.show(contenedor, "inicio");
@@ -229,6 +224,9 @@ public class MainFrame extends JFrame {
     private JPanel panelCheckinOut() {
         PanelCheckInOut panelCheks = new PanelCheckInOut(contexto);
         ControladorChecks controlador = new ControladorChecks(panelCheks, contexto.getCheckDAO());
+        controlador.setHuespedDAO(contexto.getHuespedDAO());
+        controlador.setHabitacionDAO(contexto.getHabitacionDAO());
+        controlador.setReservaDAO(contexto.getReservaDAO());
         panelCheks.setControlador(controlador);
         controlador.iniciarCheckin(panelCheks.getTablaCheckin());
         controlador.iniciarCheckouts(panelCheks.getTablaCheckout());
@@ -272,7 +270,6 @@ private JPanel panelConsumos() {
   public void configurarAccesos(String nivelAcceso, String nombreUsuario) {
         boolean esAdmin = nivelAcceso != null && nivelAcceso.equalsIgnoreCase("Administrador");
 
-        btnReportes.setVisible(esAdmin);
         btnGestionUsuarios.setVisible(esAdmin);
         
         if (ph != null) {

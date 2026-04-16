@@ -117,22 +117,37 @@ public class CheckDAO {
    public ArrayList<Integer> cargarHabitacionesConReserva() throws SQLException {
     ArrayList<Integer> lista = new ArrayList<>();
     
-    // Consulta corregida usando los nombres exactos de tu base de datos
     String sql = "SELECT h.noHabitacion " +
                  "FROM Habitacion h " +
                  "INNER JOIN reservas r ON h.id = r.id_habitacion " +
                  "WHERE r.estado = 'Activa'"; 
 
-    // Aquí asumo que tu variable de conexión se llama "con" (como en ConsumosDAO)
     try (PreparedStatement ps = con.prepareStatement(sql);
          ResultSet rs = ps.executeQuery()) {
         
         while (rs.next()) {
-            // Extraemos la columna "noHabitacion"
             lista.add(rs.getInt("noHabitacion"));
         }
     }
     return lista;
 }
+
+    /**
+     * Verifica si la habitación asociada a una reserva ya está Ocupada.
+     * Se usa antes de ejecutar el CheckIn desde la tabla de pendientes.
+     */
+    public boolean habitacionEstaOcupada(int idReserva) throws SQLException {
+        PreparedStatement ps = con.prepareStatement(
+            "SELECT h.estado FROM Habitacion h " +
+            "INNER JOIN reservas r ON r.id_habitacion = h.id " +
+            "WHERE r.id = ?"
+        );
+        ps.setInt(1, idReserva);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return "Ocupada".equalsIgnoreCase(rs.getString("estado"));
+        }
+        return false;
+    }
     
 }

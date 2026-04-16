@@ -437,6 +437,21 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
 
     private void btnMostrarActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActivasActionPerformed
         // TODO add your handling code here:
+        btnMostrarConfirmadas.addActionListener(e -> {
+            if (controlador != null) controlador.filtrarReservas("Pendiente");
+        });
+
+        btnMostrarActivas.addActionListener(e -> {
+            if (controlador != null) controlador.filtrarReservas("Activa");
+        });
+        
+        btnMostrarCompletadas.addActionListener(e -> {
+            if (controlador != null) controlador.filtrarReservas("Completada");
+        });
+        
+        btnMostrarTodo.addActionListener(e -> {
+            if (controlador != null) controlador.iniciar(tablaReservas);
+        });
     }//GEN-LAST:event_btnMostrarActivasActionPerformed
     
     private JScrollPane panelMedio() {

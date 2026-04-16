@@ -168,6 +168,18 @@ public class HabitacionDAO implements Gestionable<Habitacion> {
         
         return disponibles;
     }
+
+    public boolean estaOcupada(int idHabitacion) throws java.sql.SQLException {
+        java.sql.PreparedStatement ps = con.prepareStatement(
+            "SELECT estado FROM Habitacion WHERE id = ?"
+        );
+        ps.setInt(1, idHabitacion);
+        java.sql.ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return "Ocupada".equalsIgnoreCase(rs.getString("estado"));
+        }
+        return false;
+    }
     
     
 }

@@ -1,16 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import dao.CheckDAO;
+import dao.HabitacionDAO;
+import dao.HuespedDAO;
+import dao.ReservaDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import vista.checkInOut.DiagRegistrarCheckIn;
 import vista.checkInOut.PanelCheckInOut;
 
 /**
@@ -18,16 +18,21 @@ import vista.checkInOut.PanelCheckInOut;
  * @author DELL
  */
 public class ControladorChecks {
-//    private DiagAggHabitacion dialogo;
-//    private DiagEditarHabitacion diagEditar;
     private CheckDAO dao;
     private PanelCheckInOut vista;
     private Timer timer;
+    private HuespedDAO huespedDAO;
+    private HabitacionDAO habitacionDAO;
+    private ReservaDAO reservaDAO;
 
     public ControladorChecks(PanelCheckInOut vista, CheckDAO dao) {
         this.vista = vista;
         this.dao = dao;
     }
+
+    public void setHuespedDAO(HuespedDAO huespedDAO) { this.huespedDAO = huespedDAO; }
+    public void setHabitacionDAO(HabitacionDAO habitacionDAO) { this.habitacionDAO = habitacionDAO; }
+    public void setReservaDAO(ReservaDAO reservaDAO) { this.reservaDAO = reservaDAO; }
     
     public void cargarCheckIns(JTable tabla) {   
         DefaultTableModel modeloTabla = (DefaultTableModel) tabla.getModel();
@@ -81,6 +86,13 @@ public class ControladorChecks {
     public void hacerCheckIn(int id) {
         
         try {
+            // Validación: verificar si la habitación ya está ocupada
+            boolean ocupada = dao.habitacionEstaOcupada(id);
+            if (ocupada) {
+                vista.mostrarError("No se puede hacer Check-In: la habitación ya está Ocupada.");
+                return;
+            }
+
             int respuesta = dao.ejecutarCheckin(id);
             
             if (respuesta > 0) {
@@ -118,6 +130,10 @@ public class ControladorChecks {
     
     public void seleccionarCheckOut() {
         int fila = vista.getTablaCheckout().getSelectedRow();
+        if (fila == -1) {
+            vista.mostrarError("Seleccione una reserva de la tabla primero.");
+            return;
+        }
         int id = (int) vista.getTablaCheckout().getValueAt(fila, 0);
         vista.setIdTabla(id);
 
@@ -145,6 +161,10 @@ public class ControladorChecks {
     
     public void seleccionarCheckIn() {
         int fila = vista.getTablaCheckin().getSelectedRow();
+        if (fila == -1) {
+            vista.mostrarError("Seleccione una reserva de la tabla primero.");
+            return;
+        }
         int id = (int) vista.getTablaCheckin().getValueAt(fila, 0);
         vista.setIdTabla(id);
             
@@ -166,6 +186,25 @@ public class ControladorChecks {
         } else if (respuesta == 1) {
             // Gestionar Reserva
         }
+    }
+
+    public void abrirDialogCrearCheckIn() {
+        DiagRegistrarCheckIn diag = new DiagRegistrarCheckIn(
+            (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(vista), true
+        );
+
+        // Establecer la fecha de entrada como hoy automáticamente y deshabilitada
+        diag.setFechaEntradaHoy();
+
+        // Crear un ControladorReserva apuntando al DiagRegistrarCheckIn
+        controlador.ControladorReserva controladorReserva =
+            new controlador.ControladorReserva(null, reservaDAO);
+        controladorReserva.setHuespedDAO(huespedDAO);
+        controladorReserva.setHabitacionDAO(habitacionDAO);
+        controladorReserva.setDiagCheckIn(diag);
+
+        diag.setControlador(controladorReserva);
+        diag.setVisible(true);
     }
     
     

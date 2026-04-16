@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class DiagRegistrarCheckIn extends javax.swing.JDialog {
     
@@ -357,40 +358,34 @@ public class DiagRegistrarCheckIn extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDIagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDIagActionPerformed
-        // TODO add your handling code here:
         btnDIag.setEnabled(false);
 
-        // 2. Validar que hayan buscado un huésped (El ID oculto no debe estar vacío)
         if (txtID.getText().trim().isEmpty() || txtNombre.getText().trim().isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, busque y seleccione un huésped primero.", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, busque y seleccione un huésped primero.", "Validación", JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
 
-        // 3. Validar que hayan seleccionado ambas fechas en el calendario
         if (fechaEntrada.getDate() == null || fechaSalida.getDate() == null) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, seleccione las fechas de entrada y salida.", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione la fecha de salida.", "Validación", JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
 
-        // Validar lógica de fechas (Salida debe ser después de Entrada)
         if (fechaSalida.getDate().before(fechaEntrada.getDate()) || fechaSalida.getDate().equals(fechaEntrada.getDate())) {
-            javax.swing.JOptionPane.showMessageDialog(this, "La fecha de salida debe ser posterior a la de entrada.", "Error de fechas", javax.swing.JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "La fecha de salida debe ser posterior a la de entrada.", "Error de fechas", JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
 
-        // 4. Validar que hayan buscado y seleccionado una habitación
-        if (cmbHabDisponibles.getSelectedItem() == null) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, seleccione una habitación disponible.", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+        if (cmbHabDisponibles.getSelectedItem() == null || cmbHabDisponibles.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una habitación disponible.", "Validación", JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
 
-        // 5. Validar Dinero Abonado (vacíos, letras o negativos)
         if (txtDineroAbonado.getText().trim().isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Ingrese el dinero abonado (coloque 0 si no abona nada).", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingrese el dinero abonado (coloque 0 si no abona nada).", "Validación", JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
@@ -398,34 +393,34 @@ public class DiagRegistrarCheckIn extends javax.swing.JDialog {
         try {
             double abono = Double.parseDouble(txtDineroAbonado.getText().trim());
             if (abono < 0) {
-                javax.swing.JOptionPane.showMessageDialog(this, "El dinero abonado no puede ser negativo.", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El dinero abonado no puede ser negativo.", "Validación", JOptionPane.WARNING_MESSAGE);
                 btnDIag.setEnabled(true);
                 return;
             }
         } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "El dinero abonado debe ser un número válido.", "Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El dinero abonado debe ser un número válido.", "Validación", JOptionPane.WARNING_MESSAGE);
             btnDIag.setEnabled(true);
             return;
         }
-        
-        boolean reservaExitosa = controlador.crearReserva();
-        
-        if (reservaExitosa) {
-            this.dispose(); // Solo cierra la ventana si se guardó en la BD
+
+        boolean exitoso = controlador.crearReservaCheckIn();
+        if (exitoso) {
+            this.dispose();
         } else {
-            btnDIag.setEnabled(true); // Si falló (ej. por capacidad), encendemos el botón para que corrija
+            btnDIag.setEnabled(true);
         }
-        
     }//GEN-LAST:event_btnDIagActionPerformed
 
     private void btnBuscarDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDocActionPerformed
-        // TODO add your handling code here:
-        controlador.buscarHuesped(txtNombre, txtApellido, txtDocumento, txtID);
+        if (txtDocumento.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un documento de identidad para buscar.", "Validación", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        controlador.buscarHuespedCheckIn(txtNombre, txtApellido, txtDocumento, txtID);
     }//GEN-LAST:event_btnBuscarDocActionPerformed
 
     private void btnBuscarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHabActionPerformed
-        // TODO add your handling code here:
-        controlador.buscarHabitacionesDisponibles();
+        controlador.buscarHabitacionesDisponiblesCheckIn();
     }//GEN-LAST:event_btnBuscarHabActionPerformed
     
     public void cargarHabitacionesDisponibles(ArrayList<Integer> habitaciones) {
@@ -507,6 +502,19 @@ public class DiagRegistrarCheckIn extends javax.swing.JDialog {
  
     public int getTxtID() {
         return Integer.valueOf(txtID.getText());
+    }
+
+    public void setFechaEntradaHoy() {
+        fechaEntrada.setDate(new Date());
+        fechaEntrada.setEnabled(false);
+    }
+
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void mostrarExito(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }
     
 

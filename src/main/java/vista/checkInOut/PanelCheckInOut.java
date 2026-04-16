@@ -284,8 +284,7 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
     }//GEN-LAST:event_tablaCheckoutMouseClicked
 
     private void btnCrearCheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCheckinActionPerformed
-        // TODO add your handling code here:
-        
+        controlador.abrirDialogCrearCheckIn();
     }//GEN-LAST:event_btnCrearCheckinActionPerformed
     
     private void disenoTabla(JTable tabla) {
