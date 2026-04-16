@@ -2,7 +2,7 @@ package modelo.personas;
 
 public class Empleado extends Persona {
     
-    private int id; // <--- Agregamos el ID para poder editarlo en la BD
+    private int id; 
     private String cargo;
     private String usuario;
     private String contrasena;
@@ -10,7 +10,7 @@ public class Empleado extends Persona {
     
     
     public Empleado(String nombre, String apellido, String cargo, String usuario, String contrasena, String nivelAcceso) {
-        super(nombre, apellido); // Llama a la clase Persona
+        super(nombre, apellido); 
         this.cargo = cargo;
         this.usuario = usuario;
         this.contrasena = contrasena;
@@ -19,8 +19,8 @@ public class Empleado extends Persona {
 
    
     public Empleado(int id, String nombre, String apellido, String cargo, String usuario, String contrasena, String nivelAcceso) {
-        super(nombre, apellido); // Llama a la clase Persona
-        this.id = id;            // Guarda el ID
+        super(nombre, apellido); 
+        this.id = id;            
         this.cargo = cargo;
         this.usuario = usuario;
         this.contrasena = contrasena;
@@ -50,7 +50,7 @@ public class Empleado extends Persona {
         return nivelAcceso;
     }  
     
-    // --- SETTERS ---
+
     public void setId(int id) {
         this.id = id;
     }

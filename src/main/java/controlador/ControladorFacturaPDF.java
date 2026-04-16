@@ -19,16 +19,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import modelo.interfaces.GenerarFactura;
 import vista.PanelFacturacion;
 
-public class ControladorFacturaPDF {
+public class ControladorFacturaPDF implements GenerarFactura{
     
     private PanelFacturacion vista;
 
     public ControladorFacturaPDF(PanelFacturacion vista) {
         this.vista = vista;
     }
-
+   
+    @Override
     public void generarFacturaPDF() {
         try {
 
@@ -198,5 +200,7 @@ public class ControladorFacturaPDF {
             System.out.println("Error en: " + e);
         }
     }
+
+  
 
 }

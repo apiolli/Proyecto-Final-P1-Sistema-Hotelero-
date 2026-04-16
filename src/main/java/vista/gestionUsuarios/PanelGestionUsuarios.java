@@ -70,7 +70,7 @@ public class PanelGestionUsuarios extends javax.swing.JPanel implements Mensajes
 
         titulo.setFont(new java.awt.Font("Poppins", 1, 36)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("Gestion de usuarios");
+        titulo.setText("Gestión de usuarios");
 
         tabla.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
