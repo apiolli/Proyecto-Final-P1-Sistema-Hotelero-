@@ -46,52 +46,70 @@ public class PanelConsumo extends JPanel {
 
     private void iniciarComponentes() {
         setLayout(null);
-        setBackground(new Color(30, 30, 30));
+        setBackground(new Color(242, 242, 242));
         setBounds(0, 0, 1100, 750);
 
         Font fuenteTitulo = new Font("Poppins", Font.BOLD, 18);
         Font fuenteNormal = new Font("Poppins", Font.PLAIN, 13);
 
-        // --- ENCABEZADO Y HABITACIÓN ---
         JLabel lblTitulo = new JLabel("FACTURACIÓN - CONSUMOS");
         lblTitulo.setFont(fuenteTitulo);
-        lblTitulo.setForeground(new Color(192, 255, 255));
+        lblTitulo.setForeground(new Color(0, 204, 204));
         lblTitulo.setBounds(20, 10, 400, 30);
         add(lblTitulo);
 
         JLabel lblHab = new JLabel("Habitación:");
-        lblHab.setForeground(Color.WHITE);
+        lblHab.setForeground(new Color(0, 204, 204));
         lblHab.setFont(fuenteNormal);
         lblHab.setBounds(20, 55, 80, 25);
         add(lblHab);
 
         cmbHabitaciones = new JComboBox<>();
         cmbHabitaciones.setBounds(100, 55, 120, 25);
+        cmbHabitaciones.setForeground(Color.BLACK);
+        cmbHabitaciones.setBackground(Color.WHITE);
+        cmbHabitaciones.setFont(fuenteNormal);
+        cmbHabitaciones.setFocusable(false);
         add(cmbHabitaciones);
 
        
         btnAgregarProducto = new JButton("+ Nuevo Producto");
         btnAgregarProducto.setBounds(240, 55, 150, 25);
-        btnAgregarProducto.setBackground(new Color(0, 204, 204)); // El Cian del botón confirmar
-        btnAgregarProducto.setForeground(Color.WHITE);
-        btnAgregarProducto.setFocusPainted(false);
-        btnAgregarProducto.setBorder(null); // Sin borde para que se vea más moderno
+        btnAgregarProducto.setBackground(new java.awt.Color(0, 204, 204));
+        btnAgregarProducto.setFont(new java.awt.Font("Poppins", 1, 14));
+        btnAgregarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarProducto.setToolTipText("");
+        btnAgregarProducto.setBorder(null);
         btnAgregarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarProducto.setFocusable(false);
+        btnAgregarProducto.setIconTextGap(10);
+        
+        btnAgregarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarProducto.setBackground(new Color(81, 109, 110));
+
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarProducto.setBackground(new Color(0, 204, 204));
+            }
+        });      
         add(btnAgregarProducto);
 
         JLabel lblCat = new JLabel("Categoría:");
-        lblCat.setForeground(Color.WHITE);
+        lblCat.setForeground(new Color(0, 204, 204));
         lblCat.setFont(fuenteNormal);
         lblCat.setBounds(410, 55, 80, 25);
         add(lblCat);
 
         cmbCategorias = new JComboBox<>(new String[]{"Todas", "Bebidas", "Comidas", "Snacks", "Otros"});
         cmbCategorias.setBounds(490, 55, 120, 25);
+        cmbCategorias.setForeground(Color.BLACK);
+        cmbCategorias.setBackground(Color.WHITE);
+        cmbCategorias.setFont(fuenteNormal);
+        cmbCategorias.setFocusable(false);
         add(cmbCategorias);
 
-        // --- PANEL DINÁMICO DE BOTONES CON SCROLL (GRID LAYOUT) ---
         panelBotones = new JPanel();
-        // GridLayout: 0 filas (infinitas), 3 columnas, 15px de espacio horizontal y vertical
         panelBotones.setLayout(new GridLayout(0, 3, 15, 15));
         panelBotones.setBackground(new Color(30, 30, 30));
 
@@ -101,7 +119,6 @@ public class PanelConsumo extends JPanel {
         scrollBotones.getVerticalScrollBar().setUnitIncrement(16); 
         add(scrollBotones);
 
-        // --- PANEL DEL CARRITO (LADO DERECHO) ---
         JLabel lblCart = new JLabel("CARRITO TEMPORAL");
         lblCart.setFont(new Font("Poppins", Font.BOLD, 14));
         lblCart.setForeground(new Color(0, 204, 204));
@@ -126,7 +143,8 @@ public class PanelConsumo extends JPanel {
 
         lblTotalPagar = new JLabel("Total a cargar: RD$ 0.0");
         lblTotalPagar.setFont(new Font("Poppins", Font.BOLD, 22));
-        lblTotalPagar.setForeground(new Color(192, 255, 255));
+//        lblTotalPagar.setForeground(new Color(192, 255, 255));
+        lblTotalPagar.setForeground(new Color(0, 204, 204));
         lblTotalPagar.setBounds(650, 510, 400, 40);
         add(lblTotalPagar);
 
@@ -139,7 +157,6 @@ public class PanelConsumo extends JPanel {
         add(btnConfirmarCargo);
     }
 
-    // --- MÉTODO ACTUALIZADO PARA RENDERIZAR EN GRID LAYOUT ---
     public void renderizarBotones(ArrayList<Producto> productos, java.awt.event.ActionListener accion) {
         panelBotones.removeAll();
 
@@ -192,7 +209,6 @@ public class PanelConsumo extends JPanel {
         lblTotalPagar.setText("Total a cargar: RD$ 0.0");
     }
 
-    // --- GETTERS ---
     public JComboBox<String> getCmbHabitaciones() { return cmbHabitaciones; }
     public JComboBox<String> getCmbCategorias() { return cmbCategorias; }
     public JButton getBtnConfirmarCargo() { return btnConfirmarCargo; }

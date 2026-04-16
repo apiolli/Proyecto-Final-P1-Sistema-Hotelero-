@@ -2,6 +2,7 @@ package vista;
 import modelo.interfaces.Mensajes;
 import controlador.ControladorLogin;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame implements Mensajes {
     
@@ -170,14 +171,14 @@ public class Login extends javax.swing.JFrame implements Mensajes {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-  @Override
+    @Override
     public void mostrarExito(String mensaje) {
-    
+        JOptionPane.showMessageDialog(this, mensaje, "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }
-
+ 
     @Override
     public void mostrarError(String mensaje) {
-      
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
     public void setControlador(ControladorLogin controlador) {

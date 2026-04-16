@@ -36,25 +36,15 @@ public class ControladorLogin {
         try {
   
             modelo.personas.Empleado emp = dao.validarUsuario(usuario.trim(), contrasena.trim());
-
             if (emp != null) {
-              
                 vista.dispose();
-
-            
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                     
                         MainFrame main = new MainFrame(new ContextoAplicacion());
-                        
-   
                         main.configurarAccesos(emp.getNivelAcceso(), emp.getNombre());
-                        
-                       
                         main.setVisible(true);
                     }
                 });
-                
                 vista.mostrarExito("¡Bienvenido al sistema, " + emp.getNombre() + "!");
 
             } else {
