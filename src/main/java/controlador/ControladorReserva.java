@@ -102,21 +102,28 @@ public class ControladorReserva {
         }
     }
 
-    public void buscarHabitacionesDisponibles() {
+   public void buscarHabitacionesDisponibles() {
         try {
             String tipo = diagCrear.getTipoHab();
-            ArrayList<Integer> disponibles = habitacionDAO.buscarDisponiblesPorTipo(tipo);
+            int numPersonas = diagCrear.getSpNoPersonas(); // Extraemos cuántas personas van
+
+            // Llamamos al NUEVO método del DAO que filtra por capacidad
+            ArrayList<Integer> disponibles = habitacionDAO.buscarDisponiblesPorTipoYCapacidad(tipo, numPersonas);
 
             if (disponibles.isEmpty()) {
-                vista.mostrarError("No hay habitaciones disponibles de tipo: " + tipo);
+                vista.mostrarError("No hay habitaciones de tipo " + tipo + " con capacidad para " + numPersonas + " personas.");
+                
+                // Limpiamos el ComboBox para que no se quede con datos viejos
+                diagCrear.cargarHabitacionesDisponibles(new ArrayList<>()); 
                 return;
             }
 
+            // Si encontró, llenamos el ComboBox
             diagCrear.cargarHabitacionesDisponibles(disponibles);
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            vista.mostrarError("Error al buscar habitaciones disponibles");
+            vista.mostrarError("Error al buscar habitaciones disponibles.");
         }
     }
 

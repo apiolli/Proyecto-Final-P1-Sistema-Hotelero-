@@ -31,22 +31,7 @@ public class PanelReservas extends javax.swing.JPanel implements Mensajes{
         disenoTabla();
         add(panelTitulo, BorderLayout.NORTH);
         add(panelMedio(), BorderLayout.CENTER);
-        btnMostrarConfirmadas.addActionListener(e -> {
-            if (controlador != null) controlador.filtrarReservas("Pendiente");
-        });
-        
-        btnMostrarActivas.addActionListener(e -> {
-            if (controlador != null) controlador.filtrarReservas("Activa");
-        });
-        
-        btnMostrarCompletadas.addActionListener(e -> {
-            if (controlador != null) controlador.filtrarReservas("Completada");
-        });
-        
-        btnMostrarTodo.addActionListener(e -> {
-            if (controlador != null) controlador.iniciar(tablaReservas);
-        });
-        // -----------------------------------------------
+
     }
         
     

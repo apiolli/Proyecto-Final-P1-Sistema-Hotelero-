@@ -66,18 +66,7 @@ public class HabitacionDAO implements Gestionable<Habitacion> {
         return -1;
     }
 
-    public ArrayList<Integer> buscarDisponiblesPorTipo(String tipo) throws SQLException {
-        ArrayList<Integer> disponibles = new ArrayList<>();
-        PreparedStatement ps = con.prepareStatement(
-            "SELECT noHabitacion FROM habitacion WHERE estado = 'Disponible' AND tipo = ?"
-        );
-        ps.setString(1, tipo);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            disponibles.add(rs.getInt("noHabitacion"));
-        }
-        return disponibles;
-    }
+
     
     public Habitacion buscarHabitacion(int noHabitacion) throws SQLException {
         PreparedStatement ps = con.prepareStatement("SELECT * FROM habitacion WHERE noHabitacion = ?");
@@ -159,6 +148,25 @@ public class HabitacionDAO implements Gestionable<Habitacion> {
             }
         }
         return 0; 
+    }
+    
+    public ArrayList<Integer> buscarDisponiblesPorTipoYCapacidad(String tipo, int numPersonas) throws SQLException {
+        ArrayList<Integer> disponibles = new ArrayList<>();
+        
+    
+        String sql = "SELECT noHabitacion FROM Habitacion WHERE tipo = ? AND estado = 'Disponible' AND capacidad >= ?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, tipo);
+        ps.setInt(2, numPersonas); // Filtramos para que la capacidad sea MAYOR O IGUAL a las personas
+        
+        ResultSet rs = ps.executeQuery();
+            
+        while (rs.next()) {
+            disponibles.add(rs.getInt("noHabitacion"));
+        }
+        
+        return disponibles;
     }
     
     
