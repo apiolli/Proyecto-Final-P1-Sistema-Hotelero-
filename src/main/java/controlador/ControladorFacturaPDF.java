@@ -36,7 +36,7 @@ public class ControladorFacturaPDF {
             String fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(date);
             String fechaNueva = fechaActual.replaceAll("/", "_");
 
-            String ruta = "facturas" + File.separator + "Facturacion_" + fechaNueva + ".pdf";
+            String ruta = "facturas" + File.separator + "Facturacion_" + vista.getTxtHuesped()+ "_" + vista.getTxtIDReserva() + "_" + vista.getTxtFecha() + ".pdf";
 
             File carpeta = new File("facturas");
             if (!carpeta.exists()) {
@@ -118,22 +118,22 @@ public class ControladorFacturaPDF {
             tablaProducto.setWidthPercentage(100);
             tablaProducto.getDefaultCell().setBorder(0);
             
-             float[] ColumnaProducto = new float[]{1, 3, 2, 2, 2, 2};
-             tablaProducto.setWidths(ColumnaProducto);
-             tablaProducto.setHorizontalAlignment(Element.ALIGN_LEFT);
-             PdfPCell cantidad = new PdfPCell(new Phrase("Cantidad: ", negrita));
-             PdfPCell descrip = new PdfPCell(new Phrase("Descripcion: ", negrita));
-             PdfPCell precioU = new PdfPCell(new Phrase("Precio Unitario: ", negrita));
-             PdfPCell descuento = new PdfPCell(new Phrase("Descuento: ", negrita));
-             PdfPCell itbis = new PdfPCell(new Phrase("ITBIS: ", negrita));
-             PdfPCell total = new PdfPCell(new Phrase("Total: ", negrita));
+            float[] ColumnaProducto = new float[]{1, 3, 2, 2, 2, 2};
+            tablaProducto.setWidths(ColumnaProducto);
+            tablaProducto.setHorizontalAlignment(Element.ALIGN_LEFT);
+            PdfPCell cantidad = new PdfPCell(new Phrase("Cantidad: ", negrita));
+            PdfPCell descrip = new PdfPCell(new Phrase("Descripcion: ", negrita));
+            PdfPCell precioU = new PdfPCell(new Phrase("Precio Unitario: ", negrita));
+            PdfPCell descuento = new PdfPCell(new Phrase("Descuento: ", negrita));
+            PdfPCell itbis = new PdfPCell(new Phrase("ITBIS: ", negrita));
+            PdfPCell total = new PdfPCell(new Phrase("Total: ", negrita));
 
-             cantidad.setBorder(0);
-             descrip.setBorder(0);
-             precioU.setBorder(0);
-             descuento.setBorder(0);
-             itbis.setBorder(0);
-             total.setBorder(0);
+            cantidad.setBorder(0);
+            descrip.setBorder(0);
+            precioU.setBorder(0);
+            descuento.setBorder(0);
+            itbis.setBorder(0);
+            total.setBorder(0);
 
             cantidad.setBackgroundColor(BaseColor.LIGHT_GRAY);
             descrip.setBackgroundColor(BaseColor.LIGHT_GRAY);

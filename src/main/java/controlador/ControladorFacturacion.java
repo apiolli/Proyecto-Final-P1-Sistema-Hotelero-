@@ -8,10 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.ReporteFactura;
+import modelo.interfaces.Facturable;
 import modelo.personas.Huesped;
 import vista.PanelFacturacion;
 
-public class ControladorFacturacion {
+public class ControladorFacturacion implements Facturable{
     private PanelFacturacion vista;
     private FacturacionDAO dao;
     private CheckDAO checkDAO;
@@ -96,7 +97,8 @@ public class ControladorFacturacion {
         }
     }
     
-    private void calcularTotales() {
+    @Override
+    public void calcularTotales() {
         double subtotal = 0, itbis = 0, total = 0;
         DefaultTableModel modelo = (DefaultTableModel) vista.getTablaFactura().getModel();
 
@@ -115,6 +117,7 @@ public class ControladorFacturacion {
         vista.getTxtTotal().setText(String.valueOf(total));
     }
     
+    @Override
     public void registrarVenta() {
         try {
             
@@ -159,6 +162,7 @@ public class ControladorFacturacion {
         }
     }
     
+    @Override
     public void calcularCambio() {
         double efectivo = Double.parseDouble(vista.getTxtEfectivo().getText());
         double total = Double.parseDouble(vista.getTxtTotal().getText());

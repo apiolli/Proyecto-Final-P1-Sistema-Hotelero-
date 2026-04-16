@@ -8,10 +8,6 @@ import modelo.reservas.Reserva;
 import modelo.personas.Huesped;
 import modelo.habitaciones.Habitacion;
 
-/**
- *
- * @author DELL
- */
 public class CheckIn extends Reserva {
     
     private long horaCheckin;

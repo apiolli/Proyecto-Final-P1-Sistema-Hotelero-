@@ -146,16 +146,16 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
         panelBuscar.setLayout(panelBuscarLayout);
         panelBuscarLayout.setHorizontalGroup(
             panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBuscarLayout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
-            .addGroup(panelBuscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscarLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbReservasCompletadas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(cmbReservasCompletadas, 0, 218, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
         );
         panelBuscarLayout.setVerticalGroup(
             panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,9 +164,9 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
                 .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbReservasCompletadas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscar)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         btnBuscar.setBackground(new java.awt.Color(0, 204, 204));
@@ -443,14 +443,6 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
         btnCalcularCambio.setText("Calcular cambio");
         btnCalcularCambio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCalcularCambio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnCalcularCambio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCalcularCambioMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnCalcularCambioMouseExited(evt);
-            }
-        });
         btnCalcularCambio.addActionListener(this::btnCalcularCambioActionPerformed);
 
         btnRegistrarVenta.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
@@ -459,14 +451,6 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
         btnRegistrarVenta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnRegistrarVenta.setIconTextGap(5);
         btnRegistrarVenta.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnRegistrarVenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnRegistrarVentaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRegistrarVentaMouseExited(evt);
-            }
-        });
         btnRegistrarVenta.addActionListener(this::btnRegistrarVentaActionPerformed);
 
         javax.swing.GroupLayout panelAbajoLayout = new javax.swing.GroupLayout(panelAbajo);
@@ -478,14 +462,6 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
                 .addComponent(btnRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelAbajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelAbajoLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelAbajoLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAbajoLayout.createSequentialGroup()
                         .addGroup(panelAbajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -493,7 +469,15 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelAbajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                            .addComponent(txtITBIS))))
+                            .addComponent(txtITBIS)))
+                    .addGroup(panelAbajoLayout.createSequentialGroup()
+                        .addGroup(panelAbajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAbajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDescuento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelAbajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnCalcularCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -541,6 +525,49 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
                         .addComponent(btnRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        btnCalcularCambio.setBackground(new java.awt.Color(0, 204, 204));
+
+        btnCalcularCambio.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnCalcularCambio.setToolTipText("");
+
+        btnCalcularCambio.setBorder(null);
+
+        btnCalcularCambio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnCalcularCambio.setFocusable(false);
+
+        btnCalcularCambio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCalcularCambio.setBackground(new Color(81, 109, 110));
+
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCalcularCambio.setBackground(new Color(0, 204, 204));
+            }
+        });
+        btnRegistrarVenta.setBackground(new java.awt.Color(0, 204, 204));
+
+        btnRegistrarVenta.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnRegistrarVenta.setToolTipText("");
+
+        btnRegistrarVenta.setBorder(null);
+
+        btnRegistrarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnRegistrarVenta.setFocusable(false);
+
+        btnRegistrarVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegistrarVenta.setBackground(new Color(81, 109, 110));
+
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegistrarVenta.setBackground(new Color(0, 204, 204));
+            }
+        });
 
         javax.swing.GroupLayout panelSurLayout = new javax.swing.GroupLayout(panelSur);
         panelSur.setLayout(panelSurLayout);
@@ -592,29 +619,6 @@ public class PanelFacturacion extends javax.swing.JPanel implements Mensajes {
     private void txtSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalActionPerformed
 
     }//GEN-LAST:event_txtSubtotalActionPerformed
-
-    private void btnRegistrarVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarVentaMouseEntered
-        // TODO add your handling code here:
-        btnRegistrarVenta.setBackground(new Color(20, 30, 40));
-    }//GEN-LAST:event_btnRegistrarVentaMouseEntered
-
-    private void btnRegistrarVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarVentaMouseExited
-        // TODO add your handling code here:
-        btnRegistrarVenta.setBackground(new Color(0, 204, 204));
-    
-    }//GEN-LAST:event_btnRegistrarVentaMouseExited
-
-    private void btnCalcularCambioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularCambioMouseEntered
-        // TODO add your handling code here:
-        btnCalcularCambio.setBackground(new Color(20, 30, 40));
-
-    }//GEN-LAST:event_btnCalcularCambioMouseEntered
-
-    private void btnCalcularCambioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularCambioMouseExited
-        // TODO add your handling code here:
-        btnCalcularCambio.setBackground(new Color(0, 204, 204));
-
-    }//GEN-LAST:event_btnCalcularCambioMouseExited
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
