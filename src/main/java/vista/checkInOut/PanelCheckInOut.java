@@ -52,6 +52,7 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
         jLabel1 = new javax.swing.JLabel();
 
         btnCrearCheckin.setText("Registrar Check In");
+        btnCrearCheckin.addActionListener(this::btnCrearCheckinActionPerformed);
 
         javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
         panelBotones.setLayout(panelBotonesLayout);
@@ -281,6 +282,11 @@ public class PanelCheckInOut extends javax.swing.JPanel implements Mensajes{
             controlador.seleccionarCheckOut();
         } 
     }//GEN-LAST:event_tablaCheckoutMouseClicked
+
+    private void btnCrearCheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCheckinActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnCrearCheckinActionPerformed
     
     private void disenoTabla(JTable tabla) {
         JTableHeader header = tabla.getTableHeader();

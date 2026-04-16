@@ -84,6 +84,9 @@
                   <Connection code="&quot;Registrar Check In&quot;" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearCheckinActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnCrearCheckin.setBackground(new java.awt.Color(0, 204, 204));&#xa;&#xa;btnCrearCheckin.setFont(new java.awt.Font(&quot;Poppins&quot;, 1, 14)); // NOI18N&#xa;&#xa;btnCrearCheckin.setForeground(new java.awt.Color(255, 255, 255));&#xa;&#xa;btnCrearCheckin.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/img/registrarCheckin.png&quot;))); // NOI18N&#xa;&#xa;btnCrearCheckin.setToolTipText(&quot;&quot;);&#xa;&#xa;btnCrearCheckin.setBorder(null);&#xa;&#xa;btnCrearCheckin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));&#xa;&#xa;btnCrearCheckin.setFocusable(false);&#xa;&#xa;btnCrearCheckin.setIconTextGap(10);&#xa;&#xa;btnCrearCheckin.addMouseListener(new java.awt.event.MouseAdapter() {&#xa;    public void mouseEntered(java.awt.event.MouseEvent evt) {&#xa;        btnCrearCheckin.setBackground(new Color(20, 30, 40));&#xa;&#xa;    }&#xa;    public void mouseExited(java.awt.event.MouseEvent evt) {&#xa;        btnCrearCheckin.setBackground(new Color(0, 204, 204));&#xa;    }&#xa;});&#xa;&#xa;// Code adding the component to the parent container - not shown here"/>
               </AuxValues>

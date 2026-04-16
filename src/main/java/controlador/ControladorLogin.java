@@ -34,22 +34,20 @@ public class ControladorLogin {
             modelo.personas.Empleado emp = dao.validarUsuario(usuario.trim(), contrasena.trim());
             
             if (emp != null) {
-                // 1. Cerramos el login (vista actual)
+                
                 vista.dispose(); 
                 
-                // 2. Creamos y mostramos el MainFrame
+                
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         MainFrame main = new MainFrame(new ContextoAplicacion());
                         main.configurarAccesos(emp.getNivelAcceso(), emp.getNombre());
                         
                         main.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); 
-                        main.setVisible(true); // Hacemos visible el sistema
+                        main.setVisible(true);
                         main.toFront(); 
                         main.requestFocus(); 
-                        
-                        // 3. Mostramos el mensaje AQUÍ ADENTRO, amarrado a 'main'
-                        // Así, cuando le des "OK", te quedarás en el MainFrame
+                   
                         JOptionPane.showMessageDialog(
                             main, 
                             "¡Bienvenido al sistema, " + emp.getNombre() + "!", 
@@ -59,7 +57,6 @@ public class ControladorLogin {
                     }
                 });
                 
-                // (OJO: Borra o comenta la línea antigua de vista.mostrarExito que tenías aquí abajo)
 
             } else {
                 vista.mostrarError("Usuario o contraseña incorrectos.");
